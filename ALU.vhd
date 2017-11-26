@@ -45,7 +45,7 @@ begin
 				branchJudge <= '0';
 			
 
-			wheb "0111" => --SRLV
+			when "0111" => --SRLV
 				ALUresult <= to_stdlogicvector(to_bitvector(Asrc) srl conv_integer(Bsrc));
 				branchJudge <= '0';
 			when "1000" => --SRA
@@ -63,17 +63,17 @@ begin
 					ALUresult <= "0000000000000001";
 				end if;
 				branchJudge <= '0';
-			when "1010" -- CMPU
-				if(Asrc = Bsrc) then
+			when "1010" =>-- SLTU
+				if(Asrc >= Bsrc) then
 					ALUresult <= "0000000000000000";
 				else 
 					ALUresult <= "0000000000000001";
-				else if;
+				end if;
 				branchJudge <= '0';
 			
-			when "1011" --OUTPUTA
+			when "1011" => --OUTPUTA
 				ALUresult <= Asrc;
-			when "1100" --OUTPUTB
+			when "1100" => --OUTPUTB
 				ALUresult <= Bsrc;
 
 				
@@ -83,4 +83,3 @@ begin
 	end process;
 
 end Behavioral;
-
