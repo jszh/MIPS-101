@@ -1,98 +1,98 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
-entity Controller is
+entity control is
 	port(	
 		commandIn : in std_logic_vector(15 downto 0);
 		rst : in std_logic;
-		controllerOut :  out std_logic_vector(20 downto 0)  --controllerout 将所有控制信号集中在一个中实现
-		-- RegWrite(1) RegDst(3) ReadReg1(3) ReadReg2(1) 
-		-- immeSelect(3) ALUSrcB(1) ALUOp(4) 
-		-- MemRead(1) MemWrite(1) MemToReg(1) jump(1) MFPC(1)
+		control_out :  out std_logic_vector(23 downto 0)  --control_out 将所有控制信号集中在一个中实现
+		--extend(3) reg1_select(3) reg2_select(2) regwrite(1)  --9
+		--jump(1) alusrc(1) aluop(4) regdst(3) memread(1)      --10
+		--memwrite(1) branch(3) memtoreg(1)                    --5
 	);
-end Controller;
+end control;
 
-architecture Behavioral of Controller is
+architecture Behavioral of control is
 
 begin
 	process(rst, commandIn)
 	begin
 		if (rst = '0') then
-			controllerOut <= (others => '0');
+			control_out <= (others => '0');
 		else
 			case commandIn(15 downto 11) is
 				when "00001" =>		--NOP
-					controllerOut <= "000000000000000000000";
-				when "00010" =>		--B
-					controllerOut <= "000000001100101000000";
+					control_out <= "000000000000000000000000";
+				when "00010" =>		--B  todo 这里没有控制信号
+					control_out <= "110110000000000000000000";
 				when "00100" =>		--BEQZ
-					controllerOut <= "000000101010100100000";
+					control_out <= "100110000001100000000000";
 				when "00101" =>		--BNEZ
-					controllerOut <= "000000101010101100000";
+					control_out <= "100110000001100000000000";
 				when "00110" =>
 					if (commandIn(1 downto 0) = "00") then 	--SLL
-						controllerOut <= "100101000111011000000";
+						control_out <= "011010001010110001000001";
 					elsif (commandIn(1 downto 0) = "11") then --SRA
-						controllerOut <= "100101000111011100000";
+						control_out <= "011010001011000001000001";
 					end if;
 				when "01000" =>		--ADDIU3
-					controllerOut <= "101000100011000100000";
+					control_out <= "001001001010001010000001";
 				when "01001" =>		--ADDIU
-					controllerOut <= "100100101011000100000";
+					control_out <= "100001001010001001000001";
 				when "01100" =>
 					if (commandIn(10 downto 8) = "011") then	 --ADDSP
-						controllerOut <= "110110001011000100000";
+						control_out <= "100100001010001101000001";
 					elsif (commandIn(10 downto 8) = "000") then--BTEQZ
-						controllerOut <= "000001101010100100000";
+						control_out <= "100110000001011000000000";
 					elsif (commandIn(10 downto 8) = "100") then--MTSP
-						controllerOut <= "110101000000111000000";
+						control_out <= "000001001001101101000000";
+					elsif (commandIn(10 downto 8) = "010") then --SW_RS
+						control_out <= "100100100010001000010000";
 					end if;
 				when "01101" =>		--LI
-					controllerOut <= "100100001001111100000";
+					control_out <= "101000001010000001000001";
 				when "01110" =>		--CMPI
-					controllerOut <= "110000101011100000000";
+					control_out <= "100001001011001100000001";
 				when "01111" =>		--MOVE
-					controllerOut <= "100101000000111000000";
+					control_out <= "000001011000000001000001";
 				when "10010" =>		--LW_SP
-					controllerOut <= "100110001011000110100";
+					control_out <= "100100001010001001100000";
 				when "10011" =>		--LW
-					controllerOut <= "101000100101000110100";
+					control_out <= "010001001010001010100000";
 				when "11010" =>		--SW_SP
-					controllerOut <= "000010001011000101000";
+					control_out <= "100100000010001000010000";
 				when "11011" =>		--SW
-					controllerOut <= "000000110101000101000";
+					control_out <= "010001010010001000010000";
 				when "11100" =>
 					if (commandIn(1 downto 0) = "01") then		--ADDU
-						controllerOut <= "101100110000000100000";
+						control_out <= "000001011000001011000001";
 					elsif (commandIn(1 downto 0) = "11") then --SUBU
-						controllerOut <= "101100110000001000000";
+						control_out <= "000001011000010011000001";
 					end if;
 				when "11101" =>
 					if (commandIn(4 downto 0) = "01100") then		--AND
-						controllerOut <= "100100110000001100000";
+						control_out <= "000001011000011001000001";
 					elsif (commandIn(4 downto 0) = "01101") then --OR
-						controllerOut <= "100100110000010000000";
+						control_out <= "000001011000100001000001";
 					elsif (commandIn(4 downto 0) = "01010") then --CMP
-						controllerOut <= "110000110000100000000";
-					elsif (commandIn(4 downto 0) = "00100") then --SLLV
-						controllerOut <= "101001000000110000000";
-					elsif (commandIn(4 downto 0) = "00111") then --SRAV
-						controllerOut <= "101001000000110100000";
-					elsif (commandIn(4 downto 0) = "01011") then --NEG
-						controllerOut <= "100101000000010100000";
+						control_out <= "000001011001001100000001";
+					elsif (commandIn(4 downto 0) = "00110") then --SRLV
+						control_out <= "000010001000111010000001";
+					elsif (commandIn(4 downto 0) = "00011") then --SLTU
+						control_out <= "000001011001010100000001";
 					elsif (commandIn(7 downto 0) = "00000000") then --JR
-						controllerOut <= "000000100000000000010";
+						control_out <= "000001000100000111000000";
 					elsif (commandIn(7 downto 0) = "01000000") then --MFPC
-						controllerOut <= "100100000000000000001";
+						control_out <= "000110001001101001000000";
 					end if;
 				when "11110" =>
 					if (commandIn(7 downto 0) = "00000000") then 	--MFIH
-						controllerOut <= "100110100000111000000";
+						control_out <= "000101001001101001000000";
 					elsif (commandIn(7 downto 0) = "00000001") then --MTIH
-						controllerOut <= "111000100000111000000";
+						control_out <= "000001001001101110000000";
 					end if;
 				when others =>			--Error
-					controllerOut <= "000000000000000000000";
+					control_out <= "000000000000000000000000";
 			end case;
 		end if;
 	end process;
