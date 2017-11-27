@@ -19,7 +19,7 @@ entity Registers is
 			
 			read_data1 : out std_logic_vector(15 downto 0); --读出的寄存器1的数据
 			read_data2 : out std_logic_vector(15 downto 0); --读出的寄存器2的数据
-			data_T, data_SP, data_IH, data_PC, data_RA : out std_logic_vector(15 downto 0);
+			data_T, data_SP, data_IH, data_RA : out std_logic_vector(15 downto 0);
 			reg_state : out std_logic_Vector(1 downto 0)
 			
 	);
@@ -28,7 +28,7 @@ end Registers;
 architecture Behavioral of Registers is
 
 	signal r0, r1, r2, r3, r4, r5, r6, r7 : std_logic_vector(15 downto 0);
-	signal T, SP, IH, PC, RA : std_logic_vector(15 downto 0);
+	signal T, SP, IH, RA : std_logic_vector(15 downto 0);
 	
 	signal state : std_logic_vector(1 downto 0) := "00";
 
@@ -48,7 +48,6 @@ begin
 			IH <= (others => '0');			
 			SP <= (others => '0');
 			RA <= (others => '0');
-			--todo PC 要置0吗？
 			state <= "00";
 			
 		elsif (clk'event and clk = '1') then
@@ -95,7 +94,7 @@ begin
 	end process;
 	
 	
-	process(read_reg1, read_reg2, r0, r1, r2, r3,r4,r5,r6,r7,SP,IH,T,RA,PC)
+	process(read_reg1, read_reg2, r0, r1, r2, r3,r4,r5,r6,r7,SP,IH,T,RA)
 	begin
 		case read_reg1 is 
 			when "0000" => read_data1 <= r0;
@@ -109,8 +108,6 @@ begin
 			when "1000" => read_data1 <= SP;
 			when "1001" => read_data1 <= IH;
 			when "1010" => read_data1 <= T;
-			when "1011" => read_data1 <= RA;
-			when "1100" => read_data1 <= PC;
 			when others =>
 		end case;
 		
@@ -135,7 +132,6 @@ begin
 	data_IH <= IH;
 	data_T <= T;
 	data_RA <= RA;
-	data_PC <= PC;
 	
 	r0_out <= r0;
 	r1_out <= r1;
