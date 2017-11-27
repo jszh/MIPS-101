@@ -6,19 +6,19 @@ entity Registers is
 			clk : in std_logic;
 			rst : in std_logic;
 			
-			read_reg1 : in std_logic_vector(3 downto 0);  --"0XXX"代表R0~R7，"1000"=SP,"1001"=IH, "1010"=T
-			read_reg2 : in std_logic_vector(3 downto 0);  --"0XXX"代表R0~R7
+			read_reg1 : in std_logic_vector(3 downto 0);  --"0XXX"代表R0~R7 "1000"=SP,"1001"=IH, "1010"=T "1011"=RA "1100"=PC
+			read_reg2 : in std_logic_vector(3 downto 0);  --"0XXX"代表R0~R7  "1000"=RA
 			
 			write_reg : in std_logic_vector(3 downto 0);	  --由WB阶段传回：目的寄存器
-			write_data : in std_logic_vector(15 downto 0);  --由WB阶段传回：写目的寄存器的值
+			write_data : in std_logic_vector(15 downto 0);  --由WB阶段传回：写目的寄存器的数据
 			reg_write : in std_logic;					--由WB阶段传回：reg_write（写目的寄存器）控制信号
 			
 			flashFinished : in std_logic;
 			
 			r0_out, r1_out, r2_out,r3_out,r4_out,r5_out,r6_out,r7_out : out std_logic_vector(15 downto 0);
 			
-			read_data1 : out std_logic_vector(15 downto 0); --读出的寄存器1的值
-			read_data2 : out std_logic_vector(15 downto 0); --读出的寄存器2的值
+			read_data1 : out std_logic_vector(15 downto 0); --读出的寄存器1的数据
+			read_data2 : out std_logic_vector(15 downto 0); --读出的寄存器2的数据
 			data_T, data_SP, data_IH, data_PC, data_RA : out std_logic_vector(15 downto 0);
 			reg_state : out std_logic_Vector(1 downto 0)
 			
@@ -27,7 +27,7 @@ end Registers;
 
 architecture Behavioral of Registers is
 
-	signal r0, r2, r3, r4, r5, r6, r7 : std_logic_vector(15 downto 0);
+	signal r0, r1, r2, r3, r4, r5, r6, r7 : std_logic_vector(15 downto 0);
 	signal T, SP, IH, PC, RA : std_logic_vector(15 downto 0);
 	
 	signal state : std_logic_vector(1 downto 0) := "00";
@@ -48,7 +48,7 @@ begin
 			IH <= (others => '0');			
 			SP <= (others => '0');
 			RA <= (others => '0');
-			--todo PC 需要置为0吗？
+			--todo PC 要置0吗？
 			state <= "00";
 			
 		elsif (clk'event and clk = '1') then
@@ -78,7 +78,6 @@ begin
 								when "1001" => IH <= write_data;
 								when "1010" => T <= write_data;
 								when "1011" => RA <= write_data;
-								when "1100" => PC <= write_data;  --todo not sure here 
 								when others =>
 							end case;
 						end if;
@@ -124,6 +123,7 @@ begin
 			when "0101" => read_data2 <= r5;
 			when "0110" => read_data2 <= r6;
 			when "0111" => read_data2 <= r7;
+			when "1000" => read_data2 <= RA;
 			when others =>
 		end case;
 		
