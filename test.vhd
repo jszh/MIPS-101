@@ -80,7 +80,7 @@ begin
             end case ;
         end if;    
             
-
+12
     end process;
     
 --    process(ALUop)
