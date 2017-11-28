@@ -1,0 +1,11 @@
+touch_btn[4]               rst
+touch_btn[5] 		   clk
+uart_wrn 	           wrn
+uart_rdn 		   rdn
+uart_tbre 		   tbre
+uart_tsre 		   tsre
+uart_dataready 		   dataready
+ram1_addr                  base_ram_addr
+ram1_data	           base_ram_data
+ram2_addr	           ext_ram_addr
+ram2_data		   ext_ram_data
