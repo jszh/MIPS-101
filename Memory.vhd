@@ -4,7 +4,7 @@ use IEEE.STD_LOGIC_ARITH.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 
-entity Memory is
+entity memory is
 	port(
 		clk, rst : in std_logic;  --时钟
 		
@@ -56,9 +56,9 @@ entity Memory is
 		
 		
 	);
-end Memory;
+end memory;
 
-architecture Behavioral of Memory is
+architecture Behavioral of memory is
 
 	signal state : std_logic_vector(1 downto 0) := "00";	--访存、串口操作的状态
 	signal rflag : std_logic := '0';		--rflag='1'代表把串口数据线（ram1_data）置高阻，用于节省状态的控制

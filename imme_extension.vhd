@@ -4,11 +4,11 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity imme_extension is
 	port(
-			 imme_in : in std_logic_vector(10 downto 0);
-			 imme_select : in std_logic_vector(2 downto 0);
-			 
-			 imme_out : out std_logic_vector(15 downto 0)
-		);
+		imme_in : in std_logic_vector(10 downto 0);
+		imme_select : in std_logic_vector(2 downto 0);
+		
+		imme_out : out std_logic_vector(15 downto 0)
+	);
 end imme_extension;
 architecture Behavioral of imme_extension is
 	shared variable sign : std_logic;

@@ -16,7 +16,8 @@ entity hazard_detection is
 		
 		PC_Keep : out std_logic;
 		IF_ID_Keep : out std_logic;
-		ID_EX_FLUSH : out std_logic
+		BJ_IF_ID_Flush : out std_logic;
+		ID_EX_Flush : out std_logic
 	);	
 end hazard_detection;
 
@@ -29,12 +30,14 @@ begin
 				ReadReg1 = ID_EX_Rd) or	-- reg match
 				(EX_MEM_MemRead = '1' and EX_MEM_Rd)) then	-- prev prev MemRead and reg match
 				PC_Keep <= '1';
-				IF_ID_Keep <= '1';
-				ID_EX_FLUSH <= '1';
+				IF_ID_Keep <= '0';
+				BJ_IF_ID_Flush <= '1';
+				ID_EX_Flush <= '1';
 			else
 				PC_Keep <= '0';
 				IF_ID_Keep <= '0';
-				ID_EX_FLUSH <= '0';
+				BJ_IF_ID_Flush <= '0';
+				ID_EX_Flush <= '0';
 			end if;
 		else	-- Not a conditional branch instruction
 			if ((ID_EX_MemRead = '1') and	-- Load instruction
@@ -42,11 +45,13 @@ begin
 				(ReadReg1 = ID_EX_Rd or ReadReg2 = ID_EX_Rd)) then	-- Hazard: stall the pipeline
 				PC_Keep <= '1';
 				IF_ID_Keep <= '1';
-				ID_EX_FLUSH <= '1';
+				BJ_IF_ID_Flush <= '0';
+				ID_EX_Flush <= '1';
 			else
 				PC_Keep <= '0';
 				IF_ID_Keep <= '0';
-				ID_EX_FLUSH <= '0';
+				BJ_IF_ID_Flush <= '0';
+				ID_EX_Flush <= '0';
 			end if;
 		end if;
 	end process;

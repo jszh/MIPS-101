@@ -16,7 +16,6 @@ entity structural_conflict is	-- MEM / IM conflict
 end structural_conflict;
 
 architecture Behavioral of structural_conflict is
-
 begin
 	process(ID_EX_MemWrite, ALU_rst_addr)
 	begin

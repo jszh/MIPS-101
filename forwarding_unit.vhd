@@ -16,7 +16,7 @@ entity forwarding_unit is
 		ForwardA : out std_logic_vector(1 downto 0);
 		ForwardB : out std_logic_vector(1 downto 0);
 		ForwardSW : out std_logic_vector(1 downto 0);
-		ForwardEq : out std_logic_vector(1 downto 0)
+		ForwardBJ : out std_logic_vector(1 downto 0)
 	);
 end forwarding_unit;
 
@@ -58,14 +58,14 @@ begin
 		-- MUX_Eq
 		if (Branch >= "001" and Branch <= "011")	-- Conditional branch
 			if (IF_ID_Rs = EX_MEM_Rd) then -- EX hazard
-				ForwardEq <= "01";
+				ForwardBJ <= "01";
 			elsif (IF_ID_Rs = MEM_WB_Rd and MEM_WB_Rd /= "0000") then	-- MEM hazard
-				ForwardEq <= "10";
+				ForwardBJ <= "10";
 			else
-				ForwardEq <= "00";
+				ForwardBJ <= "00";
 			end if;
 		else
-			ForwardEq <= "00";
+			ForwardBJ <= "00";
 		end if;
 		
 	end process;

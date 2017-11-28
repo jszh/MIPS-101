@@ -7,10 +7,10 @@ entity reg_ID_EX is
 		rst : in std_logic;
 		flash_finished : in std_logic;
 
-		lw_ID_EX_flush : in std_logic;	-- LW data conflict
-		b_ID_EX_flush : in std_logic;	-- B
-		jr_ID_EX_flush : in std_logic;	-- JR
-		sw_ID_EX_flush : in std_logic;	-- SW structural conflict
+		LW_ID_EX_Flush : in std_logic;	-- LW data conflict
+		Branch_ID_EX_Flush : in std_logic;	-- B
+		Jump_ID_EX_Flush : in std_logic;	-- JR
+		SW_ID_EX_Flush : in std_logic;	-- SW structural conflict
 		
 		PC_in : in std_logic_vector(15 downto 0);
 		Rd_in : in std_logic_vector(3 downto 0);	--"0xxx"-R0~R7,"1000"-SP,"1001"-IH,"1010"-T,"1110"-n/a
@@ -74,7 +74,7 @@ begin
 			
 		elsif (clk'event and clk = '1') then
 		if(flash_finished = '1') then
-			if (lw_ID_EX_flush = '1' or b_ID_EX_flush = '1' or jr_ID_EX_flush = '1' or sw_ID_EX_flush = '1') then
+			if (LW_ID_EX_Flush = '1' or Branch_ID_EX_Flush = '1' or Jump_ID_EX_Flush = '1' or SW_ID_EX_Flush = '1') then
 				
 				PC_out <= (others => '0');
 				Rd_out <= "1110";

@@ -5,71 +5,70 @@ entity reg_IF_ID is
 	port(
 		rst : in std_logic;
 		clk : in std_logic;
-		flashFinished : in std_logic;
-		commandIn : in std_logic_vector(15 downto 0);
-		PCIn : in std_logic_vector(15 downto 0); 
-		IfIdKeep : in std_logic;		--LW数据冲突用
-		Branch_IfIdFlush : in std_logic;		--跳转时用
-		Jump_IfIdFlush : in std_logic;		--JR跳转时用
-		SW_IfIdFlush : in std_logic;			--SW结构冲突用
+		flash_finished : in std_logic;
+		command_in : in std_logic_vector(15 downto 0);
+		PC_in : in std_logic_vector(15 downto 0); 
+		IF_ID_Keep : in std_logic;		--LW数据冲突用
+		BJ_IF_ID_Flush : in std_logic;	-- branch_judge 结构冲突
+		Branch_IF_ID_Flush : in std_logic;		--跳转时用
+		Jump_IF_ID_Flush : in std_logic;		--JR跳转时用
+		SW_IF_ID_Flush : in std_logic;			--SW结构冲突用
 		
-		rx : out std_logic_vector(2 downto 0);		--Command[10:8]
-		ry : out std_logic_vector(2 downto 0);		--Command[7:5]
-		rz : out std_logic_vector(2 downto 0);		--Command[4:2]
+		Rs : out std_logic_vector(2 downto 0);		--Command[10:8]
+		Rt : out std_logic_vector(2 downto 0);		--Command[7:5]
+		Rd : out std_logic_vector(2 downto 0);		--Command[4:2]
 		imme_10_0 : out std_logic_vector(10 downto 0);	--Command[10:0]
-		commandOut : out std_logic_vector(15 downto 0);
-		PCOut : out std_logic_vector(15 downto 0)  --PC+1用于MFPC指令的EXE段
+		command_out : out std_logic_vector(15 downto 0);
+		PC_out : out std_logic_vector(15 downto 0)  --PC+1用于MFPC指令的EXE段
 	);
 end reg_IF_ID;
 
 architecture Behavioral of reg_IF_ID is
-	signal tmpRx : std_logic_vector(2 downto 0);
-	signal tmpRy : std_logic_vector(2 downto 0);
-	signal tmpRz : std_logic_vector(2 downto 0);
+	signal tmpRs : std_logic_vector(2 downto 0);
+	signal tmpRt : std_logic_vector(2 downto 0);
+	signal tmpRd : std_logic_vector(2 downto 0);
 	signal tmpImme : std_logic_vector(10 downto 0);
 	signal tmpCommand : std_logic_vector(15 downto 0);
 	signal tmpPC : std_logic_vector(15 downto 0);
 	
 begin
-	rx <= tmpRx;
-	ry <= tmpRy;
-	rz <= tmpRz;
+	Rs <= tmpRs;
+	Rt <= tmpRt;
+	Rd <= tmpRd;
 	imme_10_0 <= tmpImme;
-	commandOut <= tmpCommand;
-	PCOut <= tmpPC;
+	command_out <= tmpCommand;
+	PC_out <= tmpPC;
 	process(rst, clk)
 	begin 
 		if (rst = '0') then	--遇到重置信号，直接清零
-			tmpRx 		<= (others => '0');
-			tmpRy 		<= (others => '0');
-			tmpRz 		<= (others => '0');
+			tmpRs 		<= (others => '0');
+			tmpRt 		<= (others => '0');
+			tmpRd 		<= (others => '0');
 			tmpImme 		<= (others => '0');
 			tmpCommand 	<= (others => '0');
 			tmpPC 		<= (others => '0');
 		elsif (clk'event and clk = '1') then 
-			if flashFinished = '1' then
-				if (IfIdKeep = '1') then 
+			if flash_finished = '1' then
+				if (IF_ID_Keep = '1') then 
 					null;
-				elsif (SW_IfIdFlush = '1' or Branch_IfIdFlush = '1' or Jump_IfIdFlush = '1') then --IfIdFlush该不该放在时钟上升沿？？该不该放在IfIdKeep之后？？
-					tmpRx 		<= (others => '0');
-					tmpRy 		<= (others => '0');
-					tmpRz 		<= (others => '0');
+				elsif (BJ_IF_ID_Flush = '1' or SW_IF_ID_Flush = '1' or Branch_IF_ID_Flush = '1' or Jump_IF_ID_Flush = '1') then --IfIdFlush该不该放在时钟上升沿？？该不该放在IF_ID_Keep之后？？
+					tmpRs 		<= (others => '0');
+					tmpRt 		<= (others => '0');
+					tmpRd 		<= (others => '0');
 					tmpImme 		<= (others => '0');
 					tmpCommand 	<= (others => '0');
 					tmpPC 		<= (others => '0');
 				else
-					tmpRx 		<= commandIn(10 downto 8);
-					tmpRy 		<= commandIn(7 downto 5);
-					tmpRz 		<= commandIn(4 downto 2);
-					tmpImme 		<= commandIn(10 downto 0);
-					tmpCommand	<= commandIn;
-					tmpPC 		<= PCIn;
-				
+					tmpRs 		<= command_in(10 downto 8);
+					tmpRt 		<= command_in(7 downto 5);
+					tmpRd 		<= command_in(4 downto 2);
+					tmpImme 		<= command_in(10 downto 0);
+					tmpCommand	<= command_in;
+					tmpPC 		<= PC_in;
 				end if;
 			end if;
 		end if;
 	end process;
 	
-
 end Behavioral;
 
