@@ -5,16 +5,17 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity PCMux is
 	port(
-		PCAddOne : in std_logic_vector(15 downto 0);	 
-		IdEximme : in std_logic_vector(15 downto 0);  
-		IdExPC : in std_logic_vector(15 downto 0);	 
-		AsrcOut : in std_logic_vector(15 downto 0);	
+		PC_addOne : in std_logic_vector(15 downto 0);	 
+		ID_EX_imme : in std_logic_vector(15 downto 0);  
+		ID_EX_PC : in std_logic_vector(15 downto 0);	 
+		Asrc_out : in std_logic_vector(15 downto 0);	
 		
-		jump : in std_logic;					
-		BranchJudge : in std_logic;		
-		PCRollback : in std_logic;			
+		jump : in std_logic;	-- Jump signal
+		BranchJudge : in std_logic;		-- from ALU
+		PC_Rollback : in std_logic;		-- SW数据冲突时，PC需要回退到SW下一条指令①的地址，
+													--而当前的PC+1是③的地址，所以此时PC_out = PC_addOne - 2;
 		
-		PCOut : out std_logic_vector(15 downto 0)
+		PC_out : out std_logic_vector(15 downto 0)
 	);
 end PCMux;
 
@@ -22,17 +23,17 @@ architecture Behavioral of PCMux is
 	
 	
 begin
-	process(PCAddOne, IdEximme, AsrcOut, jump, BranchJudge)
+	process(PC_addOne, ID_EX_imme, Asrc_out, jump, BranchJudge)
 	begin
 		if (BranchJudge = '1' and jump = '0') then
-			PCOut <= IdEximme + IdExPC;
+			PC_out <= ID_EX_imme + ID_EX_PC;
 		elsif (jump = '1' and BranchJudge = '0') then
-			PCOut <= AsrcOut;
+			PC_out <= Asrc_out;
 		elsif (jump = '0' and BranchJudge = '0') then
-			if (PCRollback = '1') then
-				PCOut <= PCAddOne - "0000000000000010";	--PCOut = PCAddOne - 2;
-			elsif (PCRollback = '0') then
-				PCOut <= PCAddOne;
+			if (PC_Rollback = '1') then
+				PC_out <= PC_addOne - "0000000000000010";	--PC_out = PC_addOne - 2;
+			elsif (PC_Rollback = '0') then
+				PC_out <= PC_addOne;
 			end if;
 		end if;
 	

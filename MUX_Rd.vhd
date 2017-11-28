@@ -9,7 +9,7 @@ entity MUX_Rd is
 			
 		RegDst : in std_logic_vector(2 downto 0);	-- from Controller
 			
-		rst : out std_logic_vector(3 downto 0)	--"0XXX": R0~R7; "1000"=SP,"1001"=IH, "1010"=T, "1110"=n/a
+		Rd_out : out std_logic_vector(3 downto 0)	--"0XXX": R0~R7; "1000"=SP,"1001"=IH, "1010"=T, "1110"=n/a
 	);
 end MUX_Rd;
 
@@ -19,24 +19,24 @@ begin
 	begin
 		case RegDst is
 			when "001" =>	-- Rs
-				rst <= '0' & Rs;
+				Rd_out <= '0' & Rs;
 			when "010" =>	-- Rt
-				rst <= '0' & Rt;
+				Rd_out <= '0' & Rt;
 			when "011" =>	-- Rd
-				rst <= '0' & Rd;
+				Rd_out <= '0' & Rd;
 			when "100" =>	-- T
-				rst <= "1010";
+				Rd_out <= "1010";
 			when "101" =>	-- SP
-				rst <= "1000";
+				Rd_out <= "1000";
 			when "110" =>	-- IH
-				rst <= "1001";
+				Rd_out <= "1001";
 			when "000" =>	-- PC
-				rst <= "1100"
+				Rd_out <= "1100"
 			when "111" =>	-- RA
-				rst <= "1011"
+				Rd_out <= "1011"
 
 			when others =>	-- no Rd
-				rst <= "1110";
+				Rd_out <= "1110";
 		end case;
 	end process;
 end Behavioral;

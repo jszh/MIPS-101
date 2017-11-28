@@ -8,7 +8,7 @@ entity MUX_A is
 		EX_MEM_rst : in std_logic_vector(15 downto 0);	-- EX/MEM forwarding
 		MEM_WB_rst : in std_logic_vector(15 downto 0);	-- MEM/WB forwarding
 
-		rstA : out std_logic_vector(15 downto 0)	-- output
+		Asrc_out : out std_logic_vector(15 downto 0)	-- output
 	);
 end MUX_A;
 
@@ -19,11 +19,11 @@ begin
 	begin
 		case ForwardA is
 			when "00" =>
-				rstA <= ReadData1;
+				Asrc_out <= ReadData1;
 			when "01" =>
-				rstA <= EX_MEM_rst;
+				Asrc_out <= EX_MEM_rst;
 			when "10" =>
-				rstA <= MEM_WB_rst;
+				Asrc_out <= MEM_WB_rst;
 			when others =>
 		end case;
 	end process;

@@ -7,9 +7,9 @@ entity MUX_B is
 		ALUSrc : in std_logic;	-- choose imme / reg, from Controller
 		ReadData2 : in std_logic_vector(15 downto 0);
 		imme : in std_logic_vector(15 downto 0);
-		EX_MEM_rst : in std_logic_vector(15 downto 0);	-- last instruction
-		MEM_WB_rst : in std_logic_vector(15 downto 0);	-- last last instruction
-		rstB : out std_logic_vector(15 downto 0)	-- output
+		EX_MEM_rst : in std_logic_vector(15 downto 0);	-- prev instruction
+		MEM_WB_rst : in std_logic_vector(15 downto 0);	-- prev prev instruction
+		Bsrc_out : out std_logic_vector(15 downto 0)	-- output
 	);	
 end MUX_B;
 
@@ -19,15 +19,15 @@ begin
 	process (ForwardB, ALUSrc, ReadData2, imme, EX_MEM_rst, MEM_WB_rst)
 	begin
 		if (ALUSrc = '1') then
-			rstB <= imme;
+			Bsrc_out <= imme;
 		else
 			case ForwardB is
 				when "00" =>
-					rstB <= ReadData2;
+					Bsrc_out <= ReadData2;
 				when "01" =>
-					rstB <= EX_MEM_rst;
+					Bsrc_out <= EX_MEM_rst;
 				when "10" =>
-					rstB <= MEM_WB_rst;
+					Bsrc_out <= MEM_WB_rst;
 				when others =>
 			end case;
 		end if;

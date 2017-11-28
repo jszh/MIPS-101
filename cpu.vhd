@@ -97,118 +97,100 @@ architecture Behavioral of cpu is
 -- 	);	
 -- 	end component;
 	
-	component MemoRtUnit
+	component Memory
 	port(
-		--时钟
-		clk : in std_logic;
-		rst : in std_logic;
+		clk, rst : in std_logic;  --时钟
 		
-		--串口
+		--RAM1（串口）
 		data_ready : in std_logic;		--数据准备信号，='1'表示串口的数据已准备好（读串口成功，可显示读到的data）
-		tbre : in std_logic;				--发送数据标志
-		tsre : in std_logic;				--数据发送完毕标志，tsre and tbre = '1'时写串口完毕
-		wrn : out std_logic;				--写串口，初始化为'1'，先置为'0'并把RAM1data赋好，再置为'1'写串口
-		rdn : out std_logic;				--读串口，初始化为'1'并将RAM1data赋为"ZZ..Z"，
-												--若data_ready='1'，则把rdn置为'0'即可读串口（读出数据在RAM1data上）
+		tbre : in std_logic;			--发送数据标志
+		tsre : in std_logic;			--数据发送完毕标志，tsre and tbre = '1'时写串口完毕
+		wrn : out std_logic;			--写串口，初始化为'1'，先置为'0'并把RAM1data赋好，再置为'1'写串口
+		rdn : out std_logic;			--读串口，初始化为'1'并将RAM1data赋为"ZZ..Z"，
+										--若data_ready='1'，则把rdn置为'0'即可读串口（读出数据在RAM1data上）
 		
-		--RAM1（DM）和RAM2（IM）
-		MemRead : in std_logic;			--控制读DM的信号，='1'代表需要读
-		MemWrite : in std_logic;		--控制写DM的信号，='1'代表需要写
+		--RAM2（IM+DM）
+		mem_read, mem_write : in std_logic;	--控制读，写DM的信号，'1'代表需要读，写
 		
-		dataIn : in std_logic_vector(15 downto 0);		--写内存时，要写入DM或IM的数据
+		write_data : in std_logic_vector(15 downto 0);	--写内存时，要写入DM或IM的数据		
+		address : in std_logic_vector(15 downto 0);		--读DM/写DM/写IM时，地址输入
+		pc_out : in std_logic_vector(15 downto 0);		--读IM时，地址输入
+		pc_mux_out : in std_logic_vector(15 downto 0);	
+		pc_keep : in std_logic;
 		
-		ramAddr : in std_logic_vector(15 downto 0);		--读DM/写DM/写IM时，地址输入
-		PC_out : in std_logic_vector(15 downto 0);			--读IM时，地址输入
-		PC_MUX_out : in std_logic_vector(15 downto 0);	
-		PC_keep : in std_logic;
-		dataOut : out std_logic_vector(15 downto 0);		--读DM时，读出来的数据/读出的串口状态
-		insOut : out std_logic_vector(15 downto 0);		--读IM时，出来的指令
+		read_data : out std_logic_vector(15 downto 0);	--读DM时，读出来的数据/读出的串口状态
+		read_ins : out std_logic_vector(15 downto 0);	--读IM时，出来的指令
 		
-		ram1_addr : out std_logic_vector(17 downto 0); 	--RAM1地址总线
-		ram2_addr : out std_logic_vector(17 downto 0); 	--RAM2地址总线
-		ram1_data : inout std_logic_vector(15 downto 0);--RAM1数据总线
-		ram2_data : inout std_logic_vector(15 downto 0);--RAM2数据总线
+		ram1_addr, ram2_addr : out std_logic_vector(17 downto 0); --RAM1 RAM2地址总线
+		ram1_data, ram2_data : inout std_logic_vector(15 downto 0);	--RAM1 RAM2数据总线
 		
-		ram2AddrOutput : out std_logic_vector(17 downto 0);
+		ram2addr_output : out std_logic_vector(17 downto 0);
 		
-		ram1_en : out std_logic;		--RAM1使能，='1'禁止
-		ram1_oe : out std_logic;		--RAM1读使能，='1'禁止；
-		ram1_we : out std_logic;		--RAM1写使能，='1'禁止
-		ram2_en : out std_logic;		--RAM2使能，='1'禁止
-		ram2_oe : out std_logic;		--RAM2读使能，='1'禁止
-		ram2_we : out std_logic;		--RAM2写使能，='1'禁止
+		ram1_en, ram1_oe, ram1_we : out std_logic;		--RAM1使能 读使能 写使能  ='1'禁止，永远等于'1'
 		
-		MemoRtState : out std_logic_vector(1 downto 0);
-		FlashStateOut : out std_logic_vector(2 downto 0);
-		flashFinished : out std_logic;
+		ram2_en, ram2_oe, ram2_we : out std_logic;		--RAM2使能 读使能 写使能，='1'禁止，永远等于'0'
+		
+		memory_state : out std_logic_vector(1 downto 0);
+		falsh_stateout : out std_logic_vector(2 downto 0);
+		
+		flash_finished : out std_logic := '0';
 		
 		--Flash
 		flash_addr : out std_logic_vector(22 downto 0);		--flash地址线
 		flash_data : inout std_logic_vector(15 downto 0);	--flash数据线
 		
-		flash_byte : out std_logic;	--flash操作模式，常置'1'
-		flash_vpen : out std_logic;	--flash写保护，常置'1'
-		flash_rp : out std_logic;		--'1'表示flash工作，常置'1'
-		flash_ce : out std_logic;		--flash使能
-		flash_oe : out std_logic;		--flash读使能，'0'有效，每次读操作后置'1'
-		flash_we : out std_logic		--flash写使能
+		flash_byte : out std_logic := '1';	--flash操作模式，常置'1'
+		flash_vpen : out std_logic := '1';	--flash写保护，常置'1'
+		flash_rp : out std_logic := '1';		--'1'表示flash工作，常置'1'
+		flash_ce : out std_logic := '0';		--flash使能
+		flash_oe : out std_logic := '1';		--flash读使能，'0'有效，每次读操作后置'1'
+		flash_we : out std_logic := '1'		--flash写使能
 	);
 	end component;
 	
 
-	--时钟
-	component Clock
+	component clock
 	port ( 
 		rst : in STD_LOGIC;
 		clk : in  STD_LOGIC;
 		
-		clkout :out STD_LOGIC;
+		clk_out :out STD_LOGIC;
 		clk1 : out  STD_LOGIC;
 		clk2 : out STD_LOGIC
 	);
 	end component;
 	
 	
-	--ALU运算器
 	component ALU
 	port(
-		Asrc       	 :  in STD_LOGIC_VECTOR(15 downto 0);
-		Bsrc       	 :  in STD_LOGIC_VECTOR(15 downto 0);
-		ALUop		  	 :  in STD_LOGIC_VECTOR(3 downto 0);
-		ALUresult  	 :  out STD_LOGIC_VECTOR(15 downto 0) := "0000000000000000"; -- 默认设为全0
-		BranchJudge  :  out STD_LOGIC
-		);
-	end component;
-	
-	--选择器：ALU的第一个计算数
-	component MUX_A
-	port(
-		--控制信号
-		ForwardA : in std_logic_vector(1 downto 0);
-		--供选择数据
-		ReadData1 : in std_logic_vector(15 downto 0);
-		EX_MEM_ALUResult : in std_logic_vector(15 downto 0);	--上条指令的ALU结果
-		MemWbResult : in std_logic_vector(15 downto 0);		--上上条指令的结果
-		--MemWbMemResult : in std_logic_vector(15 downto 0);	--上上条指令的读DM结果
-		--选择结果输出
-		AsrcOut : out std_logic_vector(15 downto 0)
+		Asrc : in std_logic_vector(15 downto 0);
+		Bsrc : in std_logic_vector(15 downto 0);
+		ALUop : in std_logic_vector(3 downto 0);
+		ALUresult : out std_logic_vector(15 downto 0) := "0000000000000000"
 	);
 	end component;
 	
-	--选择器：ALU的第二个计算数
+	-- ALU MUX A: 1st operator
+	component MUX_A
+	port(
+		ForwardA : in std_logic_vector(1 downto 0);	-- forwarding control
+		ReadData1 : in std_logic_vector(15 downto 0);	-- ReadData selection
+		EX_MEM_rst : in std_logic_vector(15 downto 0);	-- EX/MEM forwarding
+		MEM_WB_rst : in std_logic_vector(15 downto 0);	-- MEM/WB forwarding
+		Asrc_out : out std_logic_vector(15 downto 0)	-- output
+	);
+	end component;
+	
+	-- ALU MUX B: 2nd operator
 	component MUX_B
 	port(
-		--控制信号
 		ForwardB : in std_logic_vector(1 downto 0);
-		ALUSrcB  : in std_logic;
-		--供选择数据
+		ALUSrc : in std_logic;	-- choose imme / reg, from Controller
 		ReadData2 : in std_logic_vector(15 downto 0);
-		imme 	    : in std_logic_vector(15 downto 0);
-		EX_MEM_ALUResult : in std_logic_vector(15 downto 0);	--上条指令的ALU结果
-		MemWbResult : in std_logic_vector(15 downto 0);		--上上条指令的结果
-		--MemWbMemResult : in std_logic_vector(15 downto 0);	--上上条指令的读DM结果
-		--选择结果输出
-		BsrcOut : out std_logic_vector(15 downto 0)
+		imme : in std_logic_vector(15 downto 0);
+		EX_MEM_rst : in std_logic_vector(15 downto 0);	-- prev instruction
+		MEM_WB_rst : in std_logic_vector(15 downto 0);	-- prev prev instruction
+		Bsrc_out : out std_logic_vector(15 downto 0)	-- output
 	);	
 	end component;
 	
@@ -216,11 +198,12 @@ architecture Behavioral of cpu is
 	--产生所有控制信号的控制器
 	component Controller
 	port(	
-		commandIn : in std_logic_vector(15 downto 0);
+		command_in : in std_logic_vector(15 downto 0);
 		rst : in std_logic;
-		Controller_out :  out std_logic_vector(20 downto 0)
-		-- RegWrite(1) RegDst(3) ReadReg1(3) ReadReg2(1) immeSelect(3) ALUSrcB(1) 
-		-- ALUOp(4) MemRead(1) MemWrite(1) MemToReg(1) jump(1) MFPC(1)
+		control_out :  out std_logic_vector(23 downto 0)  --control_out 将所有控制信号集中在一个中实现
+		--extend(3) reg1_select(3) reg2_select(2) regwrite(1)  --9
+		--jump(1) alusrc(1) aluop(4) regdst(3) memread(1)      --10
+		--memwrite(1) branch(3) memtoreg(1)                    --5
 	);
 	end component;
 	
@@ -234,19 +217,19 @@ architecture Behavioral of cpu is
 		
 		jump : in std_logic;					--jump是由总控制器Controller产生的信号
 		BranchJudge : in std_logic;		--是由ALU产生的控制信号，表示B型跳转成功
-		PCRollback : in std_logic;			--SW数据冲突时，PC需要回退到SW下一条指令①的地址，
+		PC_Rollback : in std_logic;			--SW数据冲突时，PC需要回退到SW下一条指令①的地址，
 													--而当前的PC+1是③的地址，所以此时PC_out = PC_addOne - 2;
 		
 		PC_out : out std_logic_vector(15 downto 0)
 	);
 	end component;
 	
-	--（MFPC指令）从PC+1和ALUResult中选择一个作为“真正的ALUResult”
-	component MFPCMux
+	-- PC+1 for MFPC
+	component MUX_MFPC
 	port(
-		PC_addOne  : in std_logic_vector(15 downto 0);	
-		ALUResult : in std_logic_vector(15 downto 0);
-		MFPC		 : in std_logic;		--MFPC = '1'的时候选择PC+1的值
+		PC_addOne : in std_logic_vector(15 downto 0);	
+		ALUresult : in std_logic_vector(15 downto 0);
+		MFPC : in std_logic;	-- when '1': out = PC+1
 		
 		MFPC_MUX_out : out std_logic_vector(15 downto 0)
 	);
@@ -261,7 +244,7 @@ architecture Behavioral of cpu is
 		flashFinished : in std_logic;
 		--数据输入
 		rdIn : in std_logic_vector(3 downto 0);
-		MFPCMuxIn : in std_logic_vector(15 downto 0);
+		MUX_MFPCIn : in std_logic_vector(15 downto 0);
 		readData2In : in std_logic_vector(15 downto 0); --供SW语句写内存
 		--信号输入
 		regWriteIn : in std_logic;
@@ -271,7 +254,7 @@ architecture Behavioral of cpu is
 
 		--数据输出
 		rdOut : out std_logic_vector(3 downto 0);
-		ALUResultOut : out std_logic_vector(15 downto 0);
+		ALUresultOut : out std_logic_vector(15 downto 0);
 		readData2Out : out std_logic_vector(15 downto 0); --供SW语句写内存
 		--信号输出
 		regWriteOut : out std_logic;
@@ -281,41 +264,47 @@ architecture Behavioral of cpu is
 	);
 	end component;
 	
-	--转发单元
+	-- Forwarding unit
+	-- 	IF - EX/MEM
+	-- 	ID - EX/MEM
 	component forwarding_unit
 	port(
-		EX_MEM_Rd : in std_logic_vector(3 downto 0);   --
-		MemWbRd : in std_logic_vector(3 downto 0);   --
+		IF_ID_Rs: in std_logic_vector(3 downto 0);
+
+		ID_EX_Rs : in std_logic_vector(3 downto 0);
+		ID_EX_Rt : in std_logic_vector(3 downto 0);
+
+		EX_MEM_Rd : in std_logic_vector(3 downto 0);
+		MEM_WB_Rd : in std_logic_vector(3 downto 0);
 		
-		--EX_MEM_RegWrite : in std_logic;
-		--MEM_WB_RegWrite : in std_logic;    --由"1111"判断没有源寄存器
-		
-		ID_EX_ALUsrc : in std_logic;
 		ID_EX_MemWrite : in std_logic;
-		
-		ID_EX_Reg1 : in std_logic_vector(3 downto 0);  --本条指令的源寄存器1
-		ID_EX_Reg2 : in std_logic_vector(3 downto 0);  --本条指令的源寄存器2
-		
+
 		ForwardA : out std_logic_vector(1 downto 0);
 		ForwardB : out std_logic_vector(1 downto 0);
-		ForwardSW : out std_logic_vector(1 downto 0)
-
+		ForwardSW : out std_logic_vector(1 downto 0);
+		ForwardEq : out std_logic_vector(1 downto 0)
 	);
 	end component;
 	
-	--LW数据冲突控制单元
+	-- Hazard detection unit
+	-- 	ID/MEM hazard
+	-- 	branch related hazard
 	component hazard_detection
 	port(
 		ID_EX_Rd : in std_logic_vector(3 downto 0);
 		ID_EX_MemRead : in std_logic;
+		ID_EX_ALUop: in std_logic_vector(3 downto 0);
+		EX_MEM_Rd: in std_logic_vector(3 downto 0);
+		EX_MEM_MemRead: in std_logic;
 		
 		ReadReg1 : in std_logic_vector(3 downto 0);
 		ReadReg2 : in std_logic_vector(3 downto 0);
+
+		Branch : in std_logic_vector(2 downto 0);
 		
-		PC_keep : out std_logic;
-		IF_ID_keep : out std_logic;
-		IdExFlush : out std_logic
-		
+		PC_Keep : out std_logic;
+		IF_ID_Keep : out std_logic;
+		ID_EX_FLUSH : out std_logic
 	);
 	end component;
 	
@@ -337,7 +326,7 @@ architecture Behavioral of cpu is
 		ALUSrcBIn : in std_logic;							--控制信号ALUSrcB：'0'-Reg2,'1'-imme
 		ReadData1In : in std_logic_vector(15 downto 0);	--源寄存器1的值
 		ReadData2In : in std_logic_vector(15 downto 0);	--源寄存器2的值
-		immeIn : in std_logic_vector(15 downto 0);		--扩展后的立即数
+		imme_in : in std_logic_vector(15 downto 0);		--扩展后的立即数
 		
 		MFPCIn : in std_logic;
 		regWriteIn : in std_logic;
@@ -355,7 +344,7 @@ architecture Behavioral of cpu is
 		ALUSrcBOut : out std_logic;
 		ReadData1Out : out std_logic_vector(15 downto 0);
 		ReadData2Out : out std_logic_vector(15 downto 0);			
-		immeOut : out std_logic_vector(15 downto 0);
+		imme_out : out std_logic_vector(15 downto 0);
 		
 		MFPC_out : out std_logic;
 		regWriteOut : out std_logic;
@@ -391,12 +380,11 @@ architecture Behavioral of cpu is
 	end component;
 	
 	--立即数扩展单元
-	component ImmeExtendUnit
+	component imme_extension
 	port(
-		 immeIn : in std_logic_vector(10 downto 0);		--取指令的[10:0]位，作为可能的立即数输入
-		 immeSelect : in std_logic_vector(2 downto 0);  --由总控制器Controller产生
-		 
-		 immeOut : out std_logic_vector(15 downto 0)		--扩展后的立即数
+		 imme_in : in std_logic_vector(10 downto 0);
+		 imme_select : in std_logic_vector(2 downto 0); -- expansion type, from controller
+		 imme_out : out std_logic_vector(15 downto 0)
 	);
 	end component;
 	
@@ -408,11 +396,11 @@ architecture Behavioral of cpu is
 			flashFinished : in std_logic;
 			--数据
 			readMemDataIn : in std_logic_vector(15 downto 0);	--DataMemoRt读出的数据
-			ALUResultIn : in std_logic_vector(15 downto 0);		--ALU的计算结果
+			ALUresultIn : in std_logic_vector(15 downto 0);		--ALU的计算结果
 			rdIn : in std_logic_vector(3 downto 0);				--目的寄存器
 			--控制信号
 			regWriteIn : in std_logic;		--是否要写回
-			memToRegIn : in std_logic;		--写回时选择readMemDataIn（'1'）还是ALUResultIn（'0'）
+			memToRegIn : in std_logic;		--写回时选择readMemDataIn（'1'）还是ALUresultIn（'0'）
 			
 			data_to_WB : out std_logic_vector(15 downto 0);		--写回的数据
 			rdOut : out std_logic_vector(3 downto 0);				--目的寄存器："0xxx"-R0~R7,"1000"-SP,"1001"-IH,"1010"-T,"1110"-没有目的寄存器
@@ -422,10 +410,10 @@ architecture Behavioral of cpu is
 	
 	--PC加法器 实现PC+1
 	component PCAdder
-		port( 
-			adderIn : in std_logic_vector(15 downto 0);
-			adderOut : out std_logic_vector(15 downto 0)
-		);
+	port(
+		adder_in : in std_logic_vector(15 downto 0);
+		adder_out : out std_logic_vector(15 downto 0)
+	);
 	end component;
 	
 	--PC寄存器
@@ -464,54 +452,54 @@ architecture Behavioral of cpu is
 	end component;
 	
 	--目的寄存器选择器
-	component RdMux
-		port(
-			Rs : in std_logic_vector(2 downto 0);
-			Rt : in std_logic_vector(2 downto 0);
-			Rd : in std_logic_vector(2 downto 0);			--R0~R7中的一个
+	component MUX_Rd
+	port(
+		Rs : in std_logic_vector(2 downto 0);
+		Rt : in std_logic_vector(2 downto 0);
+		Rd : in std_logic_vector(2 downto 0);		-- one of R0 .. R7
 			
-			RegDst : in std_logic_vector(2 downto 0);		--由总控制器Controller生成的控制信号
+		RegDst : in std_logic_vector(2 downto 0);	-- from Controller
 			
-			rdOut : out std_logic_vector(3 downto 0)		--"0XXX"代表R0~R7，"1000"=SP,"1001"=IH, "1010"=T, "1111"=没有
-		);
+		Rd_out : out std_logic_vector(3 downto 0)	--"0XXX": R0~R7; "1000"=SP,"1001"=IH, "1010"=T, "1110"=n/a
+	);
 	end component;
 	
 	--寄存器堆
 	component Registers
-		port(
-			clk : in std_logic;
-			rst : in std_logic;
-			flashFinished : in std_logic;
-			
-			ReadReg1In : in std_logic_vector(3 downto 0);  --"0XXX"代表R0~R7，"1000"=SP,"1001"=IH, "1010"=T
-			ReadReg2In : in std_logic_vector(3 downto 0);  --"0XXX"代表R0~R7
-			
-			WriteReg : in std_logic_vector(3 downto 0);	  --由WB阶段传回：目的寄存器
-			WriteData : in std_logic_vector(15 downto 0);  --由WB阶段传回：写目的寄存器的值
-			RegWrite : in std_logic;							  --由WB阶段传回：RegWrite（写目的寄存器）控制信号
-			
-			r0Out, r1Out, r2Out,r3Out,r4Out,r5Out,r6Out,r7Out : out std_logic_vector(15 downto 0);	--8个普通寄存器
-			
-			ReadData1 : out std_logic_vector(15 downto 0); --读出的寄存器1的值
-			ReadData2 : out std_logic_vector(15 downto 0); --读出的寄存器2的值
-			dataT : out std_logic_vector(15 downto 0);
-			dataSP : out std_logic_vector(15 downto 0);
-			dataIH : out std_logic_vector(15 downto 0);
-			
-			RegisterState : out std_logic_vector(1 downto 0)
-		);
+	port(
+		clk : in std_logic;
+		rst : in std_logic;
+		flashFinished : in std_logic;
+		
+		ReadReg1In : in std_logic_vector(3 downto 0);  --"0XXX"代表R0~R7，"1000"=SP,"1001"=IH, "1010"=T
+		ReadReg2In : in std_logic_vector(3 downto 0);  --"0XXX"代表R0~R7
+		
+		WriteReg : in std_logic_vector(3 downto 0);	  --由WB阶段传回：目的寄存器
+		WriteData : in std_logic_vector(15 downto 0);  --由WB阶段传回：写目的寄存器的值
+		RegWrite : in std_logic;							  --由WB阶段传回：RegWrite（写目的寄存器）控制信号
+		
+		r0Out, r1Out, r2Out,r3Out,r4Out,r5Out,r6Out,r7Out : out std_logic_vector(15 downto 0);	--8个普通寄存器
+		
+		ReadData1 : out std_logic_vector(15 downto 0); --读出的寄存器1的值
+		ReadData2 : out std_logic_vector(15 downto 0); --读出的寄存器2的值
+		dataT : out std_logic_vector(15 downto 0);
+		dataSP : out std_logic_vector(15 downto 0);
+		dataIH : out std_logic_vector(15 downto 0);
+		
+		RegisterState : out std_logic_vector(1 downto 0)
+	);
 	end component;
 	
 	--SW写指令内存 结构冲突
 	component StructConflictUnit
 	port(
 		ID_EX_MemWrite : in std_logic;
-		ALUResultAsAddr : in std_logic_vector(15 downto 0);
+		ALU_rst_addr : in std_logic_vector(15 downto 0);
 		PC : in std_logic_vector(15 downto 0);
 		
-		IfIdFlush : out std_logic;		--IF/ID段在下个时钟到来时清零
-		IdExFlush : out std_logic;		--ID/EX段在下个时钟到来时清零
-		PCRollback : out std_logic		--PCMux将选择PC
+		IF_ID_flush : out std_logic;
+		ID_EX_flush : out std_logic;
+		PC_rollback : out std_logic
 	);
 	end component;
 	
@@ -521,7 +509,7 @@ architecture Behavioral of cpu is
 		ForwardSW : in std_logic_vector(1 downto 0);
 		--供选择数据
 		ReadData2 : in std_logic_vector(15 downto 0);
-		EX_MEM_ALUResult : in std_logic_vector(15 downto 0);	--上条指令的ALU结果
+		EX_MEM_ALUresult : in std_logic_vector(15 downto 0);	--上条指令的ALU结果
 		MemWbResult : in std_logic_vector(15 downto 0);	--上上条指令的结果
 		--选择结果输出
 		WriteDataOut : out std_logic_vector(15 downto 0)
@@ -563,7 +551,7 @@ architecture Behavioral of cpu is
 	signal imme_10_0 : std_logic_vector(10 downto 0);
 	signal IF_ID_cmd, IF_ID_PC : std_logic_vector(15 downto 0);
 	
-	--RdMux
+	--MUX_Rd
 	signal Rd_choice : std_logic_vector(3 downto 0);
 	
 	--controller
@@ -592,7 +580,7 @@ architecture Behavioral of cpu is
 	
 	signal EX_MEM_Rd : std_logic_vector(3 downto 0);
 	signal EX_MEM_ReadData2 : std_logic_vector(15 downto 0);
-	signal EX_MEM_ALUResult : std_logic_vector(15 downto 0);	--这是MFPCMux选择后的结果
+	signal EX_MEM_ALUresult : std_logic_vector(15 downto 0);	--这是MUX_MFPC选择后的结果
 	
 	signal EX_MEM_RegWrite : std_logic;
 	signal EX_MEM_Read, EX_MEM_Write, EX_MEM_MemToReg: std_logic;
@@ -612,7 +600,7 @@ architecture Behavioral of cpu is
 	signal MUX_B_out : std_logic_vector(15 downto 0);
 	
 	--ALU
-	signal ALUResult : std_logic_vector(15 downto 0);
+	signal ALUresult : std_logic_vector(15 downto 0);
 	signal BranchJudge : std_logic;
 	
 	--PCMux
@@ -625,7 +613,7 @@ architecture Behavioral of cpu is
 	signal LW_ID_EX_flush : std_logic;
 	
 		
-	--MemoRtUnit （有一大部分都已在cpu的port里体现）
+	--Memory （有一大部分都已在cpu的port里体现）
 	signal DMDataOut : std_logic_vector(15 downto 0);
 	signal IMInsOut : std_logic_vector(15 downto 0);
 	signal MemoRtState : std_logic_vector(1 downto 0);
@@ -634,13 +622,13 @@ architecture Behavioral of cpu is
 	--SW写指令内存（结构冲突）
 	signal SW_IfIdflush : std_logic;
 	signal SW_IdExFlush : std_logic;
-	signal PCRollback : std_logic;
+	signal PC_Rollback : std_logic;
 	
 	--ReadReg1Mux、2Mux的signal们
 	signal ReadReg1MuxOut : std_logic_vector(3 downto 0);
 	signal ReadReg2MuxOut : std_logic_vector(3 downto 0);
 	
-	--MFPCMux 
+	--MUX_MFPC 
 	signal MFPC_MUX_out : std_logic_vector(15 downto 0);
 	
 	--digit rom
@@ -674,8 +662,8 @@ begin
 		
 	u2 : PCAdder
 	port map( 
-			adderIn => PC_out,
-			adderOut => PC_addOne
+			adder_in => PC_out,
+			adder_out => PC_addOne
 	);
 		
 	u3 : 	reg_IF_ID
@@ -698,7 +686,7 @@ begin
 			PC_out => IF_ID_PC
 		);
 		
-	u4 : RdMux
+	u4 : MUX_Rd
 	port map(
 			Rs => Rs,
 			Rt => Rt,
@@ -714,7 +702,7 @@ begin
 			rst => rst,
 			Controller_out => Controller_out
 			-- RegWrite(20) RegDst(19-17) ReadReg1(16-14) ReadReg2(13) 
-			-- immeSelect(12-10) ALUSrcB(9) ALUOp(8-5) 
+			-- imme_select(12-10) ALUSrcB(9) ALUOp(8-5) 
 			-- MemRead(4) MemWrite(3) MemToReg(2) jump(1) MFPC(0)
 		);
 		
@@ -750,12 +738,12 @@ begin
 			ReadData2 => ReadData2
 		);
 		
-	u7 : ImmeExtendUnit
+	u7 : imme_extension
 	port map(
-			 immeIn => imme_10_0,
-			 immeSelect => Controller_out(12 downto 10),
+			 imme_in => imme_10_0,
+			 imme_select => Controller_out(12 downto 10),
 			 
-			 immeOut => extendedImme
+			 imme_out => extendedImme
 		);
 		
 	u8 : reg_ID_EX
@@ -776,7 +764,7 @@ begin
 			ALUSrcBIn => Controller_out(9),
 			ReadData1In => ReadData1,
 			ReadData2In => ReadData2,
-			immeIn => extendedImme,
+			imme_in => extendedImme,
 			
 			MFPCIn => Controller_out(0),
 			regWriteIn => Controller_out(20),
@@ -793,7 +781,7 @@ begin
 			ALUSrcBOut => ID_EX_ALUsrc,
 			ReadData1Out => ID_EX_ReadData1,
 			ReadData2Out => ID_EX_ReadData2,
-			immeOut => ID_EX_imme,
+			imme_out => ID_EX_imme,
 			
 			MFPC_out => ID_EX_MFPC,
 			regWriteOut => ID_EX_RegWrite,
@@ -809,7 +797,7 @@ begin
 			ForwardA => ForwardA,
 			
 			ReadData1 => ID_EX_ReadData1,
-			EX_MEM_ALUResult => EX_MEM_ALUResult,
+			EX_MEM_ALUresult => EX_MEM_ALUresult,
 			MemWbResult => data_to_WB,
 			
 			AsrcOut => MUX_A_out
@@ -822,7 +810,7 @@ begin
 			
 			ReadData2 => ID_EX_ReadData2,
 			imme => ID_EX_imme,
-			EX_MEM_ALUResult => EX_MEM_ALUResult,
+			EX_MEM_ALUresult => EX_MEM_ALUresult,
 			MemWbResult => data_to_WB,
 			
 			BsrcOut => MUX_B_out
@@ -851,7 +839,7 @@ begin
 			Bsrc        => MUX_B_out,
 			ALUop		  	=> ID_EX_ALUop,
 			
-			ALUresult  	=> ALUResult,
+			ALUresult  	=> ALUresult,
 			branchJudge => BranchJudge
 	);
 	
@@ -862,7 +850,7 @@ begin
 			flashFinished => flashFinished,
 			
 			rdIn => ID_EX_Rd,
-			MFPCMuxIn => MFPC_MUX_out,
+			MUX_MFPCIn => MFPC_MUX_out,
 			readData2In => WriteDataOut,
 			
 			regWriteIn => ID_EX_RegWrite,
@@ -871,7 +859,7 @@ begin
 			memToRegIn => ID_EX_MemToReg,
 						
 			rdOut => EX_MEM_Rd,
-			ALUResultOut => EX_MEM_ALUResult,
+			ALUresultOut => EX_MEM_ALUresult,
 			readData2Out => EX_MEM_ReadData2,
 			
 			regWriteOut => EX_MEM_RegWrite,
@@ -887,7 +875,7 @@ begin
 			flashFinished => flashFinished,
 			
 			readMemDataIn => DMDataOut,
-			ALUResultIn => EX_MEM_ALUResult,
+			ALUresultIn => EX_MEM_ALUresult,
 			rdIn => EX_MEM_Rd,
 			
 			regWriteIn => EX_MEM_RegWrite,
@@ -920,12 +908,12 @@ begin
 			
 			jump => ID_EX_JR,
 			BranchJudge => BranchJudge,
-			PCRollback => PCRollback,
+			PC_Rollback => PC_Rollback,
 			
 			PC_out => PC_MUX_out
 		);
 	
-	u17 : MemoRtUnit
+	u17 : Memory
 		port map( 
 			clk => clk,
          rst => rst,
@@ -941,7 +929,7 @@ begin
 			
 			dataIn => EX_MEM_ReadData2,
 			
-			ramAddr => EX_MEM_ALUResult,
+			ramAddr => EX_MEM_ALUresult,
 			PC_out => PC_out,
 			PC_MUX_out => PC_MUX_out,
 			PC_keep => PC_keep,
@@ -978,12 +966,12 @@ begin
 			flash_we => flashWe
 		);
 
-	u18 : Clock
+	u18 : clock
 	port map(
 		rst => rst,
 		clk => clkIn_clock,
 		
-		clkout => clk,
+		clk_out => clk,
 		clk1 => clk_3,
 		clk2 => clk_registers
 	);
@@ -992,20 +980,20 @@ begin
 	u19 : StructConflictUnit
 	port map(
 			ID_EX_MemWrite => ID_EX_MemWrite,
-			ALUResultAsAddr => ALUResult, ----还是给MFPC_MUX_out？？
+			ALUresultAsAddr => ALUresult, ----还是给MFPC_MUX_out？？
 			PC => PC_out,
 			
 			IfIdFlush => SW_IfIdflush,
 			IdExFlush => SW_IdExFlush,
-			PCRollback => PCRollback
+			PC_Rollback => PC_Rollback
 	);
 
 	
 	
-	u20 : MFPCMux
+	u20 : MUX_MFPC
 	port map(
 			PC_addOne => ID_EX_PC,
-			ALUResult => ALUResult,
+			ALUresult => ALUresult,
 			MFPC => ID_EX_MFPC,
 		
 			MFPC_MUX_out => MFPC_MUX_out
@@ -1084,7 +1072,7 @@ begin
 			ForwardSW => ForwardSW,
 			
 			ReadData2 => ID_EX_ReadData2,
-			EX_MEM_ALUResult => EX_MEM_ALUResult,
+			EX_MEM_ALUresult => EX_MEM_ALUresult,
 			MemWbResult => data_to_WB,
 			
 			WriteDataOut => WriteDataOut
