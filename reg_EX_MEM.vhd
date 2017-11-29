@@ -6,10 +6,10 @@ entity reg_EX_MEM is
 		clk : in std_logic;
 		rst : in std_logic;
 		
-		flashFinished : in std_logic;
+		flash_finished : in std_logic;
 
 		--数据输入
-		rdIn : in std_logic_vector(3 downto 0);
+		Rd_in : in std_logic_vector(3 downto 0);
 		MFPCMuxIn : in std_logic_vector(15 downto 0);
 		readData2In : in std_logic_vector(15 downto 0); --供SW语句写内存
 		--信号输入
@@ -46,8 +46,8 @@ begin
 			memToRegOut <= '0';
 
 		elsif (clk'event and clk = '1') then
-		if(flashFinished = '1') then
-			rdOut <= rdIn;
+		if(flash_finished = '1') then
+			rdOut <= Rd_in;
 			ALUResultOut <= MFPCMuxIn;
 			readData2Out <= readData2In;
 			

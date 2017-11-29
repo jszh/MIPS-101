@@ -28,10 +28,6 @@ begin
 				reg1_out <= "1000";
 			when "101" =>		--IH
 				reg1_out <= "1001";
-			when "110" =>       --RA
-				reg1_out <= "1011";
-			when "111" =>       --PC
-				reg1_out <= "1100";
 			when others =>		--No reg1_select（不需要寄存器1）
 				reg1_out <= "1111";
 		end case;

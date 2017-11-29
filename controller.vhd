@@ -5,10 +5,11 @@ entity controller is
 	port(	
 		command_in : in std_logic_vector(15 downto 0);
 		rst : in std_logic;
-		controller_out :  out std_logic_vector(23 downto 0)  --controller_out 将所有控制信号集中在一个中实现
+		controller_out :  out std_logic_vector(23 downto 0);  --controller_out 将所有控制信号集中在一个中实现
 		--extend(3) reg1_select(3) reg2_select(2) regwrite(1)  --9
 		--jump(1) alusrc(1) aluop(4) regdst(3) memread(1)      --10
 		--memwrite(1) branch(3) memtoreg(1)                    --5
+		MFPC_out : out std_logic
 	);
 end controller;
 
@@ -20,6 +21,12 @@ begin
 		if (rst = '0') then
 			controller_out <= (others => '0');
 		else
+			if (command_in(15 downto 11) = "11101" and command_in(7 downto 0) = "01000000") then	--MFPC
+				MFPC_out <= '1';
+			else
+				MFPC_out <= '0';
+			end if;
+
 			case command_in(15 downto 11) is
 				when "00001" =>		--NOP
 					controller_out <= "000000000000000000000000";
@@ -47,7 +54,7 @@ begin
 					elsif (command_in(10 downto 8) = "100") then--MTSP
 						controller_out <= "000001001001011101000001";
 					elsif (command_in(10 downto 8) = "010") then --SW_RS
-						controller_out <= "100100100010001000010000";
+						controller_out <= "100100110010001000010000";
 					end if;
 				when "01101" =>		--LI
 					controller_out <= "101000001011100001000001";
@@ -60,7 +67,7 @@ begin
 				when "10011" =>		--LW
 					controller_out <= "010001001010001010100000";
 				when "11010" =>		--SW_SP
-					controller_out <= "100100000010001000010000";
+					controller_out <= "100100100010001000010000";
 				when "11011" =>		--SW
 					controller_out <= "010001010010001000010000";
 				when "11100" =>
@@ -77,13 +84,13 @@ begin
 					elsif (command_in(4 downto 0) = "01010") then --CMP
 						controller_out <= "000001011001001100000001";
 					elsif (command_in(4 downto 0) = "00110") then --SRLV
-						controller_out <= "000010001000111010000001";
+						controller_out <= "000010101000111010000001";
 					elsif (command_in(4 downto 0) = "00011") then --SLTU
 						controller_out <= "000001011001010100000001";
 					elsif (command_in(7 downto 0) = "00000000") then --JR
 						controller_out <= "000001000100000111000000";
 					elsif (command_in(7 downto 0) = "01000000") then --MFPC
-						controller_out <= "000111001001011001000001";
+						controller_out <= "000000001001011001000001";
 					end if;
 				when "11110" =>
 					if (command_in(7 downto 0) = "00000000") then 	--MFIH
@@ -91,7 +98,7 @@ begin
 					elsif (command_in(7 downto 0) = "00000001") then --MTIH
 						controller_out <= "000001001001011110000001";
 					end if;
-				when others =>			--Error
+				when others =>			--Error, skip
 					controller_out <= "000000000000000000000000";
 			end case;
 		end if;

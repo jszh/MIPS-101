@@ -7,7 +7,7 @@ entity MUX_Rd is
 		Rt : in std_logic_vector(2 downto 0);
 		Rd : in std_logic_vector(2 downto 0);		-- one of R0 .. R7
 			
-		RegDst : in std_logic_vector(2 downto 0);	-- from Controller
+		RegDst : in std_logic_vector(2 downto 0);	-- from Controller: 000-n/a,001-Rs,010-Rt,011-Rd,100-T,101-SP,110-IH
 			
 		Rd_out : out std_logic_vector(3 downto 0)	--"0XXX": R0~R7; "1000"=SP,"1001"=IH, "1010"=T, "1110"=n/a
 	);
@@ -30,10 +30,6 @@ begin
 				Rd_out <= "1000";
 			when "110" =>	-- IH
 				Rd_out <= "1001";
-			when "000" =>	-- PC
-				Rd_out <= "1100"
-			when "111" =>	-- RA
-				Rd_out <= "1011"
 
 			when others =>	-- no Rd
 				Rd_out <= "1110";

@@ -14,12 +14,12 @@ entity reg_ID_EX is
 		
 		PC_in : in std_logic_vector(15 downto 0);
 		Rd_in : in std_logic_vector(3 downto 0);	--"0xxx"-R0~R7,"1000"-SP,"1001"-IH,"1010"-T,"1110"-n/a
-		Rs_in : in std_logic_vector(3 downto 0);	--"0xxx"-R0~R7,"1000"-SP,"1001"-IH,"1010"-T,"1111"-n/a
-		Rt_in : in std_logic_vector(3 downto 0);	--"0xxx"-R0~R7,"1111"-n/a
+		Reg1_in : in std_logic_vector(3 downto 0);	--"0xxx"-R0~R7,"1000"-SP,"1001"-IH,"1010"-T,"1011"-RA,"1111"-n/a
+		Reg2_in : in std_logic_vector(3 downto 0);	--"0xxx"-R0~R7,"1000"-RA,"1111"-n/a
 		ALUSrc_in : in std_logic;	-- '0'-reg, '1'-imme
 		ReadData1_in : in std_logic_vector(15 downto 0);	-- Reg1 data
 		ReadData2_in : in std_logic_vector(15 downto 0);	-- Reg2 data
-		imme_in : in std_logic_vector(15 downto 0);	-- expanded immediate
+		imme_in : in std_logic_vector(15 downto 0);	-- extended immediate
 		
 		MFPC_in : in std_logic;
 		RegWrite_in : in std_logic;
@@ -27,6 +27,7 @@ entity reg_ID_EX is
 		MemRead_in : in std_logic;
 		MemToReg_in : in std_logic;
 		Jump_in : in std_logic;
+		Branch_in : in std_logic;
 		ALUOp_in : in std_logic_vector(3 downto 0);
 		
 	
@@ -97,8 +98,8 @@ begin
 				
 				PC_out <= PC_in;
 				Rd_out <= Rd_in;
-				Reg1_out <= Rs_in;
-				Reg2_out <= Rt_in;
+				Reg1_out <= Reg1_in;
+				Reg2_out <= Reg2_in;
 				ALUSrc_out <= ALUSrc_in;
 				ReadData1_out <= ReadData1_in;
 				ReadData2_out <= ReadData2_in;

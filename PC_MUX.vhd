@@ -13,7 +13,7 @@ entity PC_MUX is
 		jump : in std_logic;	-- Jump signal
 		BranchJudge : in std_logic;		-- from branch_judge
 		PC_Rollback : in std_logic;		-- SW数据冲突时，PC需要回退到SW下一条指令①的地址，
-													--而当前的PC+1是③的地址，所以此时PC_out = PC_addOne - 2;
+										--而当前的PC+1是③的地址，所以此时PC_out = PC_addOne - 2;
 		
 		PC_out : out std_logic_vector(15 downto 0)
 	);

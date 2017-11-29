@@ -9,6 +9,7 @@ entity MUX_B is
 		imme : in std_logic_vector(15 downto 0);
 		EX_MEM_result : in std_logic_vector(15 downto 0);	-- prev instruction
 		MEM_WB_result : in std_logic_vector(15 downto 0);	-- prev prev instruction
+
 		Bsrc_out : out std_logic_vector(15 downto 0)	-- output
 	);	
 end MUX_B;
