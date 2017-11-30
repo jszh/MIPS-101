@@ -10,7 +10,7 @@ entity cpu is
 		
 		
 		--串口
-		dataReady : in std_logic;   
+		data_ready : in std_logic;   
 		tbre : in std_logic;
 		tsre : in std_logic;
 		rdn : inout std_logic;
@@ -99,31 +99,30 @@ architecture Behavioral of cpu is
 -- 	end component;
 	
 	component memory
-	port(
+		port(
 		clk, rst : in std_logic;  --时钟
 		
 		--RAM1（串口）
 		data_ready : in std_logic;		--数据准备信号，='1'表示串口的数据已准备好（读串口成功，可显示读到的data）
-		tbre : in std_logic;			--发送数据标志
-		tsre : in std_logic;			--数据发送完毕标志，tsre and tbre = '1'时写串口完毕
-		wrn : out std_logic;			--写串口，初始化为'1'，先置为'0'并把RAM1data赋好，再置为'1'写串口
-		rdn : out std_logic;			--读串口，初始化为'1'并将RAM1data赋为"ZZ..Z"，
-										--若data_ready='1'，则把rdn置为'0'即可读串口（读出数据在RAM1data上）
+		tbre : in std_logic;				--发送数据标志
+		tsre : in std_logic;				--数据发送完毕标志，tsre and tbre = '1'时写串口完毕
+		wrn : out std_logic;				--写串口，初始化为'1'，先置为'0'并把RAM1data赋好，再置为'1'写串口
+		rdn : out std_logic;				--读串口，初始化为'1'并将RAM1data赋为"ZZ..Z"，--若data_ready='1'，则把rdn置为'0'即可读串口（读出数据在RAM1data上）
 		
 		--RAM2（IM+DM）
-		mem_read, mem_write : in std_logic;	--控制读，写DM的信号，'1'代表需要读，写
+		MemRead, MemWrite : in std_logic;			--控制读，写DM的信号，='1'代表需要读，写
 		
-		write_data : in std_logic_vector(15 downto 0);	--写内存时，要写入DM或IM的数据		
+		WriteData : in std_logic_vector(15 downto 0);		--写内存时，要写入DM或IM的数据		
 		address : in std_logic_vector(15 downto 0);		--读DM/写DM/写IM时，地址输入
-		pc_out : in std_logic_vector(15 downto 0);		--读IM时，地址输入
-		PC_out : in std_logic_vector(15 downto 0);	
-		pc_Keep : in std_logic;
+		PC_out : in std_logic_vector(15 downto 0);		--读IM时，地址输入
+		PC_MUX_out : in std_logic_vector(15 downto 0);	
+		PC_Keep : in std_logic;
 		
-		read_data : out std_logic_vector(15 downto 0);	--读DM时，读出来的数据/读出的串口状态
-		read_ins : out std_logic_vector(15 downto 0);	--读IM时，出来的指令
+		ReadData : out std_logic_vector(15 downto 0);	--读DM时，读出来的数据/读出的串口状态
+		ReadIns : out std_logic_vector(15 downto 0);		--读IM时，出来的指令
 		
-		ram1_addr, ram2_addr : out std_logic_vector(17 downto 0); --RAM1 RAM2地址总线
-		ram1_data, ram2_data : inout std_logic_vector(15 downto 0);	--RAM1 RAM2数据总线
+		ram1_addr, ram2_addr : out std_logic_vector(17 downto 0); 	--RAM1 RAM2地址总线
+		ram1_data, ram2_data : inout std_logic_vector(15 downto 0);--RAM1 RAM2数据总线
 		
 		ram2addr_output : out std_logic_vector(17 downto 0);
 		
@@ -132,7 +131,7 @@ architecture Behavioral of cpu is
 		ram2_en, ram2_oe, ram2_we : out std_logic;		--RAM2使能 读使能 写使能，='1'禁止，永远等于'0'
 		
 		memory_state : out std_logic_vector(1 downto 0);
-		falsh_stateout : out std_logic_vector(2 downto 0);
+		flash_state_out : out std_logic_vector(2 downto 0);
 		
 		flash_finished : out std_logic := '0';
 		
@@ -503,7 +502,7 @@ architecture Behavioral of cpu is
 	end component;
 
 
-	component Registers
+	component registers
 	port(
 		clk : in std_logic;
 		rst : in std_logic;
@@ -592,7 +591,7 @@ architecture Behavioral of cpu is
 	signal controller_out : std_logic_vector(20 downto 0);
 	signal MFPC_control : std_logic;
 	
-	--Registers
+	--registers
 	signal ReadData1, ReadData2 : std_logic_vector(15 downto 0);
 	signal r0, r1, r2, r3, r4, r5, r6, r7 : std_logic_vector(15 downto 0);
 	signal data_T, data_SP, data_IH, dataRA : std_logic_vector(15 downto 0);
@@ -644,7 +643,7 @@ architecture Behavioral of cpu is
 	signal ALUresult : std_logic_vector(15 downto 0);
 	
 	--PC_MUX_add
-	signal PC_out : std_logic_vector(15 downto 0);
+	signal PC_MUX_out : std_logic_vector(15 downto 0);
 	
 	
 	--hazard_detection
@@ -659,8 +658,8 @@ architecture Behavioral of cpu is
 	--memory （有一大部分都已在cpu的port里体现）
 	signal DM_data_out : std_logic_vector(15 downto 0);
 	signal IM_instruction_out : std_logic_vector(15 downto 0);
-	signal MemoryState : std_logic_vector(1 downto 0);
-	signal FlashState_out : std_logic_vector(2 downto 0);
+	signal memory_state : std_logic_vector(1 downto 0);
+	signal flash_state_out : std_logic_vector(2 downto 0);
 		
 	--SW写指令内存（结构冲突）
 	signal SW_IF_ID_Flush : std_logic;
@@ -752,7 +751,7 @@ begin
 		MFPC_out => MFPC_control
 	);
 		
-	u6 : Registers
+	u6 : registers
 	port map(
 		clk => clk,
 		rst => rst,
@@ -979,7 +978,7 @@ begin
 		BranchJudge => BranchJudge,
 		PC_Rollback => PC_Rollback,
 		
-		PC_out => PC_out
+		PC_out => PC_MUX_out
 	);
 	
 	u17 : memory
@@ -987,7 +986,7 @@ begin
 		clk => clk,
 		rst => rst,
 		
-		data_ready => dataReady,
+		data_ready => data_ready,
 		tbre => tbre,
 		tsre => tsre,
 		wrn => wrn,
@@ -996,18 +995,15 @@ begin
 		MemRead => EX_MEM_Read,
 		MemWrite => EX_MEM_Write,
 		
-		dataIn => EX_MEM_ReadData2,
+		WriteData => EX_MEM_ReadData2,
 		
-		ramAddr => EX_MEM_result,
+		address => EX_MEM_result,
 		PC_out => PC_out,
-		PC_out => PC_out,
+		PC_MUX_out => PC_MUX_out,
 		PC_Keep => PC_Keep,
-		dataOut => DM_data_out,
-		insOut => IM_instruction_out,
-		
-		MemoryState => MemoryState,
-		FlashState_out => FlashState_out,
-		flash_finished => flash_finished,
+
+		ReadData => DM_data_out,
+		ReadIns => IM_instruction_out,
 		
 		ram1_addr => ram1Addr,
 		ram2_addr => ram2Addr,
@@ -1023,7 +1019,10 @@ begin
 		ram2_oe => ram2Oe,
 		ram2_we => ram2We,
 		
-		
+		memory_state => memory_state,
+		flash_state_out => flash_state_out,
+		flash_finished => flash_finished,
+
 		flash_addr => flashAddr,
 		flash_data => flashData,
 		
@@ -1161,13 +1160,13 @@ begin
 	
 	
 	
-	process(flashData, MemoryState, FlashState_out, reg_state)
+	process(flashData, memory_state, flash_state_out, reg_state)
 	--process(data_to_WB, ForwardA, ForwardSW, Rd_to_write)
-	--process(data_to_WB, Rd_to_write, MemoryState, reg_state)
+	--process(data_to_WB, Rd_to_write, memory_state, reg_state)
 	begin
 		led(15 downto 14) <= reg_state;
-		led(13 downto 12) <= MemoryState;
-		led(11 downto 9) <= FlashState_out;
+		led(13 downto 12) <= memory_state;
+		led(11 downto 9) <= flash_state_out;
 		--led(15 downto 14) <= ForwardA;
 		--led(13 downto 12) <= ForwardSW;
 		--led(11 downto 8) <= Rd_to_write;

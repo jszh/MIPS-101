@@ -1,7 +1,7 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
-entity Registers is
+entity registers is
 	port(
 		clk : in std_logic;
 		rst : in std_logic;
@@ -22,9 +22,9 @@ entity Registers is
 		data_T, data_SP, data_IH, data_RA : out std_logic_vector(15 downto 0);
 		reg_state : out std_logic_Vector(1 downto 0)
 	);
-end Registers;
+end registers;
 
-architecture Behavioral of Registers is
+architecture Behavioral of registers is
 
 	signal r0, r1, r2, r3, r4, r5, r6, r7 : std_logic_vector(15 downto 0);
 	signal T, SP, IH, RA : std_logic_vector(15 downto 0);
@@ -44,7 +44,7 @@ begin
 			r6 <= (others => '0');
 			r7 <= (others => '0');
 			T <= (others => '0');
-			IH <= (others => '0');			
+			IH <= (others => '0');
 			SP <= (others => '0');
 			RA <= (others => '0');
 			state <= "00";
