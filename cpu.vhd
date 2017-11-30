@@ -10,44 +10,44 @@ entity cpu is
 		
 		
 		--串口
-		data_ready : in std_logic;   
-		tbre : in std_logic;
-		tsre : in std_logic;
-		rdn : inout std_logic;
-		wrn : inout std_logic;
+		uart_dataready : in std_logic;   
+		uart_tbre : in std_logic;
+		uart_tsre : in std_logic;
+		uart_rdn : inout std_logic;
+		uart_wrn : inout std_logic;
 		
 		--RAM1  存放数据
-		ram1En : out std_logic;
-		ram1We : out std_logic;
-		ram1Oe : out std_logic;
-		ram1Data : inout std_logic_vector(15 downto 0);
-		ram1Addr : out std_logic_vector(17 downto 0);
+		base_ram_ce_n : out std_logic;
+		base_ram_we_n : out std_logic;
+		base_ram_oe_n : out std_logic;
+		base_ram_data : inout std_logic_vector(31 downto 0);
+		base_ram_addr : out std_logic_vector(19 downto 0);
 		
 		--RAM2 存放程序和指令
-		ram2En : out std_logic;
-		ram2We : out std_logic;
-		ram2Oe : out std_logic;
-		ram2Data : inout std_logic_vector(15 downto 0);
-		ram2Addr : out std_logic_vector(17 downto 0);
+		ext_ram_ce_n : out std_logic;
+		ext_ram_we_n : out std_logic;
+		ext_ram_oe_n : out std_logic;
+		ext_ram_data : inout std_logic_vector(31 downto 0);
+		ext_ram_addr : out std_logic_vector(19 downto 0);
 		
 		--debug digit1、digit2显示PC值，led显示当前指令的编码
-		digit1 : out std_logic_vector(6 downto 0);	--7位数码管1
-		digit2 : out std_logic_vector(6 downto 0);	--7位数码管2
+		digit1 : out std_logic_vector(7 downto 0);	--7位数码管1
+		digit2 : out std_logic_vector(7 downto 0);	--7位数码管2
 		led : out std_logic_vector(15 downto 0);
 		
-		hs,vs : out std_logic;
-		redOut, greenOut, blueOut : out std_logic_vector(2 downto 0);
+		video_hsync, video_vsync : out std_logic;
+		-- redOut, greenOut, blueOut : out std_logic_vector(2 downto 0);
 	
-		--Flash
-		flashAddr : out std_logic_vector(22 downto 0);		--flash地址线
-		flashData : inout std_logic_vector(15 downto 0);	--flash数据线
+		--flash
+		flash_a : out std_logic_vector(22 downto 0);		--flash地址线
+		flash_data : inout std_logic_vector(15 downto 0);	--flash数据线
 		
-		flashByte : out std_logic;	--flash操作模式，常置'1'
-		flashVpen : out std_logic;	--flash写保护，常置'1'
-		flashRp : out std_logic;	--'1'表示flash工作，常置'1'
-		flashCe : out std_logic;	--flash使能
-		flashOe : out std_logic;	--flash读使能，'0'有效，每次读操作后置'1'
-		flashWe : out std_logic		--flash写使能
+		flash_byte_n : out std_logic;	--flash操作模式，常置'1'
+		flash_vpen : out std_logic;	--flash写保护，常置'1'
+		flash_rp_n : out std_logic;	--'1'表示flash工作，常置'1'
+		flash_ce_n : out std_logic;	--flash使能
+		flash_oe_n : out std_logic;	--flash读使能，'0'有效，每次读操作后置'1'
+		flash_we_n : out std_logic		--flash写使能
 	);
 			
 end cpu;
@@ -106,8 +106,8 @@ architecture Behavioral of cpu is
 		data_ready : in std_logic;		--数据准备信号，='1'表示串口的数据已准备好（读串口成功，可显示读到的data）
 		tbre : in std_logic;				--发送数据标志
 		tsre : in std_logic;				--数据发送完毕标志，tsre and tbre = '1'时写串口完毕
-		wrn : out std_logic;				--写串口，初始化为'1'，先置为'0'并把RAM1data赋好，再置为'1'写串口
-		rdn : out std_logic;				--读串口，初始化为'1'并将RAM1data赋为"ZZ..Z"，--若data_ready='1'，则把rdn置为'0'即可读串口（读出数据在RAM1data上）
+		wrn : out std_logic;				--写串口，初始化为'1'，先置为'0'并把base_ram_data赋好，再置为'1'写串口
+		rdn : out std_logic;				--读串口，初始化为'1'并将base_ram_data赋为"ZZ..Z"，--若data_ready='1'，则把rdn置为'0'即可读串口（读出数据在base_ram_data上）
 		
 		--RAM2（IM+DM）
 		MemRead, MemWrite : in std_logic;			--控制读，写DM的信号，='1'代表需要读，写
@@ -986,11 +986,11 @@ begin
 		clk => clk,
 		rst => rst,
 		
-		data_ready => data_ready,
-		tbre => tbre,
-		tsre => tsre,
-		wrn => wrn,
-		rdn => rdn,
+		data_ready => uart_dataready,
+		tbre => uart_tbre,
+		tsre => uart_tsre,
+		wrn => uart_wrn,
+		rdn => uart_rdn,
 			
 		MemRead => EX_MEM_Read,
 		MemWrite => EX_MEM_Write,
@@ -1005,33 +1005,33 @@ begin
 		ReadData => DM_data_out,
 		ReadIns => IM_instruction_out,
 		
-		ram1_addr => ram1Addr,
-		ram2_addr => ram2Addr,
-		ram1_data => ram1Data,
-		ram2_data => ram2Data,
+		ram1_addr => base_ram_addr,
+		ram2_addr => ext_ram_addr,
+		ram1_data => base_ram_data,
+		ram2_data => ext_ram_data,
 		
 		ram2addr_output => ram2addr_output,
 		
-		ram1_en => ram1En,
-		ram1_oe => ram1Oe,
-		ram1_we => ram1We,
-		ram2_en => ram2En,
-		ram2_oe => ram2Oe,
-		ram2_we => ram2We,
+		ram1_en => base_ram_ce_n,
+		ram1_oe => base_ram_oe_n,
+		ram1_we => base_ram_we_n,
+		ram2_en => ext_ram_ce_n,
+		ram2_oe => ext_ram_oe_n,
+		ram2_we => ext_ram_we_n,
 		
 		memory_state => memory_state,
 		flash_state_out => flash_state_out,
 		flash_finished => flash_finished,
 
-		flash_addr => flashAddr,
-		flash_data => flashData,
+		flash_addr => flash_a,
+		flash_data => flash_data,
 		
-		flash_byte => flashByte,
-		flash_vpen => flashVpen,
-		flash_rp => flashRp,
-		flash_ce => flashCe,
-		flash_oe => flashOe,
-		flash_we => flashWe
+		flash_byte => flash_byte_n,
+		flash_vpen => flash_vpen,
+		flash_rp => flash_rp_n,
+		flash_ce => flash_ce_n,
+		flash_oe => flash_oe_n,
+		flash_we => flash_we_n
 	);
 
 	u18 : clock
@@ -1160,7 +1160,7 @@ begin
 	
 	
 	
-	process(flashData, memory_state, flash_state_out, reg_state)
+	process(flash_data, memory_state, flash_state_out, reg_state)
 	--process(data_to_WB, ForwardA, ForwardSW, Rd_to_write)
 	--process(data_to_WB, Rd_to_write, memory_state, reg_state)
 	begin
@@ -1173,7 +1173,7 @@ begin
 		--led(7 downto 0) <= data_to_WB(7 downto 0);
 		
 		led(8 downto 0) <= (others => '0');
-		--led <= flashData;
+		--led <= flash_data;
 	end process;
 	
 	--clk_chooser
@@ -1238,6 +1238,6 @@ begin
 			when others => digit2 <= "0000000";
 		end case;
 	end process;
-	--ram1Addr <= (others => '0');
+	--base_ram_addr <= (others => '0');
 end Behavioral;
 

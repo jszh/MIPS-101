@@ -27,8 +27,8 @@ entity memory is
 		ReadData : out std_logic_vector(15 downto 0);	--读DM时，读出来的数据/读出的串口状态
 		ReadIns : out std_logic_vector(15 downto 0);		--读IM时，出来的指令
 		
-		ram1_addr, ram2_addr : out std_logic_vector(17 downto 0); 	--RAM1 RAM2地址总线
-		ram1_data, ram2_data : inout std_logic_vector(15 downto 0);--RAM1 RAM2数据总线
+		ram1_addr, ram2_addr : out std_logic_vector(19 downto 0);	--RAM1 RAM2地址总线
+		ram1_data, ram2_data : inout std_logic_vector(31 downto 0);	--RAM1 RAM2数据总线
 		
 		ram2addr_output : out std_logic_vector(17 downto 0);
 		
@@ -118,7 +118,7 @@ begin
 						
 					when "01" =>		--读出指令，准备读/写 串口/内存
 						ram2_oe <= '1';
-						ReadIns <= ram2_data;
+						ReadIns <= ram2_data(15 downto 0);
 						if (MemWrite = '1') then	--如果要写
 							rflag <= '0';
 							if (address = x"BF00") then 	--准备写串口
@@ -126,7 +126,7 @@ begin
 								wrn <= '0';
 							else							--准备写内存
 								ram2_addr(15 downto 0) <= address;
-								ram2_data <= WriteData;
+								ram2_data <= (31 downto 16 => 0) & WriteData;
 								ram2_we <= '0';
 							end if;
 						elsif (MemRead = '1') then	--如果要读
@@ -165,7 +165,7 @@ begin
 								ReadData(7 downto 0) <= ram1_data(7 downto 0);
 							else							--读内存
 								ram2_oe <= '1';
-								ReadData <= ram2_data;
+								ReadData <= ram2_data(15 downto 0);
 							end if;
 						end if;
 						state <= "00";
@@ -217,7 +217,7 @@ begin
 							ram2_we <= '0';
 							ram2_addr <= "00" & current_addr;
 							ram2addr_output <= "00" & current_addr;	--调试
-							ram2_data <= flash_data;
+							ram2_data <= (31 downto 16 => 0) & flash_data;
 							flash_state <= "110";
 						
 						when "110" =>
