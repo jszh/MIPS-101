@@ -10,23 +10,23 @@ entity reg_EX_MEM is
 
 		--数据输入
 		Rd_in : in std_logic_vector(3 downto 0);
-		MFPCMuxIn : in std_logic_vector(15 downto 0);
-		readData2In : in std_logic_vector(15 downto 0); --供SW语句写内存
+		MFPCMux_in : in std_logic_vector(15 downto 0);
+		ReadData2_in : in std_logic_vector(15 downto 0); --供SW语句写内存
 		--信号输入
-		regWriteIn : in std_logic;
-		memReadIn : in std_logic;
-		memWriteIn : in std_logic;
-		memToRegIn : in std_logic;
+		RegWrite_in : in std_logic;
+		MemRead_in : in std_logic;
+		MemWrite_in : in std_logic;
+		MemToReg_in : in std_logic;
 
 		--数据输出
-		rdOut : out std_logic_vector(3 downto 0);
-		ALUResultOut : out std_logic_vector(15 downto 0);
-		readData2Out : out std_logic_vector(15 downto 0); --供SW语句写内存
+		Rd_out : out std_logic_vector(3 downto 0);
+		ALUResult_out : out std_logic_vector(15 downto 0);
+		ReadData2_out : out std_logic_vector(15 downto 0); --供SW语句写内存
 		--信号输出
-		regWriteOut : out std_logic;
-		memReadOut : out std_logic;
-		memWriteOut : out std_logic;
-		memToRegOut : out std_logic
+		RegWrite_out : out std_logic;
+		MemRead_out : out std_logic;
+		MemWrite_out : out std_logic;
+		MemToReg_out : out std_logic
 	);
 end reg_EX_MEM;
 
@@ -36,25 +36,25 @@ begin
 	process(rst, clk)
 	begin
 		if (rst = '0') then
-			rdOut <= "1110";
-			ALUResultOut <= (others => '0');
-			readData2Out <= (others => '0');
+			Rd_out <= "1110";
+			ALUResult_out <= (others => '0');
+			ReadData2_out <= (others => '0');
 			
-			regWriteOut <= '0';
-			memReadOut <= '0';
-			memWriteOut <= '0';
-			memToRegOut <= '0';
+			RegWrite_out <= '0';
+			MemRead_out <= '0';
+			MemWrite_out <= '0';
+			MemToReg_out <= '0';
 
 		elsif (clk'event and clk = '1') then
 		if(flash_finished = '1') then
-			rdOut <= Rd_in;
-			ALUResultOut <= MFPCMuxIn;
-			readData2Out <= readData2In;
+			Rd_out <= Rd_in;
+			ALUResult_out <= MFPCMux_in;
+			ReadData2_out <= ReadData2_in;
 			
-			regWriteOut <= regWriteIn;
-			memReadOut <= memReadIn;
-			memWriteOut <= memWriteIn;
-			memToRegOut <= memToRegIn;
+			RegWrite_out <= RegWrite_in;
+			MemRead_out <= MemRead_in;
+			MemWrite_out <= MemWrite_in;
+			MemToReg_out <= MemToReg_in;
 		end if;
 		end if;
 	end process;
