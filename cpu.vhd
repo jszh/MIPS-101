@@ -3,9 +3,10 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity cpu is
 	port(
-		rst : in std_logic; --reset
-		clk_hand : in std_logic; --时钟源  默认为50M  可以通过修改绑定管脚来改变
-		clk_50 : in std_logic;
+		-- rst : in std_logic; --reset
+		-- clk_manual : in std_logic; --时钟源  默认为50M  可以通过修改绑定管脚来改变
+		touch_btn : in std_logic_vector(5 downto 0);	-- 4-clk_manual, 5-rst
+		clk_in : in std_logic;
 		opt : in std_logic;	--选择输入时钟（为手动或者50M）
 		
 		
@@ -31,9 +32,9 @@ entity cpu is
 		ext_ram_addr : out std_logic_vector(19 downto 0);
 		
 		--debug digit1、digit2显示PC值，led显示当前指令的编码
-		digit1 : out std_logic_vector(7 downto 0);	--7位数码管1
-		digit2 : out std_logic_vector(7 downto 0);	--7位数码管2
-		led : out std_logic_vector(15 downto 0);
+		-- digit1 : out std_logic_vector(7 downto 0);	--7位数码管1
+		-- digit2 : out std_logic_vector(7 downto 0);	--7位数码管2
+		leds : out std_logic_vector(31 downto 0);
 		
 		video_hsync, video_vsync : out std_logic;
 		-- redOut, greenOut, blueOut : out std_logic_vector(2 downto 0);
@@ -560,6 +561,8 @@ architecture Behavioral of cpu is
 	
 	
 	--以下的signal都是“全局变量”，来自所有component的out
+
+	signal rst, clk_manual : std_logic;
 	
 	--dcm
 	signal CLKFX_OUT : std_logic;
@@ -692,6 +695,9 @@ architecture Behavioral of cpu is
 	signal always_zero : std_logic := '0';	--恒为零的信号
 	
 begin
+	rst <= touch_btn[5];
+	clk_manual <= touch_btn[4];
+
 	u1 : PC_reg
 	port map(
 		rst => rst,
@@ -1116,7 +1122,7 @@ begin
 -- 		RAdata => data_RA,
 -- 	--Control Signals
 -- 		reset	=> rst,
--- 		CLK_in => clk_50
+-- 		CLK_in => clk_in
 -- 	);
 
 -- originally commented ** start
@@ -1124,7 +1130,7 @@ begin
 	--r1 <= "1011100010100110";
 --	u24 : digit
 --	port map(
---			clkA => clk_50,
+--			clkA => clk_in,
 --			addra => digitRomAddr,
 --			douta => digitRomData
 --	);
@@ -1132,7 +1138,7 @@ begin
 	
 	-- u25 : fontRom
 	-- port map(
-	-- 	clka => clk_50,
+	-- 	clka => clk_in,
 	-- 	addra => fontRomAddr,
 	-- 	douta => fontRomData
 	-- );
@@ -1150,7 +1156,7 @@ begin
 	
 	u27 : dcm
 	port map( 
-		CLKIN_IN   => clk_50,
+		CLKIN_IN   => clk_in,
 		RST_IN     => always_zero,
 		CLKFX_OUT  => CLKFX_OUT,
 		CLK0_OUT   => CLK0_OUT,
@@ -1176,68 +1182,68 @@ begin
 		--led <= flash_data;
 	end process;
 	
-	--clk_chooser
-	process(CLKFX_OUT, rst, clk_hand)
+	--Choose clk source
+	process(CLKFX_OUT, rst, clk_manual)
 	begin
 		if opt = '1' then
 			if rst = '0' then
 				clkIn_clock <= '0';
 			else
-				clkIn_clock <= clk_hand;
+				clkIn_clock <= clk_manual;
 			end if;
 		else
 			if rst = '0' then
 				clkIn_clock <= '0';
 			else 
-				clkIn_clock <= CLKFX_OUT;
+				clkIn_clock <= CLKFX_OUT;	--???
 			end if;
 		end if;
 	end process;
 	
 	
 	--jing <= PC_out;
-	process(ram2addr_output)
-	begin
-		case ram2addr_output(7 downto 4) is
-			when "0000" => digit1 <= "0111111";--0
-			when "0001" => digit1 <= "0000110";--1
-			when "0010" => digit1 <= "1011011";--2
-			when "0011" => digit1 <= "1001111";--3
-			when "0100" => digit1 <= "1100110";--4
-			when "0101" => digit1 <= "1101101";--5
-			when "0110" => digit1 <= "1111101";--6
-			when "0111" => digit1 <= "0000111";--7
-			when "1000" => digit1 <= "1111111";--8
-			when "1001" => digit1 <= "1101111";--9
-			when "1010" => digit1 <= "1110111";--A
-			when "1011" => digit1 <= "1111100";--B
-			when "1100" => digit1 <= "0111001";--C
-			when "1101" => digit1 <= "1011110";--D
-			when "1110" => digit1 <= "1111001";--E
-			when "1111" => digit1 <= "1110001";--F
-			when others => digit1 <= "0000000";
-		end case;
+	-- process(ram2addr_output)
+	-- begin
+	-- 	case ram2addr_output(7 downto 4) is
+	-- 		when "0000" => digit1 <= "0111111";--0
+	-- 		when "0001" => digit1 <= "0000110";--1
+	-- 		when "0010" => digit1 <= "1011011";--2
+	-- 		when "0011" => digit1 <= "1001111";--3
+	-- 		when "0100" => digit1 <= "1100110";--4
+	-- 		when "0101" => digit1 <= "1101101";--5
+	-- 		when "0110" => digit1 <= "1111101";--6
+	-- 		when "0111" => digit1 <= "0000111";--7
+	-- 		when "1000" => digit1 <= "1111111";--8
+	-- 		when "1001" => digit1 <= "1101111";--9
+	-- 		when "1010" => digit1 <= "1110111";--A
+	-- 		when "1011" => digit1 <= "1111100";--B
+	-- 		when "1100" => digit1 <= "0111001";--C
+	-- 		when "1101" => digit1 <= "1011110";--D
+	-- 		when "1110" => digit1 <= "1111001";--E
+	-- 		when "1111" => digit1 <= "1110001";--F
+	-- 		when others => digit1 <= "0000000";
+	-- 	end case;
 		
-		case ram2addr_output(3 downto 0) is
-			when "0000" => digit2 <= "0111111";--0
-			when "0001" => digit2 <= "0000110";--1
-			when "0010" => digit2 <= "1011011";--2
-			when "0011" => digit2 <= "1001111";--3
-			when "0100" => digit2 <= "1100110";--4
-			when "0101" => digit2 <= "1101101";--5
-			when "0110" => digit2 <= "1111101";--6
-			when "0111" => digit2 <= "0000111";--7
-			when "1000" => digit2 <= "1111111";--8
-			when "1001" => digit2 <= "1101111";--9
-			when "1010" => digit2 <= "1110111";--A
-			when "1011" => digit2 <= "1111100";--B
-			when "1100" => digit2 <= "0111001";--C
-			when "1101" => digit2 <= "1011110";--D
-			when "1110" => digit2 <= "1111001";--E
-			when "1111" => digit2 <= "1110001";--F
-			when others => digit2 <= "0000000";
-		end case;
-	end process;
+	-- 	case ram2addr_output(3 downto 0) is
+	-- 		when "0000" => digit2 <= "0111111";--0
+	-- 		when "0001" => digit2 <= "0000110";--1
+	-- 		when "0010" => digit2 <= "1011011";--2
+	-- 		when "0011" => digit2 <= "1001111";--3
+	-- 		when "0100" => digit2 <= "1100110";--4
+	-- 		when "0101" => digit2 <= "1101101";--5
+	-- 		when "0110" => digit2 <= "1111101";--6
+	-- 		when "0111" => digit2 <= "0000111";--7
+	-- 		when "1000" => digit2 <= "1111111";--8
+	-- 		when "1001" => digit2 <= "1101111";--9
+	-- 		when "1010" => digit2 <= "1110111";--A
+	-- 		when "1011" => digit2 <= "1111100";--B
+	-- 		when "1100" => digit2 <= "0111001";--C
+	-- 		when "1101" => digit2 <= "1011110";--D
+	-- 		when "1110" => digit2 <= "1111001";--E
+	-- 		when "1111" => digit2 <= "1110001";--F
+	-- 		when others => digit2 <= "0000000";
+	-- 	end case;
+	-- end process;
 	--base_ram_addr <= (others => '0');
 end Behavioral;
 
