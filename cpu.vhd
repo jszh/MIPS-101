@@ -1175,7 +1175,7 @@ begin
 	--jing <= PC_out;
 	 process(PC_out)
 	 begin
-	 	case PC_out(7 downto 4) is
+	 	case PC_out(3 downto 0) is
 	 		when "0000" => digit1 <= "01111110";--0
 	 		when "0001" => digit1 <= "00010010";--1
 	 		when "0010" => digit1 <= "10111100";--2
@@ -1195,7 +1195,7 @@ begin
 	 		when others => digit1 <= "00000000";
 	 	end case;
 		
-	 	case PC_out(3 downto 0) is
+	 	case PC_out(7 downto 4) is
 	 		when "0000" => digit2 <= "01111110";--0
             when "0001" => digit2 <= "00010010";--1
             when "0010" => digit2 <= "10111100";--2
