@@ -73,6 +73,25 @@ architecture Behavioral of VGA_play is
 	signal char_addr: std_logic_vector(14 downto 0);
 	signal caddr: std_logic_vector(10 downto 0);
 	signal reset: std_logic;
+	
+	type matrix_index is array(15 downto 0) of std_logic_vector(7 downto 0);
+	signal a: matrix_index;
+	constant R: matrix_index := ("00000000",
+								"00000000",
+								"00000000",
+								"00000000",
+								"00000000",
+								"00000000",
+								"00000000",
+								"00111100",
+								"01000010",
+								"01000010",
+								"01111110",
+								"01000000",
+								"01000010",
+								"00111100",
+								"00000000",
+								"00000000");
 begin
     reset <= touch_btn(4);
 	-- waddr <= "0000000" & KEY16_INPUT(11 downto 8);
@@ -90,12 +109,12 @@ begin
 	-- end process;
 
 	-- store char  note
-	ram: char_mem port map(clka => clk, addra => char_addr, douta => pr);
+--	ram: char_mem port map(clka => clk, addra => char_addr, douta => pr);
 	
 	-- display cache
-	cache: fifo_mem port map(
+--	cache: fifo_mem port map(
 		-- a for write
-		clka => clk,
+--		clka => clk,
 		-- enable, 1 is write signal
 		--note
 		--wea => wctrl,
@@ -103,15 +122,15 @@ begin
 		--dina => wdata,
 		
 		--debug
-		wea => dip_sw(0 downto 0),
-		addra => dip_sw(11 downto 1),
-		dina => dip_sw(19 downto 12),
+--		wea => dip_sw(0 downto 0),
+--		addra => dip_sw(11 downto 1),
+--		dina => dip_sw(19 downto 12),
 		
 		-- b for read
-		clkb => clk,
-		addrb => caddr,
-		doutb => char
-	);
+--		clkb => clk,
+--		addrb => caddr,
+--		doutb => char
+--	);
 	
 	-- cache addr 5 + 6 = 11
 	caddr <= vector_y(8 downto 4) & vector_x(9 downto 4);
@@ -147,6 +166,10 @@ begin
 	if reset = '1' then
 		vector_x <= (others => '0');
 		leds <= "0000000000000000";
+		if(R(0)(0) = '0') then 
+			leds(8) <= '0';
+		end if;
+			
 	elsif clk'event and clk = '1' then
 		if vector_x = 799 then
 			vector_x <= (others => '0');
