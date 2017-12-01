@@ -17,8 +17,8 @@ entity registers is
 		
 		r0_out, r1_out, r2_out, r3_out, r4_out, r5_out, r6_out, r7_out : out std_logic_vector(15 downto 0);
 		
-		ReadData1 : out std_logic_vector(15 downto 0); --读出的寄存器1的数据
-		ReadData2 : out std_logic_vector(15 downto 0); --读出的寄存器2的数据
+		ReadData1 : out std_logic_vector(15 downto 0); --读出的寄存器1的数�?
+		ReadData2 : out std_logic_vector(15 downto 0); --读出的寄存器2的数�?
 		data_T, data_SP, data_IH, data_RA : out std_logic_vector(15 downto 0);
 		reg_state : out std_logic_Vector(1 downto 0)
 	);
@@ -34,7 +34,7 @@ architecture Behavioral of registers is
 begin
 	process(clk, rst)
 	begin
-		if (rst = '0') then
+		if (rst = '1') then
 			r0 <= (others => '0');
 			r1 <= (others => '0');
 			r2 <= (others => '0');

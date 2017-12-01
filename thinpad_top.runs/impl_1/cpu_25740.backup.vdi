@@ -1,0 +1,728 @@
+#-----------------------------------------------------------
+# Vivado v2017.1 (64-bit)
+# SW Build 1846317 on Fri Apr 14 18:55:03 MDT 2017
+# IP Build 1846188 on Fri Apr 14 20:52:08 MDT 2017
+# Start of session at: Fri Dec  1 21:45:51 2017
+# Process ID: 25740
+# Current directory: D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.runs/impl_1
+# Command line: vivado.exe -log cpu.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source cpu.tcl -notrace
+# Log file: D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.runs/impl_1/cpu.vdi
+# Journal file: D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.runs/impl_1\vivado.jou
+#-----------------------------------------------------------
+source cpu.tcl -notrace
+Design is defaulting to srcset: sources_1
+Design is defaulting to constrset: constrs_1
+INFO: [Netlist 29-17] Analyzing 36 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2017.1
+INFO: [Device 21-403] Loading part xc7a100tfgg676-2L
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc]
+WARNING: [Vivado 12-584] No ports matched 'clk_uart_in'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:3]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:3]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-507] No nets matched 'clk_uart_in_IBUF'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:4]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:4]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'clk_uart_in'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:7]
+CRITICAL WARNING: [Vivado 12-4739] create_clock:No valid object(s) found for '-objects [get_ports clk_uart_in]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:7]
+Resolution: Check if the specified object(s) exists in the current design. If it does, ensure that the correct design hierarchy was specified for the object. If you are working with clocks, make sure create_clock was used to create the clock object before it is referenced.
+WARNING: [Vivado 12-584] No ports matched 'txd'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:29]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:29]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'rxd'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:30]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:30]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'sl811_a0'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:33]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:33]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'sl811_we_n'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:34]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:34]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'sl811_rd_n'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:35]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:35]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'sl811_cs_n'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:36]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:36]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'sl811_rst_n'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:37]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:37]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'sl811_drq'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:38]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:38]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'sl811_dack'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:39]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:39]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'sl811_int'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:40]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:40]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'sl811_data[0]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:41]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:41]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'sl811_data[1]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:42]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:42]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'sl811_data[2]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:43]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:43]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'sl811_data[3]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:44]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:44]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'sl811_data[4]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:45]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:45]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'sl811_data[5]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:46]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:46]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'sl811_data[6]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:47]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:47]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'sl811_data[7]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:48]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:48]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_we_n'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:51]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:51]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_rd_n'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:52]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:52]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_cs_n'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:53]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:53]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_rst_n'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:54]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:54]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_int'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:55]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:55]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_cmd'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:56]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:56]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_data[0]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:57]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:57]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_data[1]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:58]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:58]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_data[2]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:59]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:59]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_data[3]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:60]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:60]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_data[4]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:61]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:61]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_data[5]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:62]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:62]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_data[6]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:63]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:63]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_data[7]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:64]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:64]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_data[8]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:65]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:65]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_data[9]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:66]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:66]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_data[10]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:67]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:67]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_data[11]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:68]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:68]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_data[12]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:69]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:69]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_data[13]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:70]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:70]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_data[14]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:71]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:71]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_data[15]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:72]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:72]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'video_clk'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:75]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:75]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'video_pixel[7]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:76]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:76]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'video_pixel[6]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:77]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:77]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'video_pixel[5]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:78]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:78]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'video_pixel[4]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:79]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:79]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'video_pixel[3]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:80]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:80]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'video_pixel[2]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:81]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:81]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'video_pixel[1]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:82]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:82]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'video_pixel[0]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:83]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:83]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'video_de'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:86]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:86]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[*]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:128]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:128]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[0]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:129]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:129]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[1]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:130]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:130]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[2]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:131]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:131]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[3]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:132]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:132]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[4]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:133]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:133]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[5]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:134]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:134]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[6]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:135]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:135]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[7]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:136]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:136]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[8]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:137]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:137]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[9]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:138]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:138]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[10]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:139]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:139]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[11]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:140]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:140]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[12]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:141]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:141]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[13]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:142]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:142]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[14]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:143]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:143]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[15]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:144]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:144]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[16]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:145]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:145]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[17]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:146]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:146]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[18]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:147]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:147]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[19]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:148]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:148]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[20]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:149]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:149]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[21]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:150]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:150]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[22]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:151]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:151]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[23]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:152]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:152]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[24]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:153]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:153]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[25]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:154]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:154]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[26]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:155]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:155]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[27]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:156]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:156]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[28]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:157]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:157]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[29]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:158]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:158]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[30]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:159]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:159]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'base_ram_be_n[*]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:242]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:242]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'base_ram_be_n[0]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:243]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:243]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'base_ram_be_n[1]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:244]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:244]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'base_ram_be_n[2]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:245]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:245]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'base_ram_be_n[3]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:246]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:246]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ext_ram_be_n[*]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:308]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:308]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ext_ram_be_n[0]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:309]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:309]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ext_ram_be_n[1]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:310]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:310]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ext_ram_be_n[2]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:311]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:311]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ext_ram_be_n[3]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:312]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:312]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+Finished Parsing XDC File [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc]
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 16 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 16 instances
+
+link_design: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 541.719 ; gain = 271.582
+Command: opt_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7a100t-fgg676'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7a100t-fgg676'
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+Command: report_drc (run_mandatory_drcs) for: opt_checks
+INFO: [DRC 23-27] Running DRC with 2 threads
+report_drc (run_mandatory_drcs) completed successfully
+INFO: [Project 1-461] DRC finished with 0 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.537 . Memory (MB): peak = 549.355 ; gain = 7.637
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+
+Starting Logic Optimization Task
+
+Phase 1 Retarget
+INFO: [Opt 31-138] Pushed 1 inverter(s) to 1 load pin(s).
+INFO: [Opt 31-49] Retargeted 0 cell(s).
+Phase 1 Retarget | Checksum: 2123a7e88
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.079 . Memory (MB): peak = 1060.164 ; gain = 0.000
+INFO: [Opt 31-389] Phase Retarget created 0 cells and removed 49 cells
+
+Phase 2 Constant propagation
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Phase 2 Constant propagation | Checksum: 2123a7e88
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.101 . Memory (MB): peak = 1060.164 ; gain = 0.000
+INFO: [Opt 31-389] Phase Constant propagation created 0 cells and removed 0 cells
+
+Phase 3 Sweep
+Phase 3 Sweep | Checksum: 1cead07c0
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.118 . Memory (MB): peak = 1060.164 ; gain = 0.000
+INFO: [Opt 31-389] Phase Sweep created 1 cells and removed 0 cells
+
+Phase 4 BUFG optimization
+Phase 4 BUFG optimization | Checksum: 1cead07c0
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.127 . Memory (MB): peak = 1060.164 ; gain = 0.000
+INFO: [Opt 31-389] Phase BUFG optimization created 0 cells and removed 0 cells
+
+Phase 5 Shift Register Optimization
+Phase 5 Shift Register Optimization | Checksum: 1cead07c0
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.128 . Memory (MB): peak = 1060.164 ; gain = 0.000
+INFO: [Opt 31-389] Phase Shift Register Optimization created 0 cells and removed 0 cells
+
+Starting Connectivity Check Task
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1060.164 ; gain = 0.000
+Ending Logic Optimization Task | Checksum: 1cead07c0
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.130 . Memory (MB): peak = 1060.164 ; gain = 0.000
+
+Starting Power Optimization Task
+INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 2.00 ns.
+Ending Power Optimization Task | Checksum: 128d51fe0
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1060.164 ; gain = 0.000
+21 Infos, 95 Warnings, 95 Critical Warnings and 0 Errors encountered.
+opt_design completed successfully
+opt_design: Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1060.164 ; gain = 518.445
+Writing placer database...
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.058 . Memory (MB): peak = 1060.164 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.runs/impl_1/cpu_opt.dcp' has been generated.
+Command: report_drc -file cpu_drc_opted.rpt
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Coretcl 2-168] The results of DRC are in file D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.runs/impl_1/cpu_drc_opted.rpt.
+report_drc completed successfully
+INFO: [Chipscope 16-241] No debug cores found in the current design.
+Before running the implement_debug_core command, either use the Set Up Debug wizard (GUI mode)
+or use the create_debug_core and connect_debug_core Tcl commands to insert debug cores into the design.
+Command: place_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7a100t-fgg676'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7a100t-fgg676'
+Command: report_drc (run_mandatory_drcs) for: incr_eco_checks
+INFO: [DRC 23-27] Running DRC with 2 threads
+report_drc (run_mandatory_drcs) completed successfully
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+Running DRC as a precondition to command place_design
+Command: report_drc (run_mandatory_drcs) for: placer_checks
+INFO: [DRC 23-27] Running DRC with 2 threads
+report_drc (run_mandatory_drcs) completed successfully
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+Starting Placer Task
+INFO: [Place 30-611] Multithreading enabled for place_design using a maximum of 2 CPUs
+
+Phase 1 Placer Initialization
+
+Phase 1.1 Placer Initialization Netlist Sorting
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1060.164 ; gain = 0.000
+Phase 1.1 Placer Initialization Netlist Sorting | Checksum: 11261ec30
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1060.164 ; gain = 0.000
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1060.164 ; gain = 0.000
+
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device | Checksum: 10b524434
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 1060.164 ; gain = 0.000
+
+Phase 1.3 Build Placer Netlist Model
+Phase 1.3 Build Placer Netlist Model | Checksum: 1b249a7a6
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1060.164 ; gain = 0.000
+
+Phase 1.4 Constrain Clocks/Macros
+Phase 1.4 Constrain Clocks/Macros | Checksum: 1b249a7a6
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1060.164 ; gain = 0.000
+Phase 1 Placer Initialization | Checksum: 1b249a7a6
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1060.164 ; gain = 0.000
+
+Phase 2 Global Placement
+Phase 2 Global Placement | Checksum: 1fcb757af
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1060.164 ; gain = 0.000
+
+Phase 3 Detail Placement
+
+Phase 3.1 Commit Multi Column Macros
+Phase 3.1 Commit Multi Column Macros | Checksum: 1fcb757af
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1060.164 ; gain = 0.000
+
+Phase 3.2 Commit Most Macros & LUTRAMs
+Phase 3.2 Commit Most Macros & LUTRAMs | Checksum: 136fc40e8
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1060.164 ; gain = 0.000
+
+Phase 3.3 Area Swap Optimization
+Phase 3.3 Area Swap Optimization | Checksum: 1d113ebd5
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:02 . Memory (MB): peak = 1060.164 ; gain = 0.000
+
+Phase 3.4 Pipeline Register Optimization
+Phase 3.4 Pipeline Register Optimization | Checksum: 1d113ebd5
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:02 . Memory (MB): peak = 1060.164 ; gain = 0.000
+
+Phase 3.5 Timing Path Optimizer
+Phase 3.5 Timing Path Optimizer | Checksum: 12f18b70f
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:02 . Memory (MB): peak = 1060.164 ; gain = 0.000
+
+Phase 3.6 Small Shape Detail Placement
+Phase 3.6 Small Shape Detail Placement | Checksum: 19d7e0f10
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:02 . Memory (MB): peak = 1060.164 ; gain = 0.000
+
+Phase 3.7 Re-assign LUT pins
+Phase 3.7 Re-assign LUT pins | Checksum: f0030baf
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:02 . Memory (MB): peak = 1060.164 ; gain = 0.000
+
+Phase 3.8 Pipeline Register Optimization
+Phase 3.8 Pipeline Register Optimization | Checksum: f0030baf
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:02 . Memory (MB): peak = 1060.164 ; gain = 0.000
+Phase 3 Detail Placement | Checksum: f0030baf
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:02 . Memory (MB): peak = 1060.164 ; gain = 0.000
+
+Phase 4 Post Placement Optimization and Clean-Up
+
+Phase 4.1 Post Commit Optimization
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+
+Phase 4.1.1 Post Placement Optimization
+Post Placement Optimization Initialization | Checksum: 1215db52c
+
+Phase 4.1.1.1 BUFG Insertion
+INFO: [Physopt 32-721] Multithreading enabled for phys_opt_design using a maximum of 2 CPUs
+INFO: [Place 46-41] BUFG insertion identified 0 candidate nets, 0 success, 0 skipped for placement/routing, 0 skipped for timing, 0 skipped for netlist change reason.
+Phase 4.1.1.1 BUFG Insertion | Checksum: 1215db52c
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1063.766 ; gain = 3.602
+INFO: [Place 30-746] Post Placement Timing Summary WNS=15.235. For the most accurate timing information please run report_timing.
+Phase 4.1.1 Post Placement Optimization | Checksum: 120a60048
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1063.766 ; gain = 3.602
+Phase 4.1 Post Commit Optimization | Checksum: 120a60048
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1063.766 ; gain = 3.602
+
+Phase 4.2 Post Placement Cleanup
+Phase 4.2 Post Placement Cleanup | Checksum: 120a60048
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1063.766 ; gain = 3.602
+
+Phase 4.3 Placer Reporting
+Phase 4.3 Placer Reporting | Checksum: 120a60048
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1063.766 ; gain = 3.602
+
+Phase 4.4 Final Placement Cleanup
+Phase 4.4 Final Placement Cleanup | Checksum: fa4ae48f
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1063.766 ; gain = 3.602
+Phase 4 Post Placement Optimization and Clean-Up | Checksum: fa4ae48f
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1063.766 ; gain = 3.602
+Ending Placer Task | Checksum: 66feb4ab
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1063.766 ; gain = 3.602
+40 Infos, 95 Warnings, 95 Critical Warnings and 0 Errors encountered.
+place_design completed successfully
+Writing placer database...
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.068 . Memory (MB): peak = 1063.766 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.runs/impl_1/cpu_placed.dcp' has been generated.
+report_io: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.145 . Memory (MB): peak = 1067.527 ; gain = 3.762
+report_utilization: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.027 . Memory (MB): peak = 1067.527 ; gain = 0.000
+report_control_sets: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1067.527 ; gain = 0.000
+Command: route_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7a100t-fgg676'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7a100t-fgg676'
+Running DRC as a precondition to command route_design
+Command: report_drc (run_mandatory_drcs) for: router_checks
+INFO: [DRC 23-27] Running DRC with 2 threads
+report_drc (run_mandatory_drcs) completed successfully
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+
+Starting Routing Task
+INFO: [Route 35-254] Multithreading enabled for route_design using a maximum of 2 CPUs
+Checksum: PlaceDB: 6bc2175 ConstDB: 0 ShapeSum: 60429336 RouteDB: 0
+
+Phase 1 Build RT Design
+Phase 1 Build RT Design | Checksum: 859823f4
+
+Time (s): cpu = 00:00:28 ; elapsed = 00:00:25 . Memory (MB): peak = 1227.113 ; gain = 159.586
+
+Phase 2 Router Initialization
+
+Phase 2.1 Create Timer
+Phase 2.1 Create Timer | Checksum: 859823f4
+
+Time (s): cpu = 00:00:28 ; elapsed = 00:00:25 . Memory (MB): peak = 1227.113 ; gain = 159.586
+
+Phase 2.2 Fix Topology Constraints
+Phase 2.2 Fix Topology Constraints | Checksum: 859823f4
+
+Time (s): cpu = 00:00:28 ; elapsed = 00:00:25 . Memory (MB): peak = 1227.113 ; gain = 159.586
+
+Phase 2.3 Pre Route Cleanup
+Phase 2.3 Pre Route Cleanup | Checksum: 859823f4
+
+Time (s): cpu = 00:00:28 ; elapsed = 00:00:25 . Memory (MB): peak = 1227.113 ; gain = 159.586
+ Number of Nodes with overlaps = 0
+
+Phase 2.4 Update Timing
+Phase 2.4 Update Timing | Checksum: 151d25a3d
+
+Time (s): cpu = 00:00:28 ; elapsed = 00:00:25 . Memory (MB): peak = 1227.113 ; gain = 159.586
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=15.302 | TNS=0.000  | WHS=-0.095 | THS=-2.599 |
+
+Phase 2 Router Initialization | Checksum: 17771a684
+
+Time (s): cpu = 00:00:28 ; elapsed = 00:00:25 . Memory (MB): peak = 1227.113 ; gain = 159.586
+
+Phase 3 Initial Routing
+Phase 3 Initial Routing | Checksum: 1e5ae028b
+
+Time (s): cpu = 00:00:29 ; elapsed = 00:00:25 . Memory (MB): peak = 1227.113 ; gain = 159.586
+
+Phase 4 Rip-up And Reroute
+
+Phase 4.1 Global Iteration 0
+ Number of Nodes with overlaps = 6
+ Number of Nodes with overlaps = 2
+ Number of Nodes with overlaps = 2
+ Number of Nodes with overlaps = 2
+ Number of Nodes with overlaps = 2
+ Number of Nodes with overlaps = 2
+ Number of Nodes with overlaps = 2
+ Number of Nodes with overlaps = 2
+ Number of Nodes with overlaps = 2
+ Number of Nodes with overlaps = 2
+ Number of Nodes with overlaps = 2
+ Number of Nodes with overlaps = 2
+ Number of Nodes with overlaps = 2
+ Number of Nodes with overlaps = 1
+ Number of Nodes with overlaps = 1
+ Number of Nodes with overlaps = 1
+ Number of Nodes with overlaps = 1
+ Number of Nodes with overlaps = 1
+ Number of Nodes with overlaps = 1
+ Number of Nodes with overlaps = 1
+ Number of Nodes with overlaps = 0
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=14.690 | TNS=0.000  | WHS=N/A    | THS=N/A    |
+
+Phase 4.1 Global Iteration 0 | Checksum: 142205934
+
+Time (s): cpu = 00:00:35 ; elapsed = 00:00:31 . Memory (MB): peak = 1227.113 ; gain = 159.586
+Phase 4 Rip-up And Reroute | Checksum: 142205934
+
+Time (s): cpu = 00:00:35 ; elapsed = 00:00:31 . Memory (MB): peak = 1227.113 ; gain = 159.586
+
+Phase 5 Delay and Skew Optimization
+
+Phase 5.1 Delay CleanUp
+Phase 5.1 Delay CleanUp | Checksum: 142205934
+
+Time (s): cpu = 00:00:35 ; elapsed = 00:00:31 . Memory (MB): peak = 1227.113 ; gain = 159.586
+
+Phase 5.2 Clock Skew Optimization
+Phase 5.2 Clock Skew Optimization | Checksum: 142205934
+
+Time (s): cpu = 00:00:35 ; elapsed = 00:00:31 . Memory (MB): peak = 1227.113 ; gain = 159.586
+Phase 5 Delay and Skew Optimization | Checksum: 142205934
+
+Time (s): cpu = 00:00:35 ; elapsed = 00:00:31 . Memory (MB): peak = 1227.113 ; gain = 159.586
+
+Phase 6 Post Hold Fix
+
+Phase 6.1 Hold Fix Iter
+
+Phase 6.1.1 Update Timing
+Phase 6.1.1 Update Timing | Checksum: b242fd62
+
+Time (s): cpu = 00:00:35 ; elapsed = 00:00:31 . Memory (MB): peak = 1227.113 ; gain = 159.586
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=14.755 | TNS=0.000  | WHS=0.185  | THS=0.000  |
+
+Phase 6.1 Hold Fix Iter | Checksum: b242fd62
+
+Time (s): cpu = 00:00:35 ; elapsed = 00:00:31 . Memory (MB): peak = 1227.113 ; gain = 159.586
+Phase 6 Post Hold Fix | Checksum: b242fd62
+
+Time (s): cpu = 00:00:35 ; elapsed = 00:00:31 . Memory (MB): peak = 1227.113 ; gain = 159.586
+
+Phase 7 Route finalize
+
+Router Utilization Summary
+  Global Vertical Routing Utilization    = 0.262915 %
+  Global Horizontal Routing Utilization  = 0.2868 %
+  Routable Net Status*
+  *Does not include unroutable nets such as driverless and loadless.
+  Run report_route_status for detailed report.
+  Number of Failed Nets               = 0
+  Number of Unrouted Nets             = 0
+  Number of Partially Routed Nets     = 0
+  Number of Node Overlaps             = 0
+
+Phase 7 Route finalize | Checksum: b242fd62
+
+Time (s): cpu = 00:00:35 ; elapsed = 00:00:31 . Memory (MB): peak = 1227.113 ; gain = 159.586
+
+Phase 8 Verifying routed nets
+
+ Verification completed successfully
+Phase 8 Verifying routed nets | Checksum: b242fd62
+
+Time (s): cpu = 00:00:35 ; elapsed = 00:00:31 . Memory (MB): peak = 1227.113 ; gain = 159.586
+
+Phase 9 Depositing Routes
+Phase 9 Depositing Routes | Checksum: a6c7f980
+
+Time (s): cpu = 00:00:35 ; elapsed = 00:00:31 . Memory (MB): peak = 1227.113 ; gain = 159.586
+
+Phase 10 Post Router Timing
+INFO: [Route 35-57] Estimated Timing Summary | WNS=14.755 | TNS=0.000  | WHS=0.185  | THS=0.000  |
+
+INFO: [Route 35-327] The final timing numbers are based on the router estimated timing analysis. For a complete and accurate timing signoff, please run report_timing_summary.
+Phase 10 Post Router Timing | Checksum: a6c7f980
+
+Time (s): cpu = 00:00:35 ; elapsed = 00:00:31 . Memory (MB): peak = 1227.113 ; gain = 159.586
+INFO: [Route 35-16] Router Completed Successfully
+
+Time (s): cpu = 00:00:35 ; elapsed = 00:00:31 . Memory (MB): peak = 1227.113 ; gain = 159.586
+
+Routing Is Done.
+52 Infos, 95 Warnings, 95 Critical Warnings and 0 Errors encountered.
+route_design completed successfully
+route_design: Time (s): cpu = 00:00:37 ; elapsed = 00:00:32 . Memory (MB): peak = 1227.113 ; gain = 159.586
+Writing placer database...
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.068 . Memory (MB): peak = 1227.113 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.runs/impl_1/cpu_routed.dcp' has been generated.
+Command: report_drc -file cpu_drc_routed.rpt -pb cpu_drc_routed.pb -rpx cpu_drc_routed.rpx
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Coretcl 2-168] The results of DRC are in file D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.runs/impl_1/cpu_drc_routed.rpt.
+report_drc completed successfully
+Command: report_methodology -file cpu_methodology_drc_routed.rpt -rpx cpu_methodology_drc_routed.rpx
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [DRC 23-133] Running Methodology with 2 threads
+INFO: [Coretcl 2-1520] The results of Report Methodology are in file D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.runs/impl_1/cpu_methodology_drc_routed.rpt.
+report_methodology completed successfully
+Command: report_power -file cpu_power_routed.rpt -pb cpu_power_summary_routed.pb -rpx cpu_power_routed.rpx
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Running Vector-less Activity Propagation...
+
+Finished Running Vector-less Activity Propagation
+59 Infos, 95 Warnings, 95 Critical Warnings and 0 Errors encountered.
+report_power completed successfully
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2L, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+INFO: [Common 17-206] Exiting Vivado at Fri Dec  1 21:46:54 2017...

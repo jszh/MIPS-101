@@ -55,7 +55,7 @@ architecture Behavioral of reg_ID_EX is
 begin
 	process(clk, rst) -- should the flush signals be in the list?
 	begin		
-		if (rst = '0') then
+		if (rst = '1') then
 			PC_out <= (others => '0');
 			Rd_out <= "1110";
 			Reg1_out <= "1111";

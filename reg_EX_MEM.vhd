@@ -10,7 +10,7 @@ entity reg_EX_MEM is
 
 		--数据输入
 		Rd_in : in std_logic_vector(3 downto 0);
-		MFPCMux_in : in std_logic_vector(15 downto 0);
+		MUX_MFPC_in : in std_logic_vector(15 downto 0);
 		ReadData2_in : in std_logic_vector(15 downto 0); --供SW语句写内存
 		--信号输入
 		RegWrite_in : in std_logic;
@@ -35,7 +35,7 @@ architecture Behavioral of reg_EX_MEM is
 begin
 	process(rst, clk)
 	begin
-		if (rst = '0') then
+		if (rst = '1') then
 			Rd_out <= "1110";
 			ALUResult_out <= (others => '0');
 			ReadData2_out <= (others => '0');
@@ -48,7 +48,7 @@ begin
 		elsif (clk'event and clk = '1') then
 		if(flash_finished = '1') then
 			Rd_out <= Rd_in;
-			ALUResult_out <= MFPCMux_in;
+			ALUResult_out <= MUX_MFPC_in;
 			ReadData2_out <= ReadData2_in;
 			
 			RegWrite_out <= RegWrite_in;

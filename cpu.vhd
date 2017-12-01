@@ -122,8 +122,8 @@ architecture Behavioral of cpu is
 		ReadData : out std_logic_vector(15 downto 0);	--读DM时，读出来的数据/读出的串口状态
 		ReadIns : out std_logic_vector(15 downto 0);	--读IM时，出来的指令
 		
-		ram1_addr, ram2_addr : out std_logic_vector(17 downto 0); 	--RAM1 RAM2地址总线
-		ram1_data, ram2_data : inout std_logic_vector(15 downto 0);--RAM1 RAM2数据总线
+		ram1_addr, ram2_addr : out std_logic_vector(19 downto 0); 	--RAM1 RAM2地址总线
+		ram1_data, ram2_data : inout std_logic_vector(31 downto 0);--RAM1 RAM2数据总线
 		
 		ram2addr_output : out std_logic_vector(17 downto 0);
 		
@@ -293,7 +293,7 @@ architecture Behavioral of cpu is
 	-- 	ID - EX/MEM
 	component forwarding_unit
 	port(
-		IF_ID_Rs: in std_logic_vector(3 downto 0);
+		IF_ID_Rs: in std_logic_vector(2 downto 0);
 		IF_ID_T : in std_logic;
 
 		ID_EX_Rs : in std_logic_vector(3 downto 0);
@@ -302,12 +302,13 @@ architecture Behavioral of cpu is
 		EX_MEM_Rd : in std_logic_vector(3 downto 0);
 		MEM_WB_Rd : in std_logic_vector(3 downto 0);
 		
+		Branch : in std_logic_vector(2 downto 0);
 		ID_EX_MemWrite : in std_logic;
 
 		ForwardA : out std_logic_vector(1 downto 0);
 		ForwardB : out std_logic_vector(1 downto 0);
 		ForwardSW : out std_logic_vector(1 downto 0);
-		ForwardEq : out std_logic_vector(1 downto 0)
+		ForwardBJ : out std_logic_vector(1 downto 0)
 	);
 	end component;
 	
@@ -321,7 +322,7 @@ architecture Behavioral of cpu is
 		ID_EX_ALUop: in std_logic_vector(3 downto 0);
 		ID_EX_MFPC : in std_logic;
 		EX_MEM_Rd: in std_logic_vector(3 downto 0);
-		EX_MEM_MemRead: in std_logic;
+		EX_MEM_Read: in std_logic;
 		
 		reg1_select : in std_logic_vector(3 downto 0);
 		reg2_select : in std_logic_vector(3 downto 0);
@@ -330,16 +331,8 @@ architecture Behavioral of cpu is
 		
 		PC_Keep : out std_logic;
 		IF_ID_Keep : out std_logic;
+		BJ_IF_ID_Flush : out std_logic;
 		ID_EX_Flush : out std_logic
-	);
-	end component;
-
-	-- Branch Judge Unit
-	component branch_judge
-	port(
-		Branch      : in std_logic_vector(2 downto 0);
-		Data        : in std_logic_vector(15 downto 0);
-		BranchJudge : out std_logic
 	);
 	end component;
 	
@@ -483,7 +476,7 @@ architecture Behavioral of cpu is
 		Rs : in std_logic_vector(2 downto 0);
 		Rt : in std_logic_vector(2 downto 0);	--R0~R7中的一个
 		
-		reg2_select : std_logic_vector(1 downto 0);	-- contorl signal
+		reg2_select : in std_logic_vector(1 downto 0);	-- contorl signal
 		
 		reg2_out : out std_logic_vector(3 downto 0)	--"0XXX"代表R0~R7, "1111"=没有
 	);
@@ -548,28 +541,14 @@ architecture Behavioral of cpu is
 		WriteData_out : out std_logic_vector(15 downto 0)
 	);
 	end component;
-
-	component dcm 
-		port ( CLKIN_IN   : in    std_logic; 
-				 RST_IN     : in    std_logic; 
-				 CLKFX_OUT  : out   std_logic; 
-				 CLK0_OUT   : out   std_logic; 
-				 CLK2X_OUT  : out   std_logic; 
-				 LOCKED_OUT : out   std_logic
-		);
-	end component; 
 	
 	
 	--以下的signal都是“全局变量”，来自所有component的out
 
 	signal rst, clk_manual : std_logic;
 	
-	--dcm
-	signal CLKFX_OUT : std_logic;
-	signal CLK0_OUT : std_logic;
-	signal CLK2X_OUT : std_logic;
-	signal LOCKED_OUT : std_logic;
-	
+	signal digit1, digit2 : std_logic_vector(7 downto 0);
+		
 	--clock
 	signal clk : std_logic;
 	signal clk_3 : std_logic;
@@ -591,13 +570,13 @@ architecture Behavioral of cpu is
 	signal Rd_choice : std_logic_vector(3 downto 0);
 	
 	--controller
-	signal controller_out : std_logic_vector(20 downto 0);
+	signal controller_out : std_logic_vector(23 downto 0);
 	signal MFPC_control : std_logic;
 	
 	--registers
 	signal ReadData1, ReadData2 : std_logic_vector(15 downto 0);
 	signal r0, r1, r2, r3, r4, r5, r6, r7 : std_logic_vector(15 downto 0);
-	signal data_T, data_SP, data_IH, dataRA : std_logic_vector(15 downto 0);
+	signal data_T, data_SP, data_IH, data_RA : std_logic_vector(15 downto 0);
 	signal reg_state : std_logic_vector(1 downto 0);
 	
 	--imme_extension
@@ -654,9 +633,6 @@ architecture Behavioral of cpu is
 	signal IF_ID_Keep : std_logic;
 	signal BJ_IF_ID_Flush : std_logic;
 	signal LW_ID_EX_Flush : std_logic;
-
-	--branch_judge
-	signal BranchJudge : std_logic;
 	
 	--memory （有一大部分都已在cpu的port里体现）
 	signal DM_data_out : std_logic_vector(15 downto 0);
@@ -695,8 +671,10 @@ architecture Behavioral of cpu is
 	signal always_zero : std_logic := '0';	--恒为零的信号
 	
 begin
-	rst <= touch_btn[5];
-	clk_manual <= touch_btn[4];
+	rst <= touch_btn(5);
+	clk_manual <= touch_btn(4);
+	leds(23 downto 16) <= digit1;
+	leds(31 downto 24) <= digit2;
 
 	u1 : PC_reg
 	port map(
@@ -704,7 +682,7 @@ begin
 		clk => clk_3,
 		flash_finished => flash_finished,
 		PC_Keep => PC_Keep,
-		PC_in => PC_out,
+		PC_in => PC_MUX_out,
 		PC_out => PC_out
 	);
 		
@@ -792,7 +770,7 @@ begin
 		ForwardBJ => ForwardBJ,
 		ReadData1 => ReadData1,
 		EX_MEM_result => EX_MEM_result,
-		MEM_WB_result => MEM_WB_result,
+		MEM_WB_result => data_to_WB,
 
 		MUX_BJ_out => MUX_BJ_out
 	);
@@ -893,6 +871,7 @@ begin
 		EX_MEM_Rd => EX_MEM_Rd,
 		MEM_WB_Rd => Rd_to_write,
 
+		Branch => controller_out(3 downto 1),
 		ID_EX_MemWrite => ID_EX_MemWrite,
 		
 		ForwardA => ForwardA,
@@ -960,7 +939,7 @@ begin
 		ID_EX_ALUop => ID_EX_ALUop,
 		ID_EX_MFPC => ID_EX_MFPC,
 		EX_MEM_Rd => EX_MEM_Rd,
-		EX_MEM_MemRead => EX_MEM_MemRead,
+		EX_MEM_Read => EX_MEM_Read,
 		
 		reg1_select => MUX_Reg1_out,
 		reg2_select => MUX_Reg2_out,
@@ -977,7 +956,7 @@ begin
 	port map( 
 		PC_addOne => PC_addOne,
 		IF_ID_PC => IF_ID_PC,
-		ID_EX_imme => extended_imme,
+		IF_ID_imme => extended_imme,
 		Asrc_out => MUX_A_out,
 		
 		Jump => controller_out(14),
@@ -1154,96 +1133,88 @@ begin
 		WriteData_out => WriteData_out
 	);
 	
-	u27 : dcm
-	port map( 
-		CLKIN_IN   => clk_in,
-		RST_IN     => always_zero,
-		CLKFX_OUT  => CLKFX_OUT,
-		CLK0_OUT   => CLK0_OUT,
-		CLK2X_OUT  => CLK2X_OUT,
-		LOCKED_OUT => LOCKED_OUT
-	);
 	
 	
-	
-	process(flash_data, memory_state, flash_state_out, reg_state)
+	process(controller_out(14),BranchJudge, PC_Rollback)
+--	process(flash_data, memory_state, flash_state_out, reg_state)
 	--process(data_to_WB, ForwardA, ForwardSW, Rd_to_write)
 	--process(data_to_WB, Rd_to_write, memory_state, reg_state)
 	begin
-		leds(15 downto 14) <= reg_state;
-		leds(13 downto 12) <= memory_state;
-		leds(11 downto 9) <= flash_state_out;
+--		leds(15 downto 14) <= reg_state;
+--		leds(13 downto 12) <= memory_state;
+--		leds(11 downto 9) <= flash_state_out;
 		--leds(15 downto 14) <= ForwardA;
 		--leds(13 downto 12) <= ForwardSW;
 		--leds(11 downto 8) <= Rd_to_write;
 		--leds(7 downto 0) <= data_to_WB(7 downto 0);
 		
-		leds(8 downto 0) <= (others => '0');
+--		leds(8 downto 0) <= (others => '0');
 		--leds <= flash_data;
+		leds(15 downto 0) <= (0=>controller_out(14),1=>BranchJudge,2=>PC_Rollback,others=>'0');
 	end process;
 	
 	--Choose clk source
-	process(CLKFX_OUT, rst, clk_manual)
+	process(clk_in, rst, clk_manual)
 	begin
 		if opt = '1' then
-			if rst = '0' then
+			if rst = '1' then
 				clkIn_clock <= '0';
 			else
 				clkIn_clock <= clk_manual;
 			end if;
 		else
-			if rst = '0' then
+			if rst = '1' then
 				clkIn_clock <= '0';
 			else 
-				clkIn_clock <= CLKFX_OUT;	--???
+				clkIn_clock <= clk_in;	--???
 			end if;
 		end if;
 	end process;
 	
 	
 	--jing <= PC_out;
-	-- process(ram2addr_output)
-	-- begin
-	-- 	case ram2addr_output(7 downto 4) is
-	-- 		when "0000" => digit1 <= "0111111";--0
-	-- 		when "0001" => digit1 <= "0000110";--1
-	-- 		when "0010" => digit1 <= "1011011";--2
-	-- 		when "0011" => digit1 <= "1001111";--3
-	-- 		when "0100" => digit1 <= "1100110";--4
-	-- 		when "0101" => digit1 <= "1101101";--5
-	-- 		when "0110" => digit1 <= "1111101";--6
-	-- 		when "0111" => digit1 <= "0000111";--7
-	-- 		when "1000" => digit1 <= "1111111";--8
-	-- 		when "1001" => digit1 <= "1101111";--9
-	-- 		when "1010" => digit1 <= "1110111";--A
-	-- 		when "1011" => digit1 <= "1111100";--B
-	-- 		when "1100" => digit1 <= "0111001";--C
-	-- 		when "1101" => digit1 <= "1011110";--D
-	-- 		when "1110" => digit1 <= "1111001";--E
-	-- 		when "1111" => digit1 <= "1110001";--F
-	-- 		when others => digit1 <= "0000000";
-	-- 	end case;
+	 process(PC_out)
+	 begin
+	 	case PC_out(7 downto 4) is
+	 		when "0000" => digit1 <= "01111110";--0
+	 		when "0001" => digit1 <= "00010010";--1
+	 		when "0010" => digit1 <= "10111100";--2
+	 		when "0011" => digit1 <= "10110110";--3
+	 		when "0100" => digit1 <= "11010010";--4
+	 		when "0101" => digit1 <= "11100110";--5
+	 		when "0110" => digit1 <= "11101110";--6
+	 		when "0111" => digit1 <= "00110010";--7
+	 		when "1000" => digit1 <= "11111110";--8
+	 		when "1001" => digit1 <= "11110110";--9
+	 		when "1010" => digit1 <= "11111010";--A
+	 		when "1011" => digit1 <= "11001110";--B
+	 		when "1100" => digit1 <= "01101100";--C
+	 		when "1101" => digit1 <= "10011110";--D
+	 		when "1110" => digit1 <= "11101100";--E
+	 		when "1111" => digit1 <= "11101000";--F
+	 		when others => digit1 <= "00000000";
+	 	end case;
 		
-	-- 	case ram2addr_output(3 downto 0) is
-	-- 		when "0000" => digit2 <= "0111111";--0
-	-- 		when "0001" => digit2 <= "0000110";--1
-	-- 		when "0010" => digit2 <= "1011011";--2
-	-- 		when "0011" => digit2 <= "1001111";--3
-	-- 		when "0100" => digit2 <= "1100110";--4
-	-- 		when "0101" => digit2 <= "1101101";--5
-	-- 		when "0110" => digit2 <= "1111101";--6
-	-- 		when "0111" => digit2 <= "0000111";--7
-	-- 		when "1000" => digit2 <= "1111111";--8
-	-- 		when "1001" => digit2 <= "1101111";--9
-	-- 		when "1010" => digit2 <= "1110111";--A
-	-- 		when "1011" => digit2 <= "1111100";--B
-	-- 		when "1100" => digit2 <= "0111001";--C
-	-- 		when "1101" => digit2 <= "1011110";--D
-	-- 		when "1110" => digit2 <= "1111001";--E
-	-- 		when "1111" => digit2 <= "1110001";--F
-	-- 		when others => digit2 <= "0000000";
-	-- 	end case;
-	-- end process;
+	 	case PC_out(3 downto 0) is
+	 		when "0000" => digit2 <= "01111110";--0
+            when "0001" => digit2 <= "00010010";--1
+            when "0010" => digit2 <= "10111100";--2
+            when "0011" => digit2 <= "10110110";--3
+            when "0100" => digit2 <= "11010010";--4
+            when "0101" => digit2 <= "11100110";--5
+            when "0110" => digit2 <= "11101110";--6
+            when "0111" => digit2 <= "00110010";--7
+            when "1000" => digit2 <= "11111110";--8
+            when "1001" => digit2 <= "11110110";--9
+            when "1010" => digit2 <= "11111010";--A
+            when "1011" => digit2 <= "11001110";--B
+            when "1100" => digit2 <= "01101100";--C
+            when "1101" => digit2 <= "10011110";--D
+            when "1110" => digit2 <= "11101100";--E
+            when "1111" => digit2 <= "11101000";--F
+            when others => digit2 <= "00000000";
+	 	end case;
+	 end process;
 	--base_ram_addr <= (others => '0');
 end Behavioral;
 

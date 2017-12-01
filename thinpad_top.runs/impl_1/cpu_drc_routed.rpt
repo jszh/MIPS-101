@@ -1,0 +1,319 @@
+Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2017.1 (win64) Build 1846317 Fri Apr 14 18:55:03 MDT 2017
+| Date         : Sat Dec  2 01:10:10 2017
+| Host         : DESKTOP-VRPE8I7 running 64-bit major release  (build 9200)
+| Command      : report_drc -file cpu_drc_routed.rpt -pb cpu_drc_routed.pb -rpx cpu_drc_routed.rpx
+| Design       : cpu
+| Device       : xc7a100tfgg676-2L
+| Speed File   : -2L
+| Design State : Routed
+---------------------------------------------------------------------------------------------------
+
+Report DRC
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+           Ruledeck: default
+             Max violations: <unlimited>
+             Violations found: 54
++-------------+----------+-------------------------------------------------------------+------------+
+| Rule        | Severity | Description                                                 | Violations |
++-------------+----------+-------------------------------------------------------------+------------+
+| PDRC-153    | Warning  | Gated clock check                                           | 10         |
+| PLCK-12     | Warning  | Clock Placer Checks                                         | 1          |
+| PLHOLDVIO-2 | Warning  | Non-Optimal connections which could lead to hold violations | 1          |
+| RPBF-3      | Warning  | IO port buffering is incomplete                             | 42         |
++-------------+----------+-------------------------------------------------------------+------------+
+
+2. REPORT DETAILS
+-----------------
+PDRC-153#1 Warning
+Gated clock check  
+Net u18/clk1_i_2_n_1 is a gated clock net sourced by a combinational pin u18/clk1_i_2/O, cell u18/clk1_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#2 Warning
+Gated clock check  
+Net u3/E[0] is a gated clock net sourced by a combinational pin u3/ReadData2_reg[15]_i_2/O, cell u3/ReadData2_reg[15]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#3 Warning
+Gated clock check  
+Net u3/MemToReg_out_reg[0] is a gated clock net sourced by a combinational pin u3/controller_out_reg[23]_i_2/O, cell u3/controller_out_reg[23]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#4 Warning
+Gated clock check  
+Net u5/E[0] is a gated clock net sourced by a combinational pin u5/ReadData1_reg[15]_i_2/O, cell u5/ReadData1_reg[15]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#5 Warning
+Gated clock check  
+Net u5/PC_out_reg[15]_0[0] is a gated clock net sourced by a combinational pin u5/PC_out_reg[15]_i_2/O, cell u5/PC_out_reg[15]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#6 Warning
+Gated clock check  
+Net u5/imme_out_reg[14][0] is a gated clock net sourced by a combinational pin u5/imme_out_reg[15]_i_1/O, cell u5/imme_out_reg[15]_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#7 Warning
+Gated clock check  
+Net u5/tmpCommand_reg[0]_0[0] is a gated clock net sourced by a combinational pin u5/MUX_BJ_out_reg[15]_i_2/O, cell u5/MUX_BJ_out_reg[15]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#8 Warning
+Gated clock check  
+Net u8/ALUResult_out_reg[13]_1[0] is a gated clock net sourced by a combinational pin u8/Bsrc_out_reg[15]_i_2/O, cell u8/Bsrc_out_reg[15]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#9 Warning
+Gated clock check  
+Net u8/E[0] is a gated clock net sourced by a combinational pin u8/Asrc_out_reg[15]_i_2/O, cell u8/Asrc_out_reg[15]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#10 Warning
+Gated clock check  
+Net u8/ReadData2_out_reg[15]_2[0] is a gated clock net sourced by a combinational pin u8/WriteData_out_reg[15]_i_2/O, cell u8/WriteData_out_reg[15]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PLCK-12#1 Warning
+Clock Placer Checks  
+Poor placement for routing between an IO pin and BUFG. 
+Resolution: Poor placement of an IO pin and a BUFG has resulted in the router using a non-dedicated path between the two.  There are several things that could trigger this DRC, each of which can cause unpredictable clock insertion delays that result in poor timing.  This DRC could be caused by any of the following: (a) a clock port was placed on a pin that is not a CCIO-pin (b)the BUFG has not been placed in the same half of the device or SLR as the CCIO-pin (c) a single ended clock has been placed on the N-Side of a differential pair CCIO-pin.
+ This is normally an ERROR but the CLOCK_DEDICATED_ROUTE constraint is set to FALSE allowing your design to continue. The use of this override is highly discouraged as it may lead to very poor timing results. It is recommended that this error condition be corrected in the design.
+
+	touch_btn_IBUF[5]_inst (IBUF.O) is locked to F22
+	touch_btn_IBUF_BUFG[5]_inst (BUFG.I) is provisionally placed by clockplacer on BUFGCTRL_X0Y0
+
+Related violations: <none>
+
+PLHOLDVIO-2#1 Warning
+Non-Optimal connections which could lead to hold violations  
+A LUT u18/clk1_i_2 is driving clock pin of 3 cells. This could lead to large hold time violations. First few involved cells are:
+    u18/clk1_reg {FDCE}
+    u18/count_reg[0] {FDCE}
+    u18/count_reg[1] {FDCE}
+
+Related violations: <none>
+
+RPBF-3#1 Warning
+IO port buffering is incomplete  
+Device port base_ram_data[10] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#2 Warning
+IO port buffering is incomplete  
+Device port base_ram_data[11] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#3 Warning
+IO port buffering is incomplete  
+Device port base_ram_data[12] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#4 Warning
+IO port buffering is incomplete  
+Device port base_ram_data[13] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#5 Warning
+IO port buffering is incomplete  
+Device port base_ram_data[14] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#6 Warning
+IO port buffering is incomplete  
+Device port base_ram_data[15] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#7 Warning
+IO port buffering is incomplete  
+Device port base_ram_data[16] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#8 Warning
+IO port buffering is incomplete  
+Device port base_ram_data[17] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#9 Warning
+IO port buffering is incomplete  
+Device port base_ram_data[18] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#10 Warning
+IO port buffering is incomplete  
+Device port base_ram_data[19] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#11 Warning
+IO port buffering is incomplete  
+Device port base_ram_data[20] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#12 Warning
+IO port buffering is incomplete  
+Device port base_ram_data[21] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#13 Warning
+IO port buffering is incomplete  
+Device port base_ram_data[22] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#14 Warning
+IO port buffering is incomplete  
+Device port base_ram_data[23] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#15 Warning
+IO port buffering is incomplete  
+Device port base_ram_data[24] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#16 Warning
+IO port buffering is incomplete  
+Device port base_ram_data[25] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#17 Warning
+IO port buffering is incomplete  
+Device port base_ram_data[26] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#18 Warning
+IO port buffering is incomplete  
+Device port base_ram_data[27] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#19 Warning
+IO port buffering is incomplete  
+Device port base_ram_data[28] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#20 Warning
+IO port buffering is incomplete  
+Device port base_ram_data[29] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#21 Warning
+IO port buffering is incomplete  
+Device port base_ram_data[30] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#22 Warning
+IO port buffering is incomplete  
+Device port base_ram_data[31] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#23 Warning
+IO port buffering is incomplete  
+Device port base_ram_data[8] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#24 Warning
+IO port buffering is incomplete  
+Device port base_ram_data[9] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#25 Warning
+IO port buffering is incomplete  
+Device port ext_ram_data[16] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#26 Warning
+IO port buffering is incomplete  
+Device port ext_ram_data[17] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#27 Warning
+IO port buffering is incomplete  
+Device port ext_ram_data[18] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#28 Warning
+IO port buffering is incomplete  
+Device port ext_ram_data[19] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#29 Warning
+IO port buffering is incomplete  
+Device port ext_ram_data[20] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#30 Warning
+IO port buffering is incomplete  
+Device port ext_ram_data[21] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#31 Warning
+IO port buffering is incomplete  
+Device port ext_ram_data[22] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#32 Warning
+IO port buffering is incomplete  
+Device port ext_ram_data[23] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#33 Warning
+IO port buffering is incomplete  
+Device port ext_ram_data[24] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#34 Warning
+IO port buffering is incomplete  
+Device port ext_ram_data[25] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#35 Warning
+IO port buffering is incomplete  
+Device port ext_ram_data[26] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#36 Warning
+IO port buffering is incomplete  
+Device port ext_ram_data[27] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#37 Warning
+IO port buffering is incomplete  
+Device port ext_ram_data[28] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#38 Warning
+IO port buffering is incomplete  
+Device port ext_ram_data[29] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#39 Warning
+IO port buffering is incomplete  
+Device port ext_ram_data[30] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#40 Warning
+IO port buffering is incomplete  
+Device port ext_ram_data[31] expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#41 Warning
+IO port buffering is incomplete  
+Device port uart_rdn expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+RPBF-3#42 Warning
+IO port buffering is incomplete  
+Device port uart_wrn expects both input and output buffering but the buffers are incomplete.
+Related violations: <none>
+
+

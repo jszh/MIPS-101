@@ -8,7 +8,7 @@ entity hazard_detection is
 		ID_EX_ALUop : in std_logic_vector(3 downto 0);
 		ID_EX_MFPC : in std_logic;
 		EX_MEM_Rd: in std_logic_vector(3 downto 0);
-		EX_MEM_MemRead : in std_logic;
+		EX_MEM_Read : in std_logic;
 		
 		reg1_select : in std_logic_vector(3 downto 0);
 		reg2_select : in std_logic_vector(3 downto 0);
@@ -24,12 +24,12 @@ end hazard_detection;
 
 architecture Behavioral of hazard_detection is
 begin
-	process (ID_EX_Rd, ID_EX_MemRead, ID_EX_ALUop, ID_EX_MFPC, EX_MEM_MemRead, Branch, reg1_select, reg2_select)
+	process (ID_EX_Rd, ID_EX_MemRead, ID_EX_ALUop, ID_EX_MFPC, EX_MEM_Read, Branch, reg1_select, reg2_select)
 	begin
-		if ((Branch >= "001" and Branch <= "011") then	-- Conditional branch: BEQZ, BNEZ, BTEQZ
+		if (Branch >= "001" and Branch <= "011") then	-- Conditional branch: BEQZ, BNEZ, BTEQZ
 			if (((ID_EX_ALUop /= "0000" or ID_EX_MFPC = '1' or ID_EX_MemRead = '1') and	-- prev ALU operation or MemRead
 				reg1_select = ID_EX_Rd) or	-- reg match
-				(EX_MEM_MemRead = '1' and EX_MEM_Rd)) then	-- prev prev MemRead and reg match
+				(EX_MEM_Read = '1' and reg1_select = EX_MEM_Rd)) then	-- prev prev MemRead and reg match
 				PC_Keep <= '1';
 				IF_ID_Keep <= '0';
 				BJ_IF_ID_Flush <= '1';

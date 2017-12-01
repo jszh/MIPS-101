@@ -16,7 +16,7 @@ architecture Behavioral of PC_reg is
 begin
 	process(clk,rst)
 	begin
-		if (rst = '0') then 
+		if (rst = '1') then 
 			PC_out <= "1111111111111111";
 		elsif clk'event and clk = '1'then
 			if flash_finished = '1' then

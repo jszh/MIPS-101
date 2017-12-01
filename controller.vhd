@@ -5,7 +5,7 @@ entity controller is
 	port(	
 		command_in : in std_logic_vector(15 downto 0);
 		rst : in std_logic;
-		controller_out :  out std_logic_vector(23 downto 0);  --controller_out 将所有控制信号集中在一个中实现
+		controller_out :  out std_logic_vector(23 downto 0);  --controller_out 将所有控制信号集中在�?个中实现
 		--extend(3) reg1_select(3) reg2_select(2) regwrite(1)  --9
 		--jump(1) alusrc(1) aluop(4) regdst(3) memread(1)      --10
 		--memwrite(1) branch(3) memtoreg(1)                    --5
@@ -18,7 +18,7 @@ architecture Behavioral of controller is
 begin
 	process(rst, command_in)
 	begin 
-		if (rst = '0') then
+		if (rst = '1') then
 			controller_out <= (others => '0');
 		else
 			if (command_in(15 downto 11) = "11101" and command_in(7 downto 0) = "01000000") then	--MFPC

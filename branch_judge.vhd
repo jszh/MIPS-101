@@ -17,7 +17,7 @@ begin
 	process(Branch, Data)
 	begin
 		case Branch is 
-			when "000" => -- B型跳转指令
+			when "100" => -- B型跳转指�?
 				BranchJudge <= '1';
 			when "001" => -- BEQZ 
 				if(Data = zero) then

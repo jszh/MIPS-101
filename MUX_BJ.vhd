@@ -16,7 +16,7 @@ end MUX_BJ;
 architecture Behavioral of MUX_BJ is
 
 begin
-	process (ForwardA, ReadData1, EX_MEM_result, MEM_WB_result)
+	process (ForwardBJ, ReadData1, EX_MEM_result, MEM_WB_result)
 	begin
 		case ForwardBJ is
 			when "00" =>

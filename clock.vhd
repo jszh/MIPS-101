@@ -19,7 +19,7 @@ begin
 	process (clk,rst)
 	begin
 		clk_out <= clk;
-		if (rst = '0') then
+		if (rst = '1') then
 			clk_out <= '0';
 			clk1 <= '0';
 			clk2 <= '0';

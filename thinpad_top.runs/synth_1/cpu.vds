@@ -1,0 +1,1137 @@
+#-----------------------------------------------------------
+# Vivado v2017.1 (64-bit)
+# SW Build 1846317 on Fri Apr 14 18:55:03 MDT 2017
+# IP Build 1846188 on Fri Apr 14 20:52:08 MDT 2017
+# Start of session at: Sat Dec  2 01:08:19 2017
+# Process ID: 31564
+# Current directory: D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.runs/synth_1
+# Command line: vivado.exe -log cpu.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source cpu.tcl
+# Log file: D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.runs/synth_1/cpu.vds
+# Journal file: D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source cpu.tcl -notrace
+Command: synth_design -top cpu -part xc7a100tfgg676-2L
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t-fgg676'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t-fgg676'
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 2936 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 348.668 ; gain = 81.926
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'cpu' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/cpu.vhd:56]
+INFO: [Synth 8-3491] module 'PC_reg' declared at 'D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/PC_reg.vhd:4' bound to instance 'u1' of component 'PC_reg' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/cpu.vhd:679]
+INFO: [Synth 8-638] synthesizing module 'PC_reg' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/PC_reg.vhd:14]
+INFO: [Synth 8-256] done synthesizing module 'PC_reg' (1#1) [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/PC_reg.vhd:14]
+INFO: [Synth 8-3491] module 'PC_adder' declared at 'D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/PC_adder.vhd:5' bound to instance 'u2' of component 'PC_adder' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/cpu.vhd:689]
+INFO: [Synth 8-638] synthesizing module 'PC_adder' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/PC_adder.vhd:12]
+INFO: [Synth 8-256] done synthesizing module 'PC_adder' (2#1) [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/PC_adder.vhd:12]
+INFO: [Synth 8-3491] module 'reg_IF_ID' declared at 'D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/reg_IF_ID.vhd:4' bound to instance 'u3' of component 'reg_IF_ID' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/cpu.vhd:695]
+INFO: [Synth 8-638] synthesizing module 'reg_IF_ID' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/reg_IF_ID.vhd:27]
+INFO: [Synth 8-256] done synthesizing module 'reg_IF_ID' (3#1) [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/reg_IF_ID.vhd:27]
+INFO: [Synth 8-3491] module 'MUX_Rd' declared at 'D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/MUX_Rd.vhd:4' bound to instance 'u4' of component 'MUX_Rd' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/cpu.vhd:717]
+INFO: [Synth 8-638] synthesizing module 'MUX_Rd' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/MUX_Rd.vhd:16]
+INFO: [Synth 8-256] done synthesizing module 'MUX_Rd' (4#1) [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/MUX_Rd.vhd:16]
+INFO: [Synth 8-3491] module 'controller' declared at 'D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/controller.vhd:4' bound to instance 'u5' of component 'controller' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/cpu.vhd:727]
+INFO: [Synth 8-638] synthesizing module 'controller' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/controller.vhd:16]
+INFO: [Synth 8-256] done synthesizing module 'controller' (5#1) [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/controller.vhd:16]
+INFO: [Synth 8-3491] module 'registers' declared at 'D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Registers.vhd:4' bound to instance 'u6' of component 'registers' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/cpu.vhd:738]
+INFO: [Synth 8-638] synthesizing module 'registers' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Registers.vhd:27]
+INFO: [Synth 8-256] done synthesizing module 'registers' (6#1) [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Registers.vhd:27]
+INFO: [Synth 8-3491] module 'MUX_BJ' declared at 'D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/MUX_BJ.vhd:4' bound to instance 'u60' of component 'MUX_BJ' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/cpu.vhd:768]
+INFO: [Synth 8-638] synthesizing module 'MUX_BJ' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/MUX_BJ.vhd:16]
+INFO: [Synth 8-256] done synthesizing module 'MUX_BJ' (7#1) [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/MUX_BJ.vhd:16]
+INFO: [Synth 8-3491] module 'branch_judge' declared at 'D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/branch_judge.vhd:6' bound to instance 'u61' of component 'branch_judge' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/cpu.vhd:778]
+INFO: [Synth 8-638] synthesizing module 'branch_judge' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/branch_judge.vhd:14]
+WARNING: [Synth 8-613] shared variable will be implemented as local to architecture [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/branch_judge.vhd:15]
+INFO: [Synth 8-256] done synthesizing module 'branch_judge' (8#1) [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/branch_judge.vhd:14]
+INFO: [Synth 8-3491] module 'imme_extension' declared at 'D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/imme_extension.vhd:5' bound to instance 'u7' of component 'imme_extension' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/cpu.vhd:785]
+INFO: [Synth 8-638] synthesizing module 'imme_extension' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/imme_extension.vhd:13]
+WARNING: [Synth 8-613] shared variable will be implemented as local to architecture [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/imme_extension.vhd:14]
+WARNING: [Synth 8-613] shared variable will be implemented as local to architecture [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/imme_extension.vhd:15]
+WARNING: [Synth 8-6014] Unused sequential element tmpOut_reg was removed.  [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/imme_extension.vhd:28]
+INFO: [Synth 8-256] done synthesizing module 'imme_extension' (9#1) [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/imme_extension.vhd:13]
+INFO: [Synth 8-3491] module 'reg_ID_EX' declared at 'D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/reg_ID_EX.vhd:4' bound to instance 'u8' of component 'reg_ID_EX' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/cpu.vhd:792]
+INFO: [Synth 8-638] synthesizing module 'reg_ID_EX' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/reg_ID_EX.vhd:53]
+INFO: [Synth 8-256] done synthesizing module 'reg_ID_EX' (10#1) [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/reg_ID_EX.vhd:53]
+INFO: [Synth 8-3491] module 'MUX_A' declared at 'D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/MUX_ALU_A.vhd:4' bound to instance 'u9' of component 'MUX_A' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/cpu.vhd:839]
+INFO: [Synth 8-638] synthesizing module 'MUX_A' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/MUX_ALU_A.vhd:15]
+INFO: [Synth 8-256] done synthesizing module 'MUX_A' (11#1) [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/MUX_ALU_A.vhd:15]
+INFO: [Synth 8-3491] module 'MUX_B' declared at 'D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/MUX_ALU_B.vhd:4' bound to instance 'u10' of component 'MUX_B' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/cpu.vhd:850]
+INFO: [Synth 8-638] synthesizing module 'MUX_B' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/MUX_ALU_B.vhd:17]
+INFO: [Synth 8-256] done synthesizing module 'MUX_B' (12#1) [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/MUX_ALU_B.vhd:17]
+INFO: [Synth 8-3491] module 'forwarding_unit' declared at 'D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/forwarding_unit.vhd:4' bound to instance 'u11' of component 'forwarding_unit' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/cpu.vhd:863]
+INFO: [Synth 8-638] synthesizing module 'forwarding_unit' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/forwarding_unit.vhd:26]
+WARNING: [Synth 8-614] signal 'decodedRs' is read in the process but is not in the sensitivity list [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/forwarding_unit.vhd:29]
+INFO: [Synth 8-256] done synthesizing module 'forwarding_unit' (13#1) [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/forwarding_unit.vhd:26]
+INFO: [Synth 8-3491] module 'ALU' declared at 'D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/ALU.vhd:6' bound to instance 'u12' of component 'ALU' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/cpu.vhd:883]
+INFO: [Synth 8-638] synthesizing module 'ALU' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/ALU.vhd:15]
+WARNING: [Synth 8-613] shared variable will be implemented as local to architecture [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/ALU.vhd:16]
+WARNING: [Synth 8-613] shared variable will be implemented as local to architecture [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/ALU.vhd:17]
+WARNING: [Synth 8-6014] Unused sequential element tmp_reg was removed.  [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/ALU.vhd:33]
+INFO: [Synth 8-256] done synthesizing module 'ALU' (14#1) [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/ALU.vhd:15]
+INFO: [Synth 8-3491] module 'reg_EX_MEM' declared at 'D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/reg_EX_MEM.vhd:4' bound to instance 'u13' of component 'reg_EX_MEM' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/cpu.vhd:892]
+INFO: [Synth 8-638] synthesizing module 'reg_EX_MEM' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/reg_EX_MEM.vhd:33]
+INFO: [Synth 8-256] done synthesizing module 'reg_EX_MEM' (15#1) [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/reg_EX_MEM.vhd:33]
+INFO: [Synth 8-3491] module 'reg_MEM_WB' declared at 'D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/reg_MEM_WB.vhd:4' bound to instance 'u14' of component 'reg_MEM_WB' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/cpu.vhd:917]
+INFO: [Synth 8-638] synthesizing module 'reg_MEM_WB' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/reg_MEM_WB.vhd:23]
+INFO: [Synth 8-256] done synthesizing module 'reg_MEM_WB' (16#1) [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/reg_MEM_WB.vhd:23]
+INFO: [Synth 8-3491] module 'hazard_detection' declared at 'D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/hazard_detection.vhd:4' bound to instance 'u15' of component 'hazard_detection' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/cpu.vhd:935]
+INFO: [Synth 8-638] synthesizing module 'hazard_detection' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/hazard_detection.vhd:25]
+WARNING: [Synth 8-614] signal 'EX_MEM_Rd' is read in the process but is not in the sensitivity list [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/hazard_detection.vhd:27]
+WARNING: [Synth 8-6014] Unused sequential element ID_EX_Flush_reg was removed.  [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/hazard_detection.vhd:36]
+INFO: [Synth 8-256] done synthesizing module 'hazard_detection' (17#1) [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/hazard_detection.vhd:25]
+INFO: [Synth 8-3491] module 'PC_MUX_add' declared at 'D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/PC_MUX.vhd:6' bound to instance 'u16' of component 'PC_MUX_add' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/cpu.vhd:955]
+INFO: [Synth 8-638] synthesizing module 'PC_MUX_add' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/PC_MUX.vhd:21]
+WARNING: [Synth 8-614] signal 'IF_ID_PC' is read in the process but is not in the sensitivity list [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/PC_MUX.vhd:23]
+WARNING: [Synth 8-614] signal 'PC_Rollback' is read in the process but is not in the sensitivity list [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/PC_MUX.vhd:23]
+INFO: [Synth 8-256] done synthesizing module 'PC_MUX_add' (18#1) [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/PC_MUX.vhd:21]
+INFO: [Synth 8-3491] module 'memory' declared at 'D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Memory.vhd:7' bound to instance 'u17' of component 'memory' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/cpu.vhd:969]
+INFO: [Synth 8-638] synthesizing module 'memory' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Memory.vhd:57]
+WARNING: [Synth 8-613] shared variable will be implemented as local to architecture [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Memory.vhd:65]
+INFO: [Synth 8-256] done synthesizing module 'memory' (19#1) [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Memory.vhd:57]
+INFO: [Synth 8-3491] module 'clock' declared at 'D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/clock.vhd:4' bound to instance 'u18' of component 'clock' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/cpu.vhd:1022]
+INFO: [Synth 8-638] synthesizing module 'clock' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/clock.vhd:15]
+INFO: [Synth 8-256] done synthesizing module 'clock' (20#1) [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/clock.vhd:15]
+INFO: [Synth 8-3491] module 'structural_conflict' declared at 'D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/structural_conflict.vhd:6' bound to instance 'u19' of component 'structural_conflict' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/cpu.vhd:1033]
+INFO: [Synth 8-638] synthesizing module 'structural_conflict' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/structural_conflict.vhd:18]
+WARNING: [Synth 8-6014] Unused sequential element ID_EX_Flush_reg was removed.  [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/structural_conflict.vhd:25]
+WARNING: [Synth 8-6014] Unused sequential element PC_Rollback_reg was removed.  [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/structural_conflict.vhd:26]
+INFO: [Synth 8-256] done synthesizing module 'structural_conflict' (21#1) [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/structural_conflict.vhd:18]
+INFO: [Synth 8-3491] module 'MUX_MFPC' declared at 'D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/MUX_MFPC.vhd:4' bound to instance 'u20' of component 'MUX_MFPC' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/cpu.vhd:1045]
+INFO: [Synth 8-638] synthesizing module 'MUX_MFPC' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/MUX_MFPC.vhd:14]
+INFO: [Synth 8-256] done synthesizing module 'MUX_MFPC' (22#1) [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/MUX_MFPC.vhd:14]
+INFO: [Synth 8-3491] module 'MUX_Reg1' declared at 'D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Mux_Reg1.vhd:4' bound to instance 'u21' of component 'MUX_Reg1' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/cpu.vhd:1054]
+INFO: [Synth 8-638] synthesizing module 'MUX_Reg1' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Mux_Reg1.vhd:15]
+INFO: [Synth 8-256] done synthesizing module 'MUX_Reg1' (23#1) [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Mux_Reg1.vhd:15]
+INFO: [Synth 8-3491] module 'MUX_Reg2' declared at 'D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Mux_Reg2.vhd:4' bound to instance 'u22' of component 'MUX_Reg2' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/cpu.vhd:1063]
+INFO: [Synth 8-638] synthesizing module 'MUX_Reg2' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Mux_Reg2.vhd:16]
+INFO: [Synth 8-256] done synthesizing module 'MUX_Reg2' (24#1) [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Mux_Reg2.vhd:16]
+INFO: [Synth 8-3491] module 'MUX_WriteData' declared at 'D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/MUX_WriteData.vhd:4' bound to instance 'u26' of component 'MUX_WriteData' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/cpu.vhd:1125]
+INFO: [Synth 8-638] synthesizing module 'MUX_WriteData' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/MUX_WriteData.vhd:14]
+INFO: [Synth 8-256] done synthesizing module 'MUX_WriteData' (25#1) [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/MUX_WriteData.vhd:14]
+WARNING: [Synth 8-614] signal 'opt' is read in the process but is not in the sensitivity list [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/cpu.vhd:1157]
+INFO: [Synth 8-226] default block is never used [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/cpu.vhd:1178]
+INFO: [Synth 8-226] default block is never used [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/cpu.vhd:1198]
+WARNING: [Synth 8-3848] Net video_hsync in module/entity cpu does not have driver. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/cpu.vhd:39]
+WARNING: [Synth 8-3848] Net video_vsync in module/entity cpu does not have driver. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/cpu.vhd:39]
+INFO: [Synth 8-256] done synthesizing module 'cpu' (26#1) [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/cpu.vhd:56]
+WARNING: [Synth 8-3331] design structural_conflict has unconnected port PC[15]
+WARNING: [Synth 8-3331] design structural_conflict has unconnected port PC[14]
+WARNING: [Synth 8-3331] design structural_conflict has unconnected port PC[13]
+WARNING: [Synth 8-3331] design structural_conflict has unconnected port PC[12]
+WARNING: [Synth 8-3331] design structural_conflict has unconnected port PC[11]
+WARNING: [Synth 8-3331] design structural_conflict has unconnected port PC[10]
+WARNING: [Synth 8-3331] design structural_conflict has unconnected port PC[9]
+WARNING: [Synth 8-3331] design structural_conflict has unconnected port PC[8]
+WARNING: [Synth 8-3331] design structural_conflict has unconnected port PC[7]
+WARNING: [Synth 8-3331] design structural_conflict has unconnected port PC[6]
+WARNING: [Synth 8-3331] design structural_conflict has unconnected port PC[5]
+WARNING: [Synth 8-3331] design structural_conflict has unconnected port PC[4]
+WARNING: [Synth 8-3331] design structural_conflict has unconnected port PC[3]
+WARNING: [Synth 8-3331] design structural_conflict has unconnected port PC[2]
+WARNING: [Synth 8-3331] design structural_conflict has unconnected port PC[1]
+WARNING: [Synth 8-3331] design structural_conflict has unconnected port PC[0]
+WARNING: [Synth 8-3331] design cpu has unconnected port video_hsync
+WARNING: [Synth 8-3331] design cpu has unconnected port video_vsync
+WARNING: [Synth 8-3331] design cpu has unconnected port touch_btn[3]
+WARNING: [Synth 8-3331] design cpu has unconnected port touch_btn[2]
+WARNING: [Synth 8-3331] design cpu has unconnected port touch_btn[1]
+WARNING: [Synth 8-3331] design cpu has unconnected port touch_btn[0]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 391.754 ; gain = 125.012
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 391.754 ; gain = 125.012
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xc7a100tfgg676-2L
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc]
+WARNING: [Vivado 12-584] No ports matched 'clk_uart_in'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:3]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:3]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-507] No nets matched 'clk_uart_in_IBUF'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:4]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:4]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'clk_uart_in'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:7]
+CRITICAL WARNING: [Vivado 12-4739] create_clock:No valid object(s) found for '-objects [get_ports clk_uart_in]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:7]
+Resolution: Check if the specified object(s) exists in the current design. If it does, ensure that the correct design hierarchy was specified for the object. If you are working with clocks, make sure create_clock was used to create the clock object before it is referenced.
+WARNING: [Vivado 12-507] No nets matched 'touch_btn_IBUF[4]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:19]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:19]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-507] No nets matched 'touch_btn_IBUF[5]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:20]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:20]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'txd'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:30]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:30]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'rxd'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:31]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:31]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'sl811_a0'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:34]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:34]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'sl811_we_n'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:35]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:35]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'sl811_rd_n'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:36]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:36]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'sl811_cs_n'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:37]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:37]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'sl811_rst_n'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:38]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:38]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'sl811_drq'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:39]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:39]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'sl811_dack'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:40]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:40]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'sl811_int'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:41]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:41]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'sl811_data[0]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:42]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:42]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'sl811_data[1]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:43]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:43]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'sl811_data[2]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:44]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:44]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'sl811_data[3]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:45]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:45]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'sl811_data[4]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:46]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:46]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'sl811_data[5]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:47]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:47]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'sl811_data[6]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:48]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:48]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'sl811_data[7]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:49]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:49]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_we_n'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:52]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:52]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_rd_n'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:53]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:53]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_cs_n'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:54]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:54]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_rst_n'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:55]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:55]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_int'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:56]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:56]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_cmd'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:57]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:57]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_data[0]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:58]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:58]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_data[1]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:59]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:59]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_data[2]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:60]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:60]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_data[3]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:61]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:61]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_data[4]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:62]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:62]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_data[5]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:63]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:63]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_data[6]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:64]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:64]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_data[7]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:65]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:65]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_data[8]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:66]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:66]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_data[9]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:67]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:67]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_data[10]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:68]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:68]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_data[11]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:69]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:69]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_data[12]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:70]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:70]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_data[13]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:71]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:71]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_data[14]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:72]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:72]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dm9k_data[15]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:73]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:73]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'video_clk'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:76]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:76]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'video_pixel[7]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:77]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:77]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'video_pixel[6]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:78]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:78]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'video_pixel[5]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:79]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:79]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'video_pixel[4]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:80]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:80]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'video_pixel[3]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:81]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:81]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'video_pixel[2]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:82]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:82]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'video_pixel[1]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:83]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:83]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'video_pixel[0]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:84]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:84]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'video_de'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:87]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:87]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[*]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:129]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:129]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[0]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:130]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:130]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[1]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:131]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:131]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[2]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:132]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:132]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[3]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:133]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:133]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[4]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:134]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:134]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[5]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:135]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:135]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[6]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:136]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:136]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[7]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:137]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:137]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[8]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:138]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:138]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[9]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:139]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:139]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[10]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:140]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:140]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[11]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:141]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:141]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[12]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:142]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:142]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[13]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:143]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:143]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[14]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:144]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:144]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[15]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:145]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:145]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[16]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:146]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:146]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[17]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:147]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:147]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[18]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:148]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:148]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[19]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:149]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:149]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[20]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:150]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:150]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[21]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:151]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:151]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[22]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:152]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:152]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[23]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:153]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:153]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[24]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:154]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:154]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[25]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:155]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:155]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[26]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:156]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:156]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[27]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:157]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:157]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[28]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:158]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:158]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[29]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:159]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:159]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'dip_sw[30]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:160]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:160]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'base_ram_be_n[*]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:243]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:243]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'base_ram_be_n[0]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:244]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:244]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'base_ram_be_n[1]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:245]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:245]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'base_ram_be_n[2]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:246]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:246]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'base_ram_be_n[3]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:247]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:247]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ext_ram_be_n[*]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:309]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:309]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ext_ram_be_n[0]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:310]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:310]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ext_ram_be_n[1]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:311]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:311]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ext_ram_be_n[2]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:312]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:312]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ext_ram_be_n[3]'. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:313]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc:313]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+Finished Parsing XDC File [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/cpu_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/cpu_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 711.238 ; gain = 0.000
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 711.238 ; gain = 444.496
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tfgg676-2L
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 711.238 ; gain = 444.496
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 711.238 ; gain = 444.496
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5546] ROM "tmpT" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "controller_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "controller_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5544] ROM "controller_out" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "controller_out" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "controller_out" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-4471] merging register 'ram1_oe_reg' into 'ram1_en_reg' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Memory.vhd:96]
+INFO: [Synth 8-4471] merging register 'ram1_we_reg' into 'ram1_en_reg' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Memory.vhd:97]
+INFO: [Synth 8-4471] merging register 'flash_vpen_reg' into 'flash_byte_reg' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Memory.vhd:92]
+INFO: [Synth 8-4471] merging register 'flash_rp_reg' into 'flash_byte_reg' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Memory.vhd:93]
+WARNING: [Synth 8-6014] Unused sequential element flash_vpen_reg was removed.  [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Memory.vhd:92]
+WARNING: [Synth 8-6014] Unused sequential element flash_rp_reg was removed.  [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Memory.vhd:93]
+WARNING: [Synth 8-6014] Unused sequential element ram1_oe_reg was removed.  [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Memory.vhd:96]
+WARNING: [Synth 8-6014] Unused sequential element ram1_we_reg was removed.  [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Memory.vhd:97]
+INFO: [Synth 8-802] inferred FSM for state register 'flash_state_reg' in module 'memory'
+WARNING: [Synth 8-6014] Unused sequential element flash_state_reg was removed.  [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Memory.vhd:85]
+INFO: [Synth 8-5545] ROM "cnt" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "cnt" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "flash_state" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5544] ROM "flash_byte" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "ram2_addr" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "ram2_we" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "ram2_data" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "flash_we" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "flash_oe" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "flash_data" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "flash_addr" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "current_addr" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "flash_state" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+WARNING: [Synth 8-6014] Unused sequential element current_addr_reg was removed.  [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Memory.vhd:86]
+WARNING: [Synth 8-327] inferring latch for variable 'controller_out_reg' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/controller.vhd:22]
+WARNING: [Synth 8-327] inferring latch for variable 'MFPC_out_reg' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/controller.vhd:25]
+WARNING: [Synth 8-327] inferring latch for variable 'ReadData1_reg' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Registers.vhd:99]
+WARNING: [Synth 8-327] inferring latch for variable 'ReadData2_reg' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Registers.vhd:114]
+WARNING: [Synth 8-327] inferring latch for variable 'MUX_BJ_out_reg' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/MUX_BJ.vhd:23]
+WARNING: [Synth 8-327] inferring latch for variable 'imme_out_reg' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/imme_extension.vhd:32]
+WARNING: [Synth 8-327] inferring latch for variable 'sign_reg' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/imme_extension.vhd:20]
+WARNING: [Synth 8-327] inferring latch for variable 'Asrc_out_reg' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/MUX_ALU_A.vhd:22]
+WARNING: [Synth 8-327] inferring latch for variable 'Bsrc_out_reg' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/MUX_ALU_B.vhd:23]
+WARNING: [Synth 8-327] inferring latch for variable 'PC_out_reg' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/PC_MUX.vhd:26]
+WARNING: [Synth 8-6014] Unused sequential element flash_state_reg was removed.  [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Memory.vhd:85]
+WARNING: [Synth 8-6014] Unused sequential element flash_state_reg was removed.  [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Memory.vhd:85]
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  iSTATE |                           000001 |                              001
+                 iSTATE0 |                           000010 |                              010
+                 iSTATE1 |                           000100 |                              011
+                 iSTATE2 |                           001000 |                              100
+                 iSTATE3 |                           010000 |                              101
+                 iSTATE4 |                           100000 |                              110
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'flash_state_reg' using encoding 'one-hot' in module 'memory'
+WARNING: [Synth 8-6014] Unused sequential element flash_state_reg was removed.  [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Memory.vhd:85]
+WARNING: [Synth 8-327] inferring latch for variable 'WriteData_out_reg' [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/MUX_WriteData.vhd:20]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 711.238 ; gain = 444.496
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 1     
+	   2 Input     16 Bit       Adders := 4     
+	   3 Input     16 Bit       Adders := 1     
+	   2 Input      2 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 1     
+	               23 Bit    Registers := 1     
+	               20 Bit    Registers := 2     
+	               16 Bit    Registers := 25    
+	               11 Bit    Registers := 1     
+	                4 Bit    Registers := 6     
+	                3 Bit    Registers := 3     
+	                2 Bit    Registers := 3     
+	                1 Bit    Registers := 27    
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 16    
+	   4 Input     32 Bit        Muxes := 3     
+	   5 Input     32 Bit        Muxes := 1     
+	   4 Input     24 Bit        Muxes := 1     
+	   2 Input     23 Bit        Muxes := 1     
+	   2 Input     21 Bit        Muxes := 1     
+	   2 Input     20 Bit        Muxes := 2     
+	   6 Input     20 Bit        Muxes := 1     
+	   2 Input     19 Bit        Muxes := 2     
+	   2 Input     16 Bit        Muxes := 21    
+	   4 Input     16 Bit        Muxes := 7     
+	   2 Input     11 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 1     
+	   7 Input      4 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 5     
+	   6 Input      4 Bit        Muxes := 1     
+	   4 Input      4 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 3     
+	   6 Input      3 Bit        Muxes := 1     
+	   4 Input      2 Bit        Muxes := 3     
+	   3 Input      2 Bit        Muxes := 2     
+	   2 Input      2 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 35    
+	   5 Input      1 Bit        Muxes := 3     
+	   8 Input      1 Bit        Muxes := 1     
+	  19 Input      1 Bit        Muxes := 1     
+	  13 Input      1 Bit        Muxes := 12    
+	   4 Input      1 Bit        Muxes := 23    
+	  12 Input      1 Bit        Muxes := 1     
+	  10 Input      1 Bit        Muxes := 1     
+	   7 Input      1 Bit        Muxes := 2     
+	   6 Input      1 Bit        Muxes := 5     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module cpu 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 1     
+Module PC_reg 
+Detailed RTL Component Info : 
++---Registers : 
+	               16 Bit    Registers := 1     
+Module PC_adder 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     16 Bit       Adders := 1     
+Module reg_IF_ID 
+Detailed RTL Component Info : 
++---Registers : 
+	               16 Bit    Registers := 2     
+	               11 Bit    Registers := 1     
+	                3 Bit    Registers := 3     
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     16 Bit        Muxes := 2     
+	   2 Input     11 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 3     
+	   2 Input      1 Bit        Muxes := 1     
+Module MUX_Rd 
+Detailed RTL Component Info : 
++---Muxes : 
+	   7 Input      4 Bit        Muxes := 1     
+Module controller 
+Detailed RTL Component Info : 
++---Muxes : 
+	   4 Input     24 Bit        Muxes := 1     
+	   2 Input     23 Bit        Muxes := 1     
+	   2 Input     21 Bit        Muxes := 1     
+	   2 Input     20 Bit        Muxes := 1     
+	   6 Input     20 Bit        Muxes := 1     
+	   2 Input     19 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 6     
+	   5 Input      1 Bit        Muxes := 1     
+	   8 Input      1 Bit        Muxes := 1     
+	  19 Input      1 Bit        Muxes := 1     
+Module registers 
+Detailed RTL Component Info : 
++---Registers : 
+	               16 Bit    Registers := 12    
+	                2 Bit    Registers := 1     
++---Muxes : 
+	   4 Input      2 Bit        Muxes := 1     
+	  13 Input      1 Bit        Muxes := 12    
+	   4 Input      1 Bit        Muxes := 12    
+	  12 Input      1 Bit        Muxes := 1     
+	  10 Input      1 Bit        Muxes := 1     
+Module MUX_BJ 
+Detailed RTL Component Info : 
++---Muxes : 
+	   4 Input     16 Bit        Muxes := 1     
+	   4 Input      1 Bit        Muxes := 1     
+Module branch_judge 
+Detailed RTL Component Info : 
++---Muxes : 
+	   5 Input      1 Bit        Muxes := 1     
+Module imme_extension 
+Detailed RTL Component Info : 
++---Muxes : 
+	   7 Input      1 Bit        Muxes := 2     
+Module reg_ID_EX 
+Detailed RTL Component Info : 
++---Registers : 
+	               16 Bit    Registers := 4     
+	                4 Bit    Registers := 4     
+	                1 Bit    Registers := 7     
++---Muxes : 
+	   2 Input     16 Bit        Muxes := 4     
+	   2 Input      4 Bit        Muxes := 4     
+Module MUX_A 
+Detailed RTL Component Info : 
++---Muxes : 
+	   4 Input     16 Bit        Muxes := 1     
+	   4 Input      1 Bit        Muxes := 1     
+Module MUX_B 
+Detailed RTL Component Info : 
++---Muxes : 
+	   4 Input     16 Bit        Muxes := 1     
+	   2 Input     16 Bit        Muxes := 1     
+	   5 Input      1 Bit        Muxes := 1     
+Module forwarding_unit 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input      4 Bit        Muxes := 1     
+	   3 Input      2 Bit        Muxes := 2     
+	   2 Input      2 Bit        Muxes := 1     
+	   4 Input      2 Bit        Muxes := 1     
+Module ALU 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     16 Bit       Adders := 2     
+	   3 Input     16 Bit       Adders := 1     
++---Muxes : 
+	   2 Input     16 Bit        Muxes := 2     
+Module reg_EX_MEM 
+Detailed RTL Component Info : 
++---Registers : 
+	               16 Bit    Registers := 2     
+	                4 Bit    Registers := 1     
+	                1 Bit    Registers := 4     
+Module reg_MEM_WB 
+Detailed RTL Component Info : 
++---Registers : 
+	               16 Bit    Registers := 1     
+	                4 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     16 Bit        Muxes := 1     
+Module hazard_detection 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 1     
+Module PC_MUX_add 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     16 Bit       Adders := 1     
++---Muxes : 
+	   2 Input     16 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 2     
+Module memory 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 1     
+	               23 Bit    Registers := 1     
+	               20 Bit    Registers := 2     
+	               16 Bit    Registers := 3     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 12    
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 16    
+	   4 Input     32 Bit        Muxes := 3     
+	   5 Input     32 Bit        Muxes := 1     
+	   2 Input     20 Bit        Muxes := 1     
+	   4 Input     16 Bit        Muxes := 3     
+	   2 Input     16 Bit        Muxes := 9     
+	   2 Input      8 Bit        Muxes := 1     
+	   6 Input      3 Bit        Muxes := 1     
+	   4 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 20    
+	   6 Input      1 Bit        Muxes := 5     
+	   4 Input      1 Bit        Muxes := 8     
+Module clock 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      2 Bit       Adders := 1     
++---Registers : 
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 4     
+Module MUX_MFPC 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input     16 Bit        Muxes := 1     
+Module MUX_Reg1 
+Detailed RTL Component Info : 
++---Muxes : 
+	   6 Input      4 Bit        Muxes := 1     
+Module MUX_Reg2 
+Detailed RTL Component Info : 
++---Muxes : 
+	   4 Input      4 Bit        Muxes := 1     
+Module MUX_WriteData 
+Detailed RTL Component Info : 
++---Muxes : 
+	   4 Input     16 Bit        Muxes := 1     
+	   4 Input      1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5544] ROM "controller_out" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "p_0_out" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "controller_out" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5546] ROM "controller_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "controller_out" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5545] ROM "cnt" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "cnt" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "flash_state" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+WARNING: [Synth 8-6014] Unused sequential element current_addr_reg was removed.  [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Memory.vhd:86]
+WARNING: [Synth 8-6014] Unused sequential element u18/clk2_reg was removed.  [D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/clock.vhd:25]
+WARNING: [Synth 8-3917] design cpu has port leds[15] driven by constant 0
+WARNING: [Synth 8-3917] design cpu has port leds[14] driven by constant 0
+WARNING: [Synth 8-3917] design cpu has port leds[13] driven by constant 0
+WARNING: [Synth 8-3917] design cpu has port leds[12] driven by constant 0
+WARNING: [Synth 8-3917] design cpu has port leds[11] driven by constant 0
+WARNING: [Synth 8-3917] design cpu has port leds[10] driven by constant 0
+WARNING: [Synth 8-3917] design cpu has port leds[9] driven by constant 0
+WARNING: [Synth 8-3917] design cpu has port leds[8] driven by constant 0
+WARNING: [Synth 8-3917] design cpu has port leds[7] driven by constant 0
+WARNING: [Synth 8-3917] design cpu has port leds[6] driven by constant 0
+WARNING: [Synth 8-3917] design cpu has port leds[5] driven by constant 0
+WARNING: [Synth 8-3917] design cpu has port leds[4] driven by constant 0
+WARNING: [Synth 8-3917] design cpu has port leds[3] driven by constant 0
+WARNING: [Synth 8-3331] design cpu has unconnected port video_hsync
+WARNING: [Synth 8-3331] design cpu has unconnected port video_vsync
+WARNING: [Synth 8-3331] design cpu has unconnected port touch_btn[3]
+WARNING: [Synth 8-3331] design cpu has unconnected port touch_btn[2]
+WARNING: [Synth 8-3331] design cpu has unconnected port touch_btn[1]
+WARNING: [Synth 8-3331] design cpu has unconnected port touch_btn[0]
+INFO: [Synth 8-3886] merging instance 'u7/imme_out_reg[11]' (LD) to 'u7/imme_out_reg[12]'
+INFO: [Synth 8-3886] merging instance 'u7/imme_out_reg[12]' (LD) to 'u7/imme_out_reg[13]'
+INFO: [Synth 8-3886] merging instance 'u7/imme_out_reg[13]' (LD) to 'u7/imme_out_reg[14]'
+INFO: [Synth 8-3886] merging instance 'u7/imme_out_reg[14]' (LD) to 'u7/imme_out_reg[15]'
+INFO: [Synth 8-3886] merging instance 'u17/flash_data_reg__0i_196' (FDE) to 'u17/flash_data_reg__0i_182'
+INFO: [Synth 8-3886] merging instance 'u17/flash_data_retimed_reg[0]' (FDE) to 'u17/flash_data_retimed_reg[6]'
+INFO: [Synth 8-3886] merging instance 'u17/flash_data_reg__0i_195' (FDE) to 'u17/flash_data_reg__0i_182'
+INFO: [Synth 8-3886] merging instance 'u17/flash_data_retimed_reg[1]' (FDE) to 'u17/flash_data_retimed_reg[6]'
+INFO: [Synth 8-3886] merging instance 'u17/flash_data_reg__0i_194' (FDE) to 'u17/flash_data_reg__0i_182'
+INFO: [Synth 8-3886] merging instance 'u17/flash_data_retimed_reg[2]' (FDE) to 'u17/flash_data_retimed_reg[6]'
+INFO: [Synth 8-3886] merging instance 'u17/flash_data_reg__0i_193' (FDE) to 'u17/flash_data_reg__0i_182'
+INFO: [Synth 8-3886] merging instance 'u17/flash_data_retimed_reg[3]' (FDE) to 'u17/flash_data_retimed_reg[6]'
+INFO: [Synth 8-3886] merging instance 'u17/flash_data_reg__0i_192' (FDE) to 'u17/flash_data_reg__0i_182'
+INFO: [Synth 8-3886] merging instance 'u17/flash_data_retimed_reg[4]' (FDE) to 'u17/flash_data_retimed_reg[6]'
+INFO: [Synth 8-3886] merging instance 'u17/flash_data_reg__0i_191' (FDE) to 'u17/flash_data_reg__0i_182'
+INFO: [Synth 8-3886] merging instance 'u17/flash_data_retimed_reg[5]' (FDE) to 'u17/flash_data_retimed_reg[6]'
+INFO: [Synth 8-3886] merging instance 'u17/flash_data_reg__0i_190' (FDE) to 'u17/flash_data_reg__0i_182'
+INFO: [Synth 8-3886] merging instance 'u17/flash_data_retimed_reg[6]' (FDE) to 'u17/flash_data_retimed_reg[7]'
+INFO: [Synth 8-3886] merging instance 'u17/flash_data_reg__0i_189' (FDE) to 'u17/flash_data_reg__0i_182'
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (u17/\flash_data_retimed_reg[7] )
+INFO: [Synth 8-3886] merging instance 'u17/flash_data_reg__0i_188' (FDE) to 'u17/flash_data_reg__0i_182'
+INFO: [Synth 8-3886] merging instance 'u17/flash_data_retimed_reg[8]' (FDE) to 'u17/flash_data_retimed_reg[14]'
+INFO: [Synth 8-3886] merging instance 'u17/flash_data_reg__0i_187' (FDE) to 'u17/flash_data_reg__0i_182'
+INFO: [Synth 8-3886] merging instance 'u17/flash_data_retimed_reg[9]' (FDE) to 'u17/flash_data_retimed_reg[14]'
+INFO: [Synth 8-3886] merging instance 'u17/flash_data_reg__0i_186' (FDE) to 'u17/flash_data_reg__0i_182'
+INFO: [Synth 8-3886] merging instance 'u17/flash_data_retimed_reg[10]' (FDE) to 'u17/flash_data_retimed_reg[14]'
+INFO: [Synth 8-3886] merging instance 'u17/flash_data_reg__0i_185' (FDE) to 'u17/flash_data_reg__0i_182'
+INFO: [Synth 8-3886] merging instance 'u17/flash_data_retimed_reg[11]' (FDE) to 'u17/flash_data_retimed_reg[14]'
+INFO: [Synth 8-3886] merging instance 'u17/flash_data_reg__0i_184' (FDE) to 'u17/flash_data_reg__0i_182'
+INFO: [Synth 8-3886] merging instance 'u17/flash_data_retimed_reg[12]' (FDE) to 'u17/flash_data_retimed_reg[14]'
+INFO: [Synth 8-3886] merging instance 'u17/flash_data_reg__0i_183' (FDE) to 'u17/flash_data_reg__0i_182'
+INFO: [Synth 8-3886] merging instance 'u17/flash_data_retimed_reg[13]' (FDE) to 'u17/flash_data_retimed_reg[14]'
+INFO: [Synth 8-3886] merging instance 'u17/flash_data_reg__0i_182' (FDE) to 'u17/flash_data_reg__0i_181'
+INFO: [Synth 8-3886] merging instance 'u17/flash_data_retimed_reg[14]' (FDE) to 'u17/flash_data_retimed_reg[15]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (u17/\flash_data_retimed_reg[15] )
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_reg__0i_96' (FDE) to 'u17/ram2_data_reg__0i_66'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_reg__0i_95' (FDE) to 'u17/ram2_data_reg__0i_66'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_reg__0i_94' (FDE) to 'u17/ram2_data_reg__0i_66'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_reg__0i_93' (FDE) to 'u17/ram2_data_reg__0i_66'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_reg__0i_92' (FDE) to 'u17/ram2_data_reg__0i_66'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_reg__0i_91' (FDE) to 'u17/ram2_data_reg__0i_66'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_reg__0i_90' (FDE) to 'u17/ram2_data_reg__0i_66'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_reg__0i_89' (FDE) to 'u17/ram2_data_reg__0i_66'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_reg__0i_88' (FDE) to 'u17/ram2_data_reg__0i_66'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_reg__0i_87' (FDE) to 'u17/ram2_data_reg__0i_66'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_reg__0i_86' (FDE) to 'u17/ram2_data_reg__0i_66'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_reg__0i_85' (FDE) to 'u17/ram2_data_reg__0i_66'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_reg__0i_84' (FDE) to 'u17/ram2_data_reg__0i_66'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_reg__0i_83' (FDE) to 'u17/ram2_data_reg__0i_66'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_reg__0i_82' (FDE) to 'u17/ram2_data_reg__0i_66'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_reg__0i_81' (FDE) to 'u17/ram2_data_reg__0i_66'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_reg__0i_80' (FDE) to 'u17/ram2_data_reg__0i_66'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_retimed_reg[16]' (FDE) to 'u17/ram2_data_retimed_reg[30]'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_reg__0i_79' (FDE) to 'u17/ram2_data_reg__0i_66'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_retimed_reg[17]' (FDE) to 'u17/ram2_data_retimed_reg[30]'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_reg__0i_78' (FDE) to 'u17/ram2_data_reg__0i_66'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_retimed_reg[18]' (FDE) to 'u17/ram2_data_retimed_reg[30]'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_reg__0i_77' (FDE) to 'u17/ram2_data_reg__0i_66'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_retimed_reg[19]' (FDE) to 'u17/ram2_data_retimed_reg[30]'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_reg__0i_76' (FDE) to 'u17/ram2_data_reg__0i_66'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_retimed_reg[20]' (FDE) to 'u17/ram2_data_retimed_reg[30]'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_reg__0i_75' (FDE) to 'u17/ram2_data_reg__0i_66'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_retimed_reg[21]' (FDE) to 'u17/ram2_data_retimed_reg[30]'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_reg__0i_74' (FDE) to 'u17/ram2_data_reg__0i_66'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_retimed_reg[22]' (FDE) to 'u17/ram2_data_retimed_reg[30]'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_reg__0i_73' (FDE) to 'u17/ram2_data_reg__0i_66'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_retimed_reg[23]' (FDE) to 'u17/ram2_data_retimed_reg[30]'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_reg__0i_72' (FDE) to 'u17/ram2_data_reg__0i_66'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_retimed_reg[24]' (FDE) to 'u17/ram2_data_retimed_reg[30]'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_reg__0i_71' (FDE) to 'u17/ram2_data_reg__0i_66'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_retimed_reg[25]' (FDE) to 'u17/ram2_data_retimed_reg[30]'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_reg__0i_70' (FDE) to 'u17/ram2_data_reg__0i_66'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_retimed_reg[26]' (FDE) to 'u17/ram2_data_retimed_reg[30]'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_reg__0i_69' (FDE) to 'u17/ram2_data_reg__0i_66'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_retimed_reg[27]' (FDE) to 'u17/ram2_data_retimed_reg[30]'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_reg__0i_68' (FDE) to 'u17/ram2_data_reg__0i_66'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_retimed_reg[28]' (FDE) to 'u17/ram2_data_retimed_reg[30]'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_reg__0i_67' (FDE) to 'u17/ram2_data_reg__0i_66'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_retimed_reg[29]' (FDE) to 'u17/ram2_data_retimed_reg[30]'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_reg__0i_66' (FDE) to 'u17/ram2_data_reg__0i_65'
+INFO: [Synth 8-3886] merging instance 'u17/ram2_data_retimed_reg[30]' (FDE) to 'u17/ram2_data_retimed_reg[31]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (u17/\ram2_data_retimed_reg[31] )
+INFO: [Synth 8-3886] merging instance 'u17/ram1_data_reg__0i_162' (FDE) to 'u17/ram1_data_reg__0i_161'
+INFO: [Synth 8-3886] merging instance 'u17/ram1_data_reg__0i_161' (FDE) to 'u17/ram1_data_reg__0i_160'
+INFO: [Synth 8-3886] merging instance 'u17/ram1_data_reg__0i_160' (FDE) to 'u17/ram1_data_reg__0i_159'
+INFO: [Synth 8-3886] merging instance 'u17/ram1_data_reg__0i_159' (FDE) to 'u17/ram1_data_reg__0i_158'
+INFO: [Synth 8-3886] merging instance 'u17/ram1_data_reg__0i_158' (FDE) to 'u17/ram1_data_reg__0i_157'
+INFO: [Synth 8-3886] merging instance 'u17/ram1_data_reg__0i_157' (FDE) to 'u17/ram1_data_reg__0i_156'
+INFO: [Synth 8-3886] merging instance 'u17/ram1_data_reg__0i_156' (FDE) to 'u17/ram1_data_reg__0i_155'
+INFO: [Synth 8-3886] merging instance 'u17/ram1_data_reg__0i_154' (FDE) to 'u17/ram1_data_reg__0i_153'
+INFO: [Synth 8-3886] merging instance 'u17/ram1_data_retimed_reg[8]' (FDE) to 'u17/ram1_data_retimed_reg[9]'
+INFO: [Synth 8-3886] merging instance 'u17/ram1_data_reg__0i_153' (FDE) to 'u17/ram1_data_reg__0i_152'
+INFO: [Synth 8-3886] merging instance 'u17/ram1_data_retimed_reg[9]' (FDE) to 'u17/ram1_data_retimed_reg[10]'
+INFO: [Synth 8-3886] merging instance 'u17/ram1_data_reg__0i_152' (FDE) to 'u17/ram1_data_reg__0i_151'
+INFO: [Synth 8-3886] merging instance 'u17/ram1_data_retimed_reg[10]' (FDE) to 'u17/ram1_data_retimed_reg[11]'
+INFO: [Synth 8-3886] merging instance 'u17/ram1_data_reg__0i_151' (FDE) to 'u17/ram1_data_reg__0i_150'
+INFO: [Synth 8-3886] merging instance 'u17/ram1_data_retimed_reg[11]' (FDE) to 'u17/ram1_data_retimed_reg[12]'
+INFO: [Synth 8-3886] merging instance 'u17/ram1_data_reg__0i_150' (FDE) to 'u17/ram1_data_reg__0i_149'
+INFO: [Synth 8-3886] merging instance 'u17/ram1_data_retimed_reg[12]' (FDE) to 'u17/ram1_data_retimed_reg[13]'
+INFO: [Synth 8-3886] merging instance 'u17/ram1_data_reg__0i_149' (FDE) to 'u17/ram1_data_reg__0i_148'
+INFO: [Synth 8-3886] merging instance 'u17/ram1_data_retimed_reg[13]' (FDE) to 'u17/ram1_data_retimed_reg[14]'
+INFO: [Synth 8-3886] merging instance 'u17/ram1_data_reg__0i_148' (FDE) to 'u17/ram1_data_reg__0i_147'
+INFO: [Synth 8-3886] merging instance 'u17/ram1_data_retimed_reg[14]' (FDE) to 'u17/ram1_data_retimed_reg[15]'
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (u17/\ram1_data_retimed_reg[31] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (u17/flash_byte_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (u17/\flash_addr_reg[22] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (u17/\ram2_addr_reg[19] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (u17/\ram1_addr_reg[19] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (u17/ram1_en_reg)
+WARNING: [Synth 8-3332] Sequential element (ram2_data_retimed_reg[31]) is unused and will be removed from module memory.
+WARNING: [Synth 8-3332] Sequential element (ram1_data_retimed_reg[31]) is unused and will be removed from module memory.
+WARNING: [Synth 8-3332] Sequential element (flash_data_retimed_reg[15]) is unused and will be removed from module memory.
+WARNING: [Synth 8-3332] Sequential element (flash_data_retimed_reg[7]) is unused and will be removed from module memory.
+WARNING: [Synth 8-3332] Sequential element (ram1_addr_reg[19]) is unused and will be removed from module memory.
+WARNING: [Synth 8-3332] Sequential element (ram2_addr_reg[19]) is unused and will be removed from module memory.
+WARNING: [Synth 8-3332] Sequential element (ram2addr_output_reg[15]) is unused and will be removed from module memory.
+WARNING: [Synth 8-3332] Sequential element (ram2addr_output_reg[14]) is unused and will be removed from module memory.
+WARNING: [Synth 8-3332] Sequential element (ram2addr_output_reg[13]) is unused and will be removed from module memory.
+WARNING: [Synth 8-3332] Sequential element (ram2addr_output_reg[12]) is unused and will be removed from module memory.
+WARNING: [Synth 8-3332] Sequential element (ram2addr_output_reg[11]) is unused and will be removed from module memory.
+WARNING: [Synth 8-3332] Sequential element (ram2addr_output_reg[10]) is unused and will be removed from module memory.
+WARNING: [Synth 8-3332] Sequential element (ram2addr_output_reg[9]) is unused and will be removed from module memory.
+WARNING: [Synth 8-3332] Sequential element (ram2addr_output_reg[8]) is unused and will be removed from module memory.
+WARNING: [Synth 8-3332] Sequential element (ram2addr_output_reg[7]) is unused and will be removed from module memory.
+WARNING: [Synth 8-3332] Sequential element (ram2addr_output_reg[6]) is unused and will be removed from module memory.
+WARNING: [Synth 8-3332] Sequential element (ram2addr_output_reg[5]) is unused and will be removed from module memory.
+WARNING: [Synth 8-3332] Sequential element (ram2addr_output_reg[4]) is unused and will be removed from module memory.
+WARNING: [Synth 8-3332] Sequential element (ram2addr_output_reg[3]) is unused and will be removed from module memory.
+WARNING: [Synth 8-3332] Sequential element (ram2addr_output_reg[2]) is unused and will be removed from module memory.
+WARNING: [Synth 8-3332] Sequential element (ram2addr_output_reg[1]) is unused and will be removed from module memory.
+WARNING: [Synth 8-3332] Sequential element (ram2addr_output_reg[0]) is unused and will be removed from module memory.
+WARNING: [Synth 8-3332] Sequential element (ram1_en_reg) is unused and will be removed from module memory.
+WARNING: [Synth 8-3332] Sequential element (flash_addr_reg[22]) is unused and will be removed from module memory.
+WARNING: [Synth 8-3332] Sequential element (flash_byte_reg) is unused and will be removed from module memory.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 711.238 ; gain = 444.496
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 711.238 ; gain = 444.496
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 711.238 ; gain = 444.496
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 711.238 ; gain = 444.496
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 711.238 ; gain = 444.496
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 711.238 ; gain = 444.496
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 711.238 ; gain = 444.496
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 711.238 ; gain = 444.496
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 711.238 ; gain = 444.496
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 711.238 ; gain = 444.496
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUFG   |     3|
+|2     |CARRY4 |    44|
+|3     |LUT1   |    88|
+|4     |LUT2   |   124|
+|5     |LUT3   |    92|
+|6     |LUT4   |   131|
+|7     |LUT5   |   219|
+|8     |LUT6   |   452|
+|9     |MUXF7  |     2|
+|10    |FDCE   |   445|
+|11    |FDPE   |    38|
+|12    |FDRE   |    64|
+|13    |FDSE   |     1|
+|14    |LD     |   126|
+|15    |LDC    |    24|
+|16    |IBUF   |     7|
+|17    |IOBUF  |    40|
+|18    |OBUF   |   109|
+|19    |OBUFT  |    42|
++------+-------+------+
+
+Report Instance Areas: 
++------+---------+--------------------+------+
+|      |Instance |Module              |Cells |
++------+---------+--------------------+------+
+|1     |top      |                    |  2051|
+|2     |  u19    |structural_conflict |     1|
+|3     |  u20    |MUX_MFPC            |    16|
+|4     |  u21    |MUX_Reg1            |     3|
+|5     |  u22    |MUX_Reg2            |     4|
+|6     |  u1     |PC_reg              |    52|
+|7     |  u10    |MUX_B               |   140|
+|8     |  u13    |reg_EX_MEM          |    50|
+|9     |  u14    |reg_MEM_WB          |    85|
+|10    |  u16    |PC_MUX_add          |    16|
+|11    |  u17    |memory              |   348|
+|12    |  u18    |clock               |     6|
+|13    |  u26    |MUX_WriteData       |    16|
+|14    |  u3     |reg_IF_ID           |   142|
+|15    |  u4     |MUX_Rd              |     4|
+|16    |  u5     |controller          |    86|
+|17    |  u6     |registers           |   341|
+|18    |  u60    |MUX_BJ              |    20|
+|19    |  u7     |imme_extension      |    13|
+|20    |  u8     |reg_ID_EX           |   324|
+|21    |  u9     |MUX_A               |   163|
++------+---------+--------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 711.238 ; gain = 444.496
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 66 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:22 ; elapsed = 00:00:26 . Memory (MB): peak = 711.238 ; gain = 125.012
+Synthesis Optimization Complete : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 711.238 ; gain = 444.496
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 241 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 1 inverter(s) to 1 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 190 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 40 instances
+  LD => LDCE: 125 instances
+  LD => LDCE (inverted pins: G): 1 instances
+  LDC => LDCE: 24 instances
+
+233 Infos, 203 Warnings, 97 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:33 ; elapsed = 00:00:35 . Memory (MB): peak = 711.238 ; gain = 449.336
+INFO: [Common 17-1381] The checkpoint 'D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.runs/synth_1/cpu.dcp' has been generated.
+report_utilization: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.024 . Memory (MB): peak = 711.238 ; gain = 0.000
+INFO: [Common 17-206] Exiting Vivado at Sat Dec  2 01:08:58 2017...

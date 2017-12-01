@@ -25,7 +25,7 @@ architecture Behavioral of reg_MEM_WB is
 begin
 	process(rst, clk)
 	begin
-		if (rst = '0') then
+		if (rst = '1') then
 			data_to_WB <= (others => '0');
 			Rd_out <= "1110";
 			RegWrite_out <= '0';

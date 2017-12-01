@@ -17,6 +17,7 @@ set_property PACKAGE_PIN F22 [get_ports touch_btn[5]] ;#BTN6
 
 #required if touch_btn[4] used as manual clock source
 set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets touch_btn_IBUF[4]]
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets touch_btn_IBUF[5]]
 
 #CPLD
 set_property -dict {PACKAGE_PIN P20 IOSTANDARD LVCMOS33} [get_ports {uart_wrn}]
@@ -157,7 +158,10 @@ set_property PACKAGE_PIN N8 [get_ports {dip_sw[27]}]
 set_property PACKAGE_PIN N6 [get_ports {dip_sw[28]}]
 set_property PACKAGE_PIN N7 [get_ports {dip_sw[29]}]
 set_property PACKAGE_PIN M7 [get_ports {dip_sw[30]}]
-set_property PACKAGE_PIN M5 [get_ports {dip_sw[31]}]
+
+# clk option
+set_property IOSTANDARD LVCMOS33 [get_ports opt]
+set_property PACKAGE_PIN M5 [get_ports opt]
 
 set_property IOSTANDARD LVCMOS33 [get_ports {flash_a[*]}]
 set_property PACKAGE_PIN K8  [get_ports {flash_a[0]}]

@@ -43,9 +43,9 @@ begin
 	PC_out <= tmpPC;
 	process(rst, clk)
 	begin 
-		if (rst = '0') then	--遇到重置信号，直接清零
+		if (rst = '1') then	--遇到重置信号，直接清零
 			tmpRs		<= (others => '0');
-			tmpT		<= (others => '0');
+			tmpT		<= '0';
 			tmpRt		<= (others => '0');
 			tmpRd		<= (others => '0');
 			tmpImme		<= (others => '0');
@@ -58,7 +58,7 @@ begin
 				elsif (BJ_IF_ID_Flush = '1' or SW_IF_ID_Flush = '1' or Branch_IF_ID_Flush = '1' or Jump_IF_ID_Flush = '1') then -- flush
 				--IfIdFlush该不该放在时钟上升沿？？该不该放在IF_ID_Keep之后？？
 					tmpRs		<= (others => '0');
-					tmpT		<= (others => '0');
+					tmpT		<= '0';
 					tmpRt		<= (others => '0');
 					tmpRd		<= (others => '0');
 					tmpImme		<= (others => '0');
