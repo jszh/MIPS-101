@@ -31,7 +31,7 @@ entity cpu is
 		ext_ram_data : inout std_logic_vector(31 downto 0);
 		ext_ram_addr : out std_logic_vector(19 downto 0);
 		
-		--debug digit1、digit2显示PC值，led显示当前指令的编码
+		--debug digit1、digit2显示PC值，leds显示当前指令的编码
 		-- digit1 : out std_logic_vector(7 downto 0);	--7位数码管1
 		-- digit2 : out std_logic_vector(7 downto 0);	--7位数码管2
 		leds : out std_logic_vector(31 downto 0);
@@ -48,7 +48,7 @@ entity cpu is
 		flash_rp_n : out std_logic;	--'1'表示flash工作，常置'1'
 		flash_ce_n : out std_logic;	--flash使能
 		flash_oe_n : out std_logic;	--flash读使能，'0'有效，每次读操作后置'1'
-		flash_we_n : out std_logic		--flash写使能
+		flash_we_n : out std_logic	--flash写使能
 	);
 			
 end cpu;
@@ -105,22 +105,22 @@ architecture Behavioral of cpu is
 		
 		--RAM1（串口）
 		data_ready : in std_logic;		--数据准备信号，='1'表示串口的数据已准备好（读串口成功，可显示读到的data）
-		tbre : in std_logic;				--发送数据标志
-		tsre : in std_logic;				--数据发送完毕标志，tsre and tbre = '1'时写串口完毕
-		wrn : out std_logic;				--写串口，初始化为'1'，先置为'0'并把base_ram_data赋好，再置为'1'写串口
-		rdn : out std_logic;				--读串口，初始化为'1'并将base_ram_data赋为"ZZ..Z"，--若data_ready='1'，则把rdn置为'0'即可读串口（读出数据在base_ram_data上）
+		tbre : in std_logic;			--发送数据标志
+		tsre : in std_logic;			--数据发送完毕标志，tsre and tbre = '1'时写串口完毕
+		wrn : out std_logic;			--写串口，初始化为'1'，先置为'0'并把base_ram_data赋好，再置为'1'写串口
+		rdn : out std_logic;			--读串口，初始化为'1'并将base_ram_data赋为"ZZ..Z"，--若data_ready='1'，则把rdn置为'0'即可读串口（读出数据在base_ram_data上）
 		
 		--RAM2（IM+DM）
 		MemRead, MemWrite : in std_logic;			--控制读，写DM的信号，='1'代表需要读，写
 		
-		WriteData : in std_logic_vector(15 downto 0);		--写内存时，要写入DM或IM的数据		
+		WriteData : in std_logic_vector(15 downto 0);	--写内存时，要写入DM或IM的数据
 		address : in std_logic_vector(15 downto 0);		--读DM/写DM/写IM时，地址输入
 		PC_out : in std_logic_vector(15 downto 0);		--读IM时，地址输入
-		PC_MUX_out : in std_logic_vector(15 downto 0);	
+		PC_MUX_out : in std_logic_vector(15 downto 0);
 		PC_Keep : in std_logic;
 		
 		ReadData : out std_logic_vector(15 downto 0);	--读DM时，读出来的数据/读出的串口状态
-		ReadIns : out std_logic_vector(15 downto 0);		--读IM时，出来的指令
+		ReadIns : out std_logic_vector(15 downto 0);	--读IM时，出来的指令
 		
 		ram1_addr, ram2_addr : out std_logic_vector(17 downto 0); 	--RAM1 RAM2地址总线
 		ram1_data, ram2_data : inout std_logic_vector(15 downto 0);--RAM1 RAM2数据总线
@@ -142,9 +142,9 @@ architecture Behavioral of cpu is
 		
 		flash_byte : out std_logic := '1';	--flash操作模式，常置'1'
 		flash_vpen : out std_logic := '1';	--flash写保护，常置'1'
-		flash_rp : out std_logic := '1';		--'1'表示flash工作，常置'1'
-		flash_ce : out std_logic := '0';		--flash使能
-		flash_oe : out std_logic := '1';		--flash读使能，'0'有效，每次读操作后置'1'
+		flash_rp : out std_logic := '1';	--'1'表示flash工作，常置'1'
+		flash_ce : out std_logic := '0';	--flash使能
+		flash_oe : out std_logic := '1';	--flash读使能，'0'有效，每次读操作后置'1'
 		flash_we : out std_logic := '1'		--flash写使能
 	);
 	end component;
@@ -1170,16 +1170,16 @@ begin
 	--process(data_to_WB, ForwardA, ForwardSW, Rd_to_write)
 	--process(data_to_WB, Rd_to_write, memory_state, reg_state)
 	begin
-		led(15 downto 14) <= reg_state;
-		led(13 downto 12) <= memory_state;
-		led(11 downto 9) <= flash_state_out;
-		--led(15 downto 14) <= ForwardA;
-		--led(13 downto 12) <= ForwardSW;
-		--led(11 downto 8) <= Rd_to_write;
-		--led(7 downto 0) <= data_to_WB(7 downto 0);
+		leds(15 downto 14) <= reg_state;
+		leds(13 downto 12) <= memory_state;
+		leds(11 downto 9) <= flash_state_out;
+		--leds(15 downto 14) <= ForwardA;
+		--leds(13 downto 12) <= ForwardSW;
+		--leds(11 downto 8) <= Rd_to_write;
+		--leds(7 downto 0) <= data_to_WB(7 downto 0);
 		
-		led(8 downto 0) <= (others => '0');
-		--led <= flash_data;
+		leds(8 downto 0) <= (others => '0');
+		--leds <= flash_data;
 	end process;
 	
 	--Choose clk source
