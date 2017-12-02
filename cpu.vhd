@@ -1133,7 +1133,7 @@ begin
 	
 	
 	
-	process(controller_out(14),BranchJudge, PC_Rollback)
+	process(IM_instruction_out)--controller_out(14),BranchJudge, PC_Rollback)
 --	process(flash_data, memory_state, flash_state_out, reg_state)
 	--process(data_to_WB, ForwardA, ForwardSW, Rd_to_write)
 	--process(data_to_WB, Rd_to_write, memory_state, reg_state)
@@ -1148,7 +1148,8 @@ begin
 		
 --		leds(8 downto 0) <= (others => '0');
 		--leds <= flash_data;
-		leds(15 downto 0) <= (0=>controller_out(14),1=>BranchJudge,2=>PC_Rollback,others=>'0');
+		leds <= IM_instruction_out
+		-- leds(15 downto 0) <= (0=>controller_out(14),1=>BranchJudge,2=>PC_Rollback,others=>'0');
 	end process;
 	
 	--Choose clk source
