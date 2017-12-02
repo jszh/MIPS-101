@@ -1148,7 +1148,7 @@ begin
 		
 --		leds(8 downto 0) <= (others => '0');
 		--leds <= flash_data;
-		leds <= IM_instruction_out
+		leds(15 downto 0) <= IM_instruction_out;
 		-- leds(15 downto 0) <= (0=>controller_out(14),1=>BranchJudge,2=>PC_Rollback,others=>'0');
 	end process;
 	

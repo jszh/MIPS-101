@@ -1,1 +1,9 @@
 ~$*.xlsx
+thinpad_top.cache/
+thinpad_top.runs/
+thinpad_top.sim/
+*.swp
+vivado*.jou
+vivado*.log
+vivado*.str
+.Xil/
