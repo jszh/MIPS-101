@@ -1155,7 +1155,7 @@ begin
 	--Choose clk source
 	process(opt, clk_in, rst, clk_manual)
 	begin
-		if opt = '1' then
+		if opt = '0' then
 			if rst = '1' then
 				clkIn_clock <= '0';
 			else

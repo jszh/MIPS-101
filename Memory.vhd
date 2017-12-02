@@ -62,6 +62,7 @@ architecture Behavioral of memory is
 	signal flash_finished_tmp : std_logic := '0';
 	signal flash_state : std_logic_vector(2 downto 0) := "001";
 	signal current_addr : std_logic_vector(15 downto 0) := (others => '0');	--flash当前要读的地??
+	signal ram2_load_addr : std_logic_vector(15 downto 0) := (others => '0');
 	shared variable cnt : integer := 0;	--用于削弱50M时钟频率??1M
 	
 begin
@@ -85,6 +86,7 @@ begin
 			flash_state <= "001";   
 			current_addr <= (others => '0');
 			flash_addr <= (others => '0');
+			ram2_load_addr <= (others => '0');
 			
 		elsif (clk'event and clk = '1') then 
 			if (flash_finished_tmp = '1') then			--从flash载入kernel指令到ram2已完??
@@ -108,8 +110,10 @@ begin
 					when "00" =>		--准备读指??
 						if PC_Keep = '0' then
 							ram2_addr(15 downto 0) <= PC_MUX_out;
+							ram2addr_output <= "00" & PC_MUX_out;
 						elsif PC_Keep = '1' then
 							ram2_addr(15 downto 0) <= PC_out;
+							ram2addr_output <= "00" & PC_out;
 						end if;
 						ram2_data <= (others => 'Z');
 						wrn <= '1';
@@ -177,12 +181,10 @@ begin
 				end case;
 				
 			else				--从flash载入kernel指令到ram2尚未完成，则继续载入
-				if (cnt = 1000) then
+				if (cnt = 10000) then
 					cnt := 0;
 					
-					case flash_state is
-						
-						
+					case flash_state is		
 						when "001" =>		--WE??0
 							ram2_en <= '0';
 							ram2_we <= '0';
@@ -216,16 +218,16 @@ begin
 						when "101" =>
 							flash_oe <= '1';
 							ram2_we <= '0';
-							ram2_addr <= "0000" & current_addr;
-							ram2addr_output <= "00" & current_addr;	--调试
+							ram2_addr <= "0000" & ram2_load_addr;
+							ram2addr_output <= "00" & ram2_load_addr;	--调试
 							ram2_data <= (31 downto 16 => '0') & flash_data;
 							flash_state <= "110";
 						
 						when "110" =>
 							ram2_we <= '1';
-							current_addr <= current_addr + "10";
+							current_addr <= current_addr + 2;
+							ram2_load_addr <= ram2_load_addr + 1;
 							flash_state <= "001";
-						
 							
 						when others =>
 							flash_state <= "001";
@@ -236,7 +238,7 @@ begin
 						flash_finished_tmp <= '1';
 					end if;
 				else 
-					if (cnt < 1000) then
+					if (cnt < 10000) then
 						cnt := cnt + 1;
 					end if;
 				end if;	--cnt 
