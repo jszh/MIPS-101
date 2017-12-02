@@ -20,7 +20,7 @@ end PC_MUX_add;
 
 architecture Behavioral of PC_MUX_add is
 begin
-	process(PC_addOne, IF_ID_imme, Asrc_out, Jump, BranchJudge)
+	process(PC_addOne, IF_ID_imme, IF_ID_PC, Asrc_out, Jump, BranchJudge, PC_Rollback)
 	begin
 		if (BranchJudge = '1' and Jump = '0') then
 			PC_out <= IF_ID_imme + IF_ID_PC;

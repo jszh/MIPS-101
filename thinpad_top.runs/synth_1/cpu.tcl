@@ -7,39 +7,39 @@ create_project -in_memory -part xc7a100tfgg676-2L
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.cache/wt [current_project]
-set_property parent.project_path D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.xpr [current_project]
+set_property webtalk.parent_dir C:/Users/Jason/Developer/GitHub/MIPS-101/thinpad_top.cache/wt [current_project]
+set_property parent.project_path C:/Users/Jason/Developer/GitHub/MIPS-101/thinpad_top.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language VHDL [current_project]
-set_property ip_output_repo d:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.cache/ip [current_project]
+set_property ip_output_repo c:/Users/Jason/Developer/GitHub/MIPS-101/thinpad_top.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 read_vhdl -library xil_defaultlib {
-  D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/ALU.vhd
-  D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/MUX_ALU_A.vhd
-  D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/MUX_ALU_B.vhd
-  D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/MUX_BJ.vhd
-  D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/MUX_MFPC.vhd
-  D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/MUX_Rd.vhd
-  D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/MUX_WriteData.vhd
-  D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Memory.vhd
-  D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Mux_Reg1.vhd
-  D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Mux_Reg2.vhd
-  D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/PC_MUX.vhd
-  D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/PC_adder.vhd
-  D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/PC_reg.vhd
-  D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Registers.vhd
-  D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/branch_judge.vhd
-  D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/clock.vhd
-  D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/controller.vhd
-  D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/forwarding_unit.vhd
-  D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/hazard_detection.vhd
-  D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/imme_extension.vhd
-  D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/reg_EX_MEM.vhd
-  D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/reg_ID_EX.vhd
-  D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/reg_IF_ID.vhd
-  D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/reg_MEM_WB.vhd
-  D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/structural_conflict.vhd
-  D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/cpu.vhd
+  C:/Users/Jason/Developer/GitHub/MIPS-101/ALU.vhd
+  C:/Users/Jason/Developer/GitHub/MIPS-101/MUX_ALU_A.vhd
+  C:/Users/Jason/Developer/GitHub/MIPS-101/MUX_ALU_B.vhd
+  C:/Users/Jason/Developer/GitHub/MIPS-101/MUX_BJ.vhd
+  C:/Users/Jason/Developer/GitHub/MIPS-101/MUX_MFPC.vhd
+  C:/Users/Jason/Developer/GitHub/MIPS-101/MUX_Rd.vhd
+  C:/Users/Jason/Developer/GitHub/MIPS-101/MUX_WriteData.vhd
+  C:/Users/Jason/Developer/GitHub/MIPS-101/Memory.vhd
+  C:/Users/Jason/Developer/GitHub/MIPS-101/Mux_Reg1.vhd
+  C:/Users/Jason/Developer/GitHub/MIPS-101/Mux_Reg2.vhd
+  C:/Users/Jason/Developer/GitHub/MIPS-101/PC_MUX.vhd
+  C:/Users/Jason/Developer/GitHub/MIPS-101/PC_adder.vhd
+  C:/Users/Jason/Developer/GitHub/MIPS-101/PC_reg.vhd
+  C:/Users/Jason/Developer/GitHub/MIPS-101/Registers.vhd
+  C:/Users/Jason/Developer/GitHub/MIPS-101/branch_judge.vhd
+  C:/Users/Jason/Developer/GitHub/MIPS-101/clock.vhd
+  C:/Users/Jason/Developer/GitHub/MIPS-101/controller.vhd
+  C:/Users/Jason/Developer/GitHub/MIPS-101/forwarding_unit.vhd
+  C:/Users/Jason/Developer/GitHub/MIPS-101/hazard_detection.vhd
+  C:/Users/Jason/Developer/GitHub/MIPS-101/imme_extension.vhd
+  C:/Users/Jason/Developer/GitHub/MIPS-101/reg_EX_MEM.vhd
+  C:/Users/Jason/Developer/GitHub/MIPS-101/reg_ID_EX.vhd
+  C:/Users/Jason/Developer/GitHub/MIPS-101/reg_IF_ID.vhd
+  C:/Users/Jason/Developer/GitHub/MIPS-101/reg_MEM_WB.vhd
+  C:/Users/Jason/Developer/GitHub/MIPS-101/structural_conflict.vhd
+  C:/Users/Jason/Developer/GitHub/MIPS-101/cpu.vhd
 }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
@@ -49,8 +49,8 @@ read_vhdl -library xil_defaultlib {
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc
-set_property used_in_implementation false [get_files D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc]
+read_xdc C:/Users/Jason/Developer/GitHub/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc
+set_property used_in_implementation false [get_files C:/Users/Jason/Developer/GitHub/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc]
 
 
 synth_design -top cpu -part xc7a100tfgg676-2L

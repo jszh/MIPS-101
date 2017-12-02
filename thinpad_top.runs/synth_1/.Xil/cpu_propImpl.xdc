@@ -1,4 +1,4 @@
-set_property SRC_FILE_INFO {cfile:D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc rfile:../../../thinpad_top.srcs/constrs_1/new/thinpad_top.xdc id:1} [current_design]
+set_property SRC_FILE_INFO {cfile:C:/Users/Jason/Developer/GitHub/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc rfile:../../../thinpad_top.srcs/constrs_1/new/thinpad_top.xdc id:1} [current_design]
 set_property src_info {type:XDC file:1 line:2 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict {PACKAGE_PIN D18 IOSTANDARD LVCMOS33} [get_ports clk_in] ;#50MHz main clock in
 set_property src_info {type:XDC file:1 line:3 export:INPUT save:INPUT read:READ} [current_design]

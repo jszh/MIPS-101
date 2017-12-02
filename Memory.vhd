@@ -6,35 +6,35 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity memory is
 	port(
-		clk, rst : in std_logic;  --鏃堕挓
+		clk, rst : in std_logic;  --时钟
 		
-		--RAM1锛堜覆鍙ｏ級
-		data_ready : in std_logic;		--鏁版嵁鍑嗗淇″彿锛?='1'琛ㄧず涓插彛鐨勬暟鎹凡鍑嗗濂斤紙璇讳覆鍙ｆ垚鍔燂紝鍙樉绀鸿鍒扮殑data锛?
-		tbre : in std_logic;				--鍙戦?佹暟鎹爣蹇?
-		tsre : in std_logic;				--鏁版嵁鍙戦?佸畬姣曟爣蹇楋紝tsre and tbre = '1'鏃跺啓涓插彛瀹屾瘯
-		wrn : out std_logic;				--鍐欎覆鍙ｏ紝鍒濆鍖栦负'1'锛屽厛缃负'0'骞舵妸RAM1data璧嬪ソ锛屽啀缃负'1'鍐欎覆鍙?
-		rdn : out std_logic;				--璇讳覆鍙ｏ紝鍒濆鍖栦负'1'骞跺皢RAM1data璧嬩负"ZZ..Z"锛?--鑻ata_ready='1'锛屽垯鎶妑dn缃负'0'鍗冲彲璇讳覆鍙ｏ紙璇诲嚭鏁版嵁鍦≧AM1data涓婏級
+		--RAM1（串口）
+		data_ready : in std_logic;		--数据准备信号??='1'表示串口的数据已准备好（读串口成功，可显示读到的data??
+		tbre : in std_logic;				--发???数据标??
+		tsre : in std_logic;				--数据发???完毕标志，tsre and tbre = '1'时写串口完毕
+		wrn : out std_logic;				--写串口，初始化为'1'，先置为'0'并把RAM1data赋好，再置为'1'写串??
+		rdn : out std_logic;				--读串口，初始化为'1'并将RAM1data赋为"ZZ..Z"??--若data_ready='1'，则把rdn置为'0'即可读串口（读出数据在RAM1data上）
 		
-		--RAM2锛圛M+DM锛?
-		MemRead, MemWrite : in std_logic;			--鎺у埗璇伙紝鍐橠M鐨勪俊鍙凤紝='1'浠ｈ〃闇?瑕佽锛屽啓
+		--RAM2（IM+DM??
+		MemRead, MemWrite : in std_logic;			--控制读，写DM的信号，='1'代表??要读，写
 		
-		WriteData : in std_logic_vector(15 downto 0);		--鍐欏唴瀛樻椂锛岃鍐欏叆DM鎴朓M鐨勬暟鎹?		
-		address : in std_logic_vector(15 downto 0);		--璇籇M/鍐橠M/鍐橧M鏃讹紝鍦板潃杈撳叆
-		PC_out : in std_logic_vector(15 downto 0);		--璇籌M鏃讹紝鍦板潃杈撳叆
+		WriteData : in std_logic_vector(15 downto 0);		--写内存时，要写入DM或IM的数??		
+		address : in std_logic_vector(15 downto 0);		--读DM/写DM/写IM时，地址输入
+		PC_out : in std_logic_vector(15 downto 0);		--读IM时，地址输入
 		PC_MUX_out : in std_logic_vector(15 downto 0);	
 		PC_Keep : in std_logic;
 		
-		ReadData : out std_logic_vector(15 downto 0);	--璇籇M鏃讹紝璇诲嚭鏉ョ殑鏁版嵁/璇诲嚭鐨勪覆鍙ｇ姸鎬?
-		ReadIns : out std_logic_vector(15 downto 0);		--璇籌M鏃讹紝鍑烘潵鐨勬寚浠?
+		ReadData : out std_logic_vector(15 downto 0);	--读DM时，读出来的数据/读出的串口状??
+		ReadIns : out std_logic_vector(15 downto 0);		--读IM时，出来的指??
 		
-		ram1_addr, ram2_addr : out std_logic_vector(19 downto 0);	--RAM1 RAM2鍦板潃鎬荤嚎
-		ram1_data, ram2_data : inout std_logic_vector(31 downto 0);	--RAM1 RAM2鏁版嵁鎬荤嚎
+		ram1_addr, ram2_addr : out std_logic_vector(19 downto 0);	--RAM1 RAM2地址总线
+		ram1_data, ram2_data : inout std_logic_vector(31 downto 0);	--RAM1 RAM2数据总线
 		
 		ram2addr_output : out std_logic_vector(17 downto 0);
 		
-		ram1_en, ram1_oe, ram1_we : out std_logic;		--RAM1浣胯兘 璇讳娇鑳? 鍐欎娇鑳?  ='1'绂佹锛屾案杩滅瓑浜?'1'
+		ram1_en, ram1_oe, ram1_we : out std_logic;		--RAM1使能 读使?? 写使??  ='1'禁止，永远等??'1'
 		
-		ram2_en, ram2_oe, ram2_we : out std_logic;		--RAM2浣胯兘 璇讳娇鑳? 鍐欎娇鑳斤紝='1'绂佹锛屾案杩滅瓑浜?'0'
+		ram2_en, ram2_oe, ram2_we : out std_logic;		--RAM2使能 读使?? 写使能，='1'禁止，永远等??'0'
 		
 		memory_state : out std_logic_vector(1 downto 0);
 		flash_state_out : out std_logic_vector(2 downto 0);
@@ -42,38 +42,38 @@ entity memory is
 		flash_finished : out std_logic := '0';
 		
 		--Flash
-		flash_addr : out std_logic_vector(22 downto 0);		--flash鍦板潃绾?
-		flash_data : inout std_logic_vector(15 downto 0);	--flash鏁版嵁绾?
+		flash_addr : out std_logic_vector(22 downto 0);		--flash地址??
+		flash_data : inout std_logic_vector(15 downto 0);	--flash数据??
 		
-		flash_byte : out std_logic := '1';	--flash鎿嶄綔妯″紡锛屽父缃?'1'
-		flash_vpen : out std_logic := '1';	--flash鍐欎繚鎶わ紝甯哥疆'1'
-		flash_rp : out std_logic := '1';		--'1'琛ㄧずflash宸ヤ綔锛屽父缃?'1'
-		flash_ce : out std_logic := '0';		--flash浣胯兘
-		flash_oe : out std_logic := '1';		--flash璇讳娇鑳斤紝'0'鏈夋晥锛屾瘡娆¤鎿嶄綔鍚庣疆'1'
-		flash_we : out std_logic := '1'		--flash鍐欎娇鑳?
+		flash_byte : out std_logic := '1';	--flash操作模式，常??'1'
+		flash_vpen : out std_logic := '1';	--flash写保护，常置'1'
+		flash_rp : out std_logic := '1';		--'1'表示flash工作，常??'1'
+		flash_ce : out std_logic := '0';		--flash使能
+		flash_oe : out std_logic := '1';		--flash读使能，'0'有效，每次读操作后置'1'
+		flash_we : out std_logic := '1'		--flash写使??
 	);
 end memory;
 
 architecture Behavioral of memory is
 
-	signal state : std_logic_vector(1 downto 0) := "00";	--璁垮瓨銆佷覆鍙ｆ搷浣滅殑鐘舵??
-	signal rflag : std_logic := '0';		--rflag='1'浠ｈ〃鎶婁覆鍙ｆ暟鎹嚎锛坮am1_data锛夌疆楂橀樆锛岀敤浜庤妭鐪佺姸鎬佺殑鎺у埗
+	signal state : std_logic_vector(1 downto 0) := "00";	--访存、串口操作的状???
+	signal rflag : std_logic := '0';		--rflag='1'代表把串口数据线（ram1_data）置高阻，用于节省状态的控制
 	
 	signal flash_finished_tmp : std_logic := '0';
 	signal flash_state : std_logic_vector(2 downto 0) := "001";
-	signal current_addr : std_logic_vector(15 downto 0) := (others => '0');	--flash褰撳墠瑕佽鐨勫湴鍧?
-	shared variable cnt : integer := 0;	--鐢ㄤ簬鍓婂急50M鏃堕挓棰戠巼鑷?1M
+	signal current_addr : std_logic_vector(15 downto 0) := (others => '0');	--flash当前要读的地??
+	shared variable cnt : integer := 0;	--用于削弱50M时钟频率??1M
 	
 begin
 	process(clk, rst)
 	begin
 	
-		if (rst = '1') then  --rst琚寜涓?
-			ram2_oe <= '1';  --璇诲啓浣胯兘缃惁  璇诲啓閿佸瓨缃惁
+		if (rst = '1') then  --rst被按??
+			ram2_oe <= '1';  --读写使能置否  读写锁存置否
 			ram2_we <= '1';
 			wrn <= '1';
 			rdn <= '1';
-			rflag <= '0';  --todo  涓嶆槸寰堟噦
+			rflag <= '0';  --todo  不是很懂
 			
 			ram1_addr <= (others => '0'); 
 			ram2_addr <= (others => '0'); 
@@ -87,11 +87,11 @@ begin
 			flash_addr <= (others => '0');
 			
 		elsif (clk'event and clk = '1') then 
-			if (flash_finished_tmp = '1') then			--浠巉lash杞藉叆kernel鎸囦护鍒皉am2宸插畬鎴?
+			if (flash_finished_tmp = '1') then			--从flash载入kernel指令到ram2已完??
 				flash_byte <= '1';
 				flash_vpen <= '1';
 				flash_rp <= '1';
-				flash_ce <= '1';	--绂佹flash
+				flash_ce <= '1';	--禁止flash
 				ram1_en <= '1';
 				ram1_oe <= '1';
 				ram1_we <= '1';
@@ -105,7 +105,7 @@ begin
 				
 				case state is 
 						
-					when "00" =>		--鍑嗗璇绘寚浠?
+					when "00" =>		--准备读指??
 						if PC_Keep = '0' then
 							ram2_addr(15 downto 0) <= PC_MUX_out;
 						elsif PC_Keep = '1' then
@@ -117,32 +117,32 @@ begin
 						ram2_oe <= '0';
 						state <= "01";
 						
-					when "01" =>		--璇诲嚭鎸囦护锛屽噯澶囪/鍐? 涓插彛/鍐呭瓨
+					when "01" =>		--读出指令，准备读/?? 串口/内存
 						ram2_oe <= '1';
 						ReadIns <= ram2_data(15 downto 0);
-						if (MemWrite = '1') then	--濡傛灉瑕佸啓
+						if (MemWrite = '1') then	--如果要写
 							rflag <= '0';
-							if (address = x"BF00") then 	--鍑嗗鍐欎覆鍙?
+							if (address = x"BF00") then 	--准备写串??
 								ram1_data(7 downto 0) <= WriteData(7 downto 0);
 								wrn <= '0';
-							else							--鍑嗗鍐欏唴瀛?
+							else							--准备写内??
 								ram2_addr(15 downto 0) <= address;
 								ram2_data <= (31 downto 16 => '0') & WriteData;
 								ram2_we <= '0';
 							end if;
-						elsif (MemRead = '1') then	--濡傛灉瑕佽
-							if (address = x"BF01") then 	--鍑嗗璇讳覆鍙ｇ姸鎬?
+						elsif (MemRead = '1') then	--如果要读
+							if (address = x"BF01") then 	--准备读串口状??
 								ReadData(15 downto 2) <= (others => '0');
 								ReadData(1) <= data_ready;
 								ReadData(0) <= tsre and tbre;
-								if (rflag = '0') then	--璇讳覆鍙ｇ姸鎬佹椂鎰忓懗鐫?鎺ヤ笅鏉ュ彲鑳借璇?/鍐欎覆鍙ｆ暟鎹?
-									ram1_data <= (others => 'Z');	--鏁呴鍏堟妸ram1_data缃负楂橀樆
-									rflag <= '1';	--濡傛灉鎺ヤ笅鏉ヨ璇伙紝鍒欏彲鐩存帴鎶妑dn缃?'0'锛岀渷涓?涓姸鎬侊紱瑕佸啓锛屽垯rflag='0'锛屾甯歌蛋鍐欎覆鍙ｇ殑娴佺▼
+								if (rflag = '0') then	--读串口状态时意味??接下来可能要??/写串口数??
+									ram1_data <= (others => 'Z');	--故预先把ram1_data置为高阻
+									rflag <= '1';	--如果接下来要读，则可直接把rdn??'0'，省??个状态；要写，则rflag='0'，正常走写串口的流程
 								end if;	
-							elsif (address = x"BF00") then	--鍑嗗璇讳覆鍙ｆ暟鎹?
+							elsif (address = x"BF00") then	--准备读串口数??
 								rflag <= '0';
 								rdn <= '0';
-							else							--鍑嗗璇诲唴瀛?
+							else							--准备读内??
 								ram2_data <= (others => 'Z');
 								ram2_addr(15 downto 0) <= address;
 								ram2_oe <= '0';
@@ -150,21 +150,21 @@ begin
 						end if;	
 						state <= "10";
 						
-					when "10" =>		--璇?/鍐? 涓插彛/鍐呭瓨
-						if(MemWrite = '1') then		--鍐?
-							if (address = x"BF00") then		--鍐欎覆鍙?
+					when "10" =>		--??/?? 串口/内存
+						if(MemWrite = '1') then		--??
+							if (address = x"BF00") then		--写串??
 								wrn <= '1';
-							else							--鍐欏唴瀛?
+							else							--写内??
 								ram2_we <= '1';
 							end if;
-						elsif(MemRead = '1') then	--璇?
-							if (address = x"BF01") then		--璇讳覆鍙ｇ姸鎬侊紙宸茶鍑猴級
+						elsif(MemRead = '1') then	--??
+							if (address = x"BF01") then		--读串口状态（已读出）
 								null;
-							elsif (address = x"BF00") then 	--璇讳覆鍙ｆ暟鎹?
+							elsif (address = x"BF00") then 	--读串口数??
 								rdn <= '1';
 								ReadData(15 downto 8) <= (others => '0');
 								ReadData(7 downto 0) <= ram1_data(7 downto 0);
-							else							--璇诲唴瀛?
+							else							--读内??
 								ram2_oe <= '1';
 								ReadData <= ram2_data(15 downto 0);
 							end if;
@@ -176,14 +176,14 @@ begin
 						
 				end case;
 				
-			else				--浠巉lash杞藉叆kernel鎸囦护鍒皉am2灏氭湭瀹屾垚锛屽垯缁х画杞藉叆
+			else				--从flash载入kernel指令到ram2尚未完成，则继续载入
 				if (cnt = 1000) then
 					cnt := 0;
 					
 					case flash_state is
 						
 						
-						when "001" =>		--WE缃?0
+						when "001" =>		--WE??0
 							ram2_en <= '0';
 							ram2_we <= '0';
 							ram2_oe <= '1';
@@ -217,7 +217,7 @@ begin
 							flash_oe <= '1';
 							ram2_we <= '0';
 							ram2_addr <= "0000" & current_addr;
-							ram2addr_output <= "00" & current_addr;	--璋冭瘯
+							ram2addr_output <= "00" & current_addr;	--调试
 							ram2_data <= (31 downto 16 => '0') & flash_data;
 							flash_state <= "110";
 						

@@ -5,7 +5,7 @@ entity controller is
 	port(	
 		command_in : in std_logic_vector(15 downto 0);
 		rst : in std_logic;
-		controller_out :  out std_logic_vector(23 downto 0);  --controller_out 灏嗘墍鏈夋帶鍒朵俊鍙烽泦涓湪涓?涓腑瀹炵幇
+		controller_out :  out std_logic_vector(23 downto 0);  --controller_out 将所有控制信号集中在??个中实现
 		--extend(3) reg1_select(3) reg2_select(2) regwrite(1)  --9
 		--jump(1) alusrc(1) aluop(4) regdst(3) memread(1)      --10
 		--memwrite(1) branch(3) memtoreg(1)                    --5
@@ -30,7 +30,7 @@ begin
 			case command_in(15 downto 11) is
 				when "00001" =>		--NOP
 					controller_out <= "000000000000000000000000";
-				when "00010" =>		--B  todo 杩欓噷娌℃湁鎺у埗淇″彿
+				when "00010" =>		--B  todo 这里没有控制信号
 					controller_out <= "110000000000000000001000";
 				when "00100" =>		--BEQZ
 					controller_out <= "100001000000000000000010";

@@ -524,7 +524,6 @@ architecture Behavioral of cpu is
 	port(
 		ID_EX_MemWrite : in std_logic;
 		ALU_result_addr : in std_logic_vector(15 downto 0);
-		PC : in std_logic_vector(15 downto 0);
 		
 		IF_ID_Flush : out std_logic;
 		ID_EX_Flush : out std_logic;
@@ -1034,7 +1033,6 @@ begin
 	port map(
 		ID_EX_MemWrite => ID_EX_MemWrite,
 		ALU_result_addr => ALUresult,
-		PC => PC_out,
 		
 		IF_ID_Flush => SW_IF_ID_Flush,
 		ID_EX_Flush => SW_ID_EX_Flush,
@@ -1154,7 +1152,7 @@ begin
 	end process;
 	
 	--Choose clk source
-	process(clk_in, rst, clk_manual)
+	process(opt, clk_in, rst, clk_manual)
 	begin
 		if opt = '1' then
 			if rst = '1' then

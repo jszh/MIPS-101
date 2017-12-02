@@ -24,7 +24,7 @@ end hazard_detection;
 
 architecture Behavioral of hazard_detection is
 begin
-	process (ID_EX_Rd, ID_EX_MemRead, ID_EX_ALUop, ID_EX_MFPC, EX_MEM_Read, Branch, reg1_select, reg2_select)
+	process (ID_EX_Rd, ID_EX_MemRead, ID_EX_ALUop, ID_EX_MFPC, EX_MEM_Rd, EX_MEM_Read, Branch, reg1_select, reg2_select)
 	begin
 		if (Branch >= "001" and Branch <= "011") then	-- Conditional branch: BEQZ, BNEZ, BTEQZ
 			if (((ID_EX_ALUop /= "0000" or ID_EX_MFPC = '1' or ID_EX_MemRead = '1') and	-- prev ALU operation or MemRead

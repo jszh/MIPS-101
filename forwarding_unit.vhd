@@ -24,15 +24,15 @@ entity forwarding_unit is
 end forwarding_unit;
 
 architecture Behavioral of forwarding_unit is
-	signal decodedRs : std_logic_vector(3 downto 0);
 begin
 	process(IF_ID_Rs, IF_ID_T, EX_MEM_Rd, MEM_WB_Rd, ID_EX_Rs, ID_EX_Rt, Branch, ID_EX_MemWrite)
+        variable decoded_Rs : std_logic_vector(3 downto 0);
 	begin
 		-- decode Rs from the IF/ID registers
 		if (IF_ID_T = '1') then
-			decodedRs <= "1010";
+			decoded_Rs := "1010";
 		else
-			decodedRs <= '0' & IF_ID_Rs;
+			decoded_Rs := '0' & IF_ID_Rs;
 		end if;
 
 		-- MUX_A
@@ -68,9 +68,9 @@ begin
 
 		-- MUX_BJ
 		if (Branch >= "001" and Branch <= "011") then	-- Conditional branch
-			if (decodedRs = EX_MEM_Rd) then -- EX hazard
+			if (decoded_Rs = EX_MEM_Rd) then -- EX hazard
 				ForwardBJ <= "01";
-			elsif (decodedRs = MEM_WB_Rd and MEM_WB_Rd /= "0000") then	-- MEM hazard
+			elsif (decoded_Rs = MEM_WB_Rd and MEM_WB_Rd /= "0000") then	-- MEM hazard
 				ForwardBJ <= "10";
 			else
 				ForwardBJ <= "00";

@@ -6,19 +6,19 @@ entity registers is
 		clk : in std_logic;
 		rst : in std_logic;
 		
-		read_reg1 : in std_logic_vector(3 downto 0);  --"0XXX"ä»£è¡¨R0~R7 "1000"=SP,"1001"=IH, "1010"=T "1011"=RA "1100"=PC
-		read_reg2 : in std_logic_vector(3 downto 0);  --"0XXX"ä»£è¡¨R0~R7  "1000"=RA
+		read_reg1 : in std_logic_vector(3 downto 0);  --"0XXX"´ú±íR0~R7 "1000"=SP,"1001"=IH, "1010"=T "1011"=RA "1100"=PC
+		read_reg2 : in std_logic_vector(3 downto 0);  --"0XXX"´ú±íR0~R7  "1000"=RA
 		
-		dst_reg : in std_logic_vector(3 downto 0);	  --ç”±WBé˜¶æ®µä¼ å›ï¼šç›®çš„å¯„å­˜å™¨
-		WriteData : in std_logic_vector(15 downto 0);  --ç”±WBé˜¶æ®µä¼ å›ï¼šå†™ç›®çš„å¯„å­˜å™¨çš„æ•°æ®
-		RegWrite : in std_logic;					--ç”±WBé˜¶æ®µä¼ å›ï¼šRegWriteï¼ˆå†™ç›®çš„å¯„å­˜å™¨ï¼‰æ§åˆ¶ä¿¡å·
+		dst_reg : in std_logic_vector(3 downto 0);	  --ÓÉWB½×¶Î´«»Ø£ºÄ¿µÄ¼Ä´æÆ÷
+		WriteData : in std_logic_vector(15 downto 0);  --ÓÉWB½×¶Î´«»Ø£ºĞ´Ä¿µÄ¼Ä´æÆ÷µÄÊı¾İ
+		RegWrite : in std_logic;					--ÓÉWB½×¶Î´«»Ø£ºRegWrite£¨Ğ´Ä¿µÄ¼Ä´æÆ÷£©¿ØÖÆĞÅºÅ
 		
 		flash_finished : in std_logic;
 		
 		r0_out, r1_out, r2_out, r3_out, r4_out, r5_out, r6_out, r7_out : out std_logic_vector(15 downto 0);
 		
-		ReadData1 : out std_logic_vector(15 downto 0); --è¯»å‡ºçš„å¯„å­˜å™¨1çš„æ•°æ?
-		ReadData2 : out std_logic_vector(15 downto 0); --è¯»å‡ºçš„å¯„å­˜å™¨2çš„æ•°æ?
+		ReadData1 : out std_logic_vector(15 downto 0); --¶Á³öµÄ¼Ä´æÆ÷1µÄÊı??
+		ReadData2 : out std_logic_vector(15 downto 0); --¶Á³öµÄ¼Ä´æÆ÷2µÄÊı??
 		data_T, data_SP, data_IH, data_RA : out std_logic_vector(15 downto 0);
 		reg_state : out std_logic_Vector(1 downto 0)
 	);
@@ -51,7 +51,7 @@ begin
 			
 		elsif (clk'event and clk = '1') then
 			
-			if flash_finished = '1' then  --æŒ‡ä»¤åŠ è½½å®Œæˆ
+			if flash_finished = '1' then  --Ö¸Áî¼ÓÔØÍê³É
 			
 				case state is
 					
@@ -61,7 +61,7 @@ begin
 					when "01" =>
 						state <= "10";
 				
-					when "10" =>						--å†™å›
+					when "10" =>						--Ğ´»Ø
 						if (RegWrite = '1') then 
 							case dst_reg is 
 								when "0000" => r0 <= WriteData;

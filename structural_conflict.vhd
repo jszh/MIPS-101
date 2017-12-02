@@ -7,7 +7,6 @@ entity structural_conflict is	-- MEM / IM conflict
 	port(
 		ID_EX_MemWrite : in std_logic;
 		ALU_result_addr : in std_logic_vector(15 downto 0);
-		PC : in std_logic_vector(15 downto 0);
 		
 		IF_ID_Flush : out std_logic;
 		ID_EX_Flush : out std_logic;

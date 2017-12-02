@@ -2,47 +2,22 @@
 # Vivado v2017.1 (64-bit)
 # SW Build 1846317 on Fri Apr 14 18:55:03 MDT 2017
 # IP Build 1846188 on Fri Apr 14 20:52:08 MDT 2017
-# Start of session at: Fri Dec  1 20:39:07 2017
-# Process ID: 14304
-# Current directory: D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent31224 D:\files\Junior1\Computer_Organization\Projects\alu\MIPS-101\thinpad_top.xpr
-# Log file: D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/vivado.log
-# Journal file: D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101\vivado.jou
+# Start of session at: Sat Dec  2 11:22:38 2017
+# Process ID: 2124
+# Current directory: C:/Users/Jason/Developer/GitHub/MIPS-101
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent10788 C:\Users\Jason\Developer\GitHub\MIPS-101\thinpad_top.xpr
+# Log file: C:/Users/Jason/Developer/GitHub/MIPS-101/vivado.log
+# Journal file: C:/Users/Jason/Developer/GitHub/MIPS-101\vivado.jou
 #-----------------------------------------------------------
 start_gui
-open_project D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.xpr
+open_project C:/Users/Jason/Developer/GitHub/MIPS-101/thinpad_top.xpr
 update_compile_order -fileset sources_1
-add_files -norecurse {D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/dcm.vhd D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/MUX_ALU_B.vhd D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/test.vhd D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/MUX_BJ.vhd D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/ALU.vhd D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/controller.vhd D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/PC_MUX.vhd D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/DVI_play.vhd D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/PC_reg.vhd D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Mux_Reg2.vhd D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/MUX_ALU_A.vhd D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/reg_IF_ID.vhd D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/structural_conflict.vhd D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/MUX_MFPC.vhd D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/reg_MEM_WB.vhd D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/cpu.vhd D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/PC_adder.vhd D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/branch_judge.vhd D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/forwarding_unit.vhd D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/hazard_detection.vhd D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Mux_Reg1.vhd D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/reg_EX_MEM.vhd D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/MUX_WriteData.vhd D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Registers.vhd D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/MUX_Rd.vhd D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/imme_extension.vhd D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/reg_ID_EX.vhd D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/Memory.vhd D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/clock.vhd}
-update_compile_order -fileset sources_1
-update_compile_order -fileset sources_1
-set_property target_language VHDL [current_project]
-update_compile_order -fileset sources_1
-launch_runs synth_1 -jobs 8
-wait_on_run synth_1
-reset_run synth_1
-launch_runs synth_1 -jobs 8
-wait_on_run synth_1
-reset_run synth_1
-launch_runs synth_1 -jobs 8
-wait_on_run synth_1
-reset_run synth_1
-launch_runs synth_1 -jobs 8
-wait_on_run synth_1
-reset_run synth_1
-launch_runs synth_1 -jobs 8
-wait_on_run synth_1
-launch_runs impl_1 -jobs 8
-wait_on_run impl_1
-open_run impl_1
-launch_runs impl_1 -to_step write_bitstream -jobs 8
-wait_on_run impl_1
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 8
-wait_on_run impl_1
-close_design
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 8
-wait_on_run impl_1
+remove_files  C:/Users/Jason/Developer/GitHub/MIPS-101/DVI_play.vhd
+update_files -from_files C:/Users/Jason/Desktop/cpu/cpu.v -to_files C:/Users/Jason/Developer/GitHub/MIPS-101/thinpad_top.srcs/sources_1/new/thinpad_top.v -filesets [get_filesets *]
+update_files -from_files C:/Users/Jason/Desktop/cpu/cpu.v -to_files C:/Users/Jason/Developer/GitHub/MIPS-101/thinpad_top.srcs/sources_1/new/async.v -filesets [get_filesets *]
+update_files -from_files C:/Users/Jason/Desktop/cpu/cpu.v -to_files C:/Users/Jason/Developer/GitHub/MIPS-101/thinpad_top.srcs/sources_1/new/vga.v -filesets [get_filesets *]
+remove_files  C:/Users/Jason/Developer/GitHub/MIPS-101/thinpad_top.srcs/sources_1/new/SEG7_LUT.v
+remove_files  C:/Users/Jason/Developer/GitHub/MIPS-101/dcm.vhd
 reset_run synth_1
 launch_runs impl_1 -to_step write_bitstream -jobs 8
 wait_on_run impl_1

@@ -50,12 +50,12 @@ set rc [catch {
   create_project -in_memory -part xc7a100tfgg676-2L
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
-  set_property webtalk.parent_dir D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.cache/wt [current_project]
-  set_property parent.project_path D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.xpr [current_project]
-  set_property ip_output_repo D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.cache/ip [current_project]
+  set_property webtalk.parent_dir C:/Users/Jason/Developer/GitHub/MIPS-101/thinpad_top.cache/wt [current_project]
+  set_property parent.project_path C:/Users/Jason/Developer/GitHub/MIPS-101/thinpad_top.xpr [current_project]
+  set_property ip_output_repo C:/Users/Jason/Developer/GitHub/MIPS-101/thinpad_top.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
-  add_files -quiet D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.runs/synth_1/cpu.dcp
-  read_xdc D:/files/Junior1/Computer_Organization/Projects/alu/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc
+  add_files -quiet C:/Users/Jason/Developer/GitHub/MIPS-101/thinpad_top.runs/synth_1/cpu.dcp
+  read_xdc C:/Users/Jason/Developer/GitHub/MIPS-101/thinpad_top.srcs/constrs_1/new/thinpad_top.xdc
   link_design -top cpu -part xc7a100tfgg676-2L
   close_msg_db -file init_design.pb
 } RESULT]
