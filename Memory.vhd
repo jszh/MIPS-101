@@ -223,7 +223,7 @@ begin
 						
 						when "110" =>
 							ram2_we <= '1';
-							current_addr <= current_addr + '1';
+							current_addr <= current_addr + "10";
 							flash_state <= "001";
 						
 							
@@ -232,7 +232,7 @@ begin
 						
 					end case;
 					
-					if (current_addr > x"0249") then
+					if (current_addr > x"042E") then
 						flash_finished_tmp <= '1';
 					end if;
 				else 
