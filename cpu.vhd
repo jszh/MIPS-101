@@ -7,7 +7,7 @@ entity cpu is
 		-- clk_manual : in std_logic; --时钟源  默认为50M  可以通过修改绑定管脚来改变
 		touch_btn : in std_logic_vector(5 downto 0);	-- 4-clk_manual, 5-rst
 		clk_in : in std_logic;
-		opt : in std_logic;	--选择输入时钟（为手动或者50M）
+		opt, dvi_en : in std_logic;	--选择输入时钟（为手动或者50M）
 		
 		
 		--串口
@@ -36,8 +36,11 @@ entity cpu is
 		-- digit2 : out std_logic_vector(7 downto 0);	--7位数码管2
 		leds : out std_logic_vector(31 downto 0);
 		
+		--DVI video
 		video_hsync, video_vsync : out std_logic;
-		-- redOut, greenOut, blueOut : out std_logic_vector(2 downto 0);
+		video_pixel : OUT std_logic_vector(7 DOWNTO 0);
+		video_clk : OUT std_logic;
+		video_de : out std_logic := '0';
 	
 		--flash
 		flash_a : out std_logic_vector(22 downto 0);		--flash地址线
@@ -55,52 +58,38 @@ end cpu;
 
 architecture Behavioral of cpu is
 	
-	-- component fontRom
-	-- 	port (
-	-- 			clka : in std_logic;
-	-- 			addra : in std_logic_vector(10 downto 0);
-	-- 			douta : out std_logic_vector(7 downto 0)
-	-- 	);
-	-- end component;
-	
-	component digit
-		port (
-				clka : in std_logic;
-				addra : in std_logic_vector(14 downto 0);
-				douta : out std_logic_vector(23 downto 0)
-			);
+	component DVI
+	port(
+        clk_in : in std_logic; -- must 50M Clock
+        rst : in std_logic;
+
+        -- registers
+        RegPC : in std_logic_vector(15 downto 0);
+        RegR0 : in std_logic_vector(15 downto 0);
+        RegR1 : in std_logic_vector(15 downto 0);
+        RegR2 : in std_logic_vector(15 downto 0);
+        RegR3 : in std_logic_vector(15 downto 0);
+        RegR4 : in std_logic_vector(15 downto 0);
+        RegR5 : in std_logic_vector(15 downto 0);
+        RegR6 : in std_logic_vector(15 downto 0);
+        RegR7 : in std_logic_vector(15 downto 0);
+        RegSP : in std_logic_vector(15 downto 0);
+        RegIH : in std_logic_vector(15 downto 0);
+        RegT : in std_logic_vector(15 downto 0);
+        RegRA : in std_logic_vector(15 downto 0);
+        
+        -- common ports
+        video_vsync : out std_logic:= '0';
+        video_hsync : out std_logic:= '0';
+        video_pixel : out std_logic_vector(7 downto 0);
+        video_clk : out std_logic;
+        video_de : out std_logic := '0'
+    );
 	end component;
 	
--- 	component VGA_Controller
--- 		port (
--- 	--VGA Side
--- 		hs,vs	: out std_logic;		--行同步、场同步信号
--- 		oRed	: out std_logic_vector (2 downto 0);
--- 		oGreen	: out std_logic_vector (2 downto 0);
--- 		oBlue	: out std_logic_vector (2 downto 0);
--- 	--RAM side
--- --		R,G,B	: in  std_logic_vector (9 downto 0);
--- --		addr	: out std_logic_vector (18 downto 0);
--- 	-- data
--- 		r0, r1, r2, r3, r4,r5,r6,r7 : in std_logic_vector(15 downto 0);
--- 	-- font rom
--- 		romAddr : out std_logic_vector(10 downto 0);
--- 		romData : in std_logic_vector(7 downto 0);
--- 	-- pc
--- 		PC : in std_logic_vector(15 downto 0);
--- 		CM : in std_logic_vector(15 downto 0);
--- 		Tdata : in std_logic_vector(15 downto 0);
--- 		SPdata : in std_logic_vector(15 downto 0);
--- 		IHdata : in std_logic_vector(15 downto 0);
--- 		RAdata : in std_logic_vector(15 downto 0);
--- 	--Control Signals
--- 		reset	: in  std_logic;
--- 		CLK_in : in std_logic			--100M时钟输入
--- 	);	
--- 	end component;
-	
+	--IM and DM
 	component memory
-		port(
+	port(
 		clk, rst : in std_logic;  --时钟
 		
 		--RAM1（串口）
@@ -545,13 +534,18 @@ architecture Behavioral of cpu is
 	--以下的signal都是“全局变量”，来自所有component的out
 
 	signal rst, clk_manual : std_logic;
+	signal mem_clk : std_logic;
 	
 	signal digit1, digit2 : std_logic_vector(7 downto 0);
+	
+	--DVI
 		
 	--clock
 	signal clk : std_logic;
 	signal clk_3 : std_logic;
 	signal clk_registers : std_logic;
+	signal dvi_clk : std_logic;
+	signal dvi_rst : std_logic;
 	
 	--PC_reg
 	signal PC_out : std_logic_vector(15 downto 0); 
@@ -651,19 +645,11 @@ architecture Behavioral of cpu is
 	--MUX_MFPC 
 	signal MUX_MFPC_out : std_logic_vector(15 downto 0);
 	
-	--digit rom
---	signal digitRomAddr : std_logic_vector(14 downto 0);
---	signal digitRomData : std_logic_vector(23 downto 0);
-	
-	--font rom
-	-- signal fontRomAddr : std_logic_vector(10 downto 0);
-	-- signal fontRomData : std_logic_vector(7 downto 0);
-	
 	--MUX_WriteData
 	signal WriteData_out : std_logic_vector(15 downto 0);
 	
 	signal ram2addr_output : std_logic_vector(17 downto 0);
-	signal flash_finished : std_logic;
+	signal flash_finished : std_logic := '0';
 	
 	
 	signal clkIn_clock : std_logic;	--传给clock.vhd的输入时钟
@@ -672,6 +658,8 @@ architecture Behavioral of cpu is
 begin
 	rst <= touch_btn(5);
 	clk_manual <= touch_btn(4);
+	dvi_clk <= clk_in and dvi_en;
+	dvi_rst <= rst or (not flash_finished);
 	leds(23 downto 16) <= digit1;
 	leds(31 downto 24) <= digit2;
 
@@ -701,7 +689,7 @@ begin
 		IF_ID_Keep => IF_ID_Keep,
 		BJ_IF_ID_Flush => BJ_IF_ID_Flush,
 		Branch_IF_ID_Flush => BranchJudge, 
-		Jump_IF_ID_Flush => ID_EX_JR,
+		Jump_IF_ID_Flush => controller_out(14),
 		SW_IF_ID_Flush => SW_IF_ID_Flush,
 		
 		Rs => Rs,
@@ -956,7 +944,7 @@ begin
 		PC_addOne => PC_addOne,
 		IF_ID_PC => IF_ID_PC,
 		IF_ID_imme => extended_imme,
-		Asrc_out => MUX_A_out,
+		Asrc_out => ReadData1,
 		
 		Jump => controller_out(14),
 		BranchJudge => BranchJudge,
@@ -1066,61 +1054,8 @@ begin
 		
 		reg2_out => MUX_Reg2_out
 	);
-	
--- 	u23 : VGA_Controller
--- 	port map(
--- 	--VGA Side
--- 		hs => hs,
--- 		vs => vs,
--- 		oRed => redOut,
--- 		oGreen => greenOut,
--- 		oBlue	=> blueOut,
--- 	--RAM side
--- --		R,G,B	: in  std_logic_vector (9 downto 0);
--- --		addr	: out std_logic_vector (18 downto 0);
--- 	-- data
--- 		r0 => r0,
--- 		r1 => r1,
--- 		r2 => r2,
--- 		r3 => r3,
--- 		r4 => r4,
--- 		r5 => r5,
--- 		r6 => r6,
--- 		r7 => r7,
--- 	--font rom
--- 		romAddr => fontRomAddr,
--- 		romData => fontRomdata,
--- 	--pc
--- 		PC => PC_out,
--- 		CM => IM_instruction_out,
--- 		Tdata => data_T,
--- 		IHdata => data_IH,
--- 		SPdata => data_SP,
--- 		RAdata => data_RA,
--- 	--Control Signals
--- 		reset	=> rst,
--- 		CLK_in => clk_in
--- 	);
-
--- originally commented ** start
-	--r0 <= "0110101010010111";
-	--r1 <= "1011100010100110";
---	u24 : digit
---	port map(
---			clkA => clk_in,
---			addra => digitRomAddr,
---			douta => digitRomData
---	);
--- end ** originally commented
-	
-	-- u25 : fontRom
-	-- port map(
-	-- 	clka => clk_in,
-	-- 	addra => fontRomAddr,
-	-- 	douta => fontRomData
-	-- );
-	
-	u26 : MUX_WriteData 
+		
+	u23 : MUX_WriteData 
 	port map(
 		ForwardSW => ForwardSW,
 		
@@ -1130,10 +1065,41 @@ begin
 		
 		WriteData_out => WriteData_out
 	);
+
+	u24 : DVI
+	port map(
+		clk_in => dvi_clk,
+		rst => '0',
+
+		-- registers
+		RegPC => IM_instruction_out,
+		RegR0 => r0,
+		RegR1 => extended_imme,
+		RegR2 => MUX_B_out,
+		RegR3 => EX_MEM_result,
+		RegR4(15 downto 12) => ID_EX_Reg1,
+		RegR4(11 downto 4) => (others => '0'),
+		RegR4(3 downto 0) => Rd_to_write,
+		RegR5(15 downto 1) => (others => '0'),
+		RegR5(0) => BranchJudge,
+		RegR6 => r6,
+		RegR7 => r7,
+		RegSP => data_SP,
+		RegIH => data_IH,
+		RegT => data_T,
+		RegRA => data_RA,
+		
+		-- common ports
+		video_vsync => video_vsync,
+		video_hsync => video_hsync,
+		video_pixel => video_pixel,
+		video_clk => video_clk,
+		video_de => video_de
+	);
 	
 	
 	
-	process(IM_instruction_out)--controller_out(14),BranchJudge, PC_Rollback)
+	process(PC_out)--controller_out(14),BranchJudge, PC_Rollback)
 --	process(flash_data, memory_state, flash_state_out, reg_state)
 	--process(data_to_WB, ForwardA, ForwardSW, Rd_to_write)
 	--process(data_to_WB, Rd_to_write, memory_state, reg_state)
@@ -1148,14 +1114,14 @@ begin
 		
 --		leds(8 downto 0) <= (others => '0');
 		--leds <= flash_data;
-		leds(15 downto 0) <= IM_instruction_out;
+		leds(15 downto 0) <= PC_out;
 		-- leds(15 downto 0) <= (0=>controller_out(14),1=>BranchJudge,2=>PC_Rollback,others=>'0');
 	end process;
 	
 	--Choose clk source
-	process(opt, clk_in, rst, clk_manual)
+	process(opt, clk_in, rst, clk_manual, flash_finished)
 	begin
-		if opt = '0' then
+		if opt = '0' and flash_finished = '1' then
 			if rst = '1' then
 				clkIn_clock <= '0';
 			else

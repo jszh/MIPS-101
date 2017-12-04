@@ -38,7 +38,7 @@ begin
 		-- MUX_A
 		if (ID_EX_Rs = EX_MEM_Rd) then	-- EX hazard
 			ForwardA <= "01";
-		elsif (ID_EX_Rs = MEM_WB_Rd and MEM_WB_Rd /= "0000") then	-- MEM hazard
+		elsif (ID_EX_Rs = MEM_WB_Rd) then	-- MEM hazard
 			ForwardA <= "10";
 		else	-- No hazard
 			ForwardA <= "00";
@@ -47,7 +47,7 @@ begin
 		-- MUX_B
 		if (ID_EX_Rt = EX_MEM_Rd) then	-- EX hazard
 			ForwardB <= "01";
-		elsif (ID_EX_Rt = MEM_WB_Rd and MEM_WB_Rd /= "0000") then	-- MEM hazard
+		elsif (ID_EX_Rt = MEM_WB_Rd) then	-- MEM hazard
 			ForwardB <= "10";
 		else	-- No hazard
 			ForwardB <= "00";
@@ -57,7 +57,7 @@ begin
 		if (ID_EX_MemWrite = '1') then	-- SW
 			if (ID_EX_Rt = EX_MEM_Rd) then	-- EX hazard
 				ForwardSW <= "01";
-			elsif (ID_EX_Rt = MEM_WB_Rd and MEM_WB_Rd /= "0000") then	-- MEM hazard
+			elsif (ID_EX_Rt = MEM_WB_Rd) then	-- MEM hazard
 				ForwardSW <= "10";
 			else	-- No hazard
 				ForwardSW <= "00";
@@ -70,7 +70,7 @@ begin
 		if (Branch >= "001" and Branch <= "011") then	-- Conditional branch
 			if (decoded_Rs = EX_MEM_Rd) then -- EX hazard
 				ForwardBJ <= "01";
-			elsif (decoded_Rs = MEM_WB_Rd and MEM_WB_Rd /= "0000") then	-- MEM hazard
+			elsif (decoded_Rs = MEM_WB_Rd) then	-- MEM hazard
 				ForwardBJ <= "10";
 			else
 				ForwardBJ <= "00";

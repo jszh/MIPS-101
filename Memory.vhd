@@ -69,12 +69,12 @@ begin
 	process(clk, rst)
 	begin
 	
-		if (rst = '1') then  --rst被按??
+		if (rst = '1') then  --rst
 			ram2_oe <= '1';  --读写使能置否  读写锁存置否
 			ram2_we <= '1';
 			wrn <= '1';
 			rdn <= '1';
-			rflag <= '0';  --todo  不是很懂
+			rflag <= '0';
 			
 			ram1_addr <= (others => '0'); 
 			ram2_addr <= (others => '0'); 
@@ -181,7 +181,7 @@ begin
 				end case;
 				
 			else				--从flash载入kernel指令到ram2尚未完成，则继续载入
-				if (cnt = 10000) then
+				if (cnt = 1000) then
 					cnt := 0;
 					
 					case flash_state is		
@@ -216,7 +216,6 @@ begin
 							flash_state <= "101";
 							
 						when "101" =>
-							flash_oe <= '1';
 							ram2_we <= '0';
 							ram2_addr <= "0000" & ram2_load_addr;
 							ram2addr_output <= "00" & ram2_load_addr;	--调试
@@ -224,6 +223,7 @@ begin
 							flash_state <= "110";
 						
 						when "110" =>
+                            flash_oe <= '1';
 							ram2_we <= '1';
 							current_addr <= current_addr + 2;
 							ram2_load_addr <= ram2_load_addr + 1;
@@ -236,9 +236,11 @@ begin
 					
 					if (current_addr > x"042E") then
 						flash_finished_tmp <= '1';
+                        ram1_addr <= (others => '0'); 
+                        ram2_addr <= (others => '0'); 
 					end if;
 				else 
-					if (cnt < 10000) then
+					if (cnt < 1000) then
 						cnt := cnt + 1;
 					end if;
 				end if;	--cnt 

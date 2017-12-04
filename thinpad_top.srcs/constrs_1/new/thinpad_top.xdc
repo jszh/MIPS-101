@@ -157,7 +157,10 @@ set_property PACKAGE_PIN P8 [get_ports {dip_sw[26]}]
 set_property PACKAGE_PIN N8 [get_ports {dip_sw[27]}]
 set_property PACKAGE_PIN N6 [get_ports {dip_sw[28]}]
 set_property PACKAGE_PIN N7 [get_ports {dip_sw[29]}]
-set_property PACKAGE_PIN M7 [get_ports {dip_sw[30]}]
+
+# clk option
+set_property IOSTANDARD LVCMOS33 [get_ports dvi_en]
+set_property PACKAGE_PIN M7 [get_ports dvi_en]
 
 # clk option
 set_property IOSTANDARD LVCMOS33 [get_ports opt]

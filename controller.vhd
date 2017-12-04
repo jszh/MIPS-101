@@ -52,7 +52,7 @@ begin
 					elsif (command_in(10 downto 8) = "000") then--BTEQZ
 						controller_out <= "100011000000000000000110";
 					elsif (command_in(10 downto 8) = "100") then--MTSP
-						controller_out <= "000001001001011101000001";
+						controller_out <= "000010001001011101000001";
 					elsif (command_in(10 downto 8) = "010") then --SW_RS
 						controller_out <= "100100110010001000010000";
 					end if;

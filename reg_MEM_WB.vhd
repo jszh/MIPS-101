@@ -12,7 +12,7 @@ entity reg_MEM_WB is
 		Rd_in : in std_logic_vector(3 downto 0);				--目的寄存器
 		--控制信号
 		RegWrite_in : in std_logic;		--是否要写回
-		MemToReg_in : in std_logic;		--写回时选择ReadMemData_in（'1'）还是ALUresult_in（'0'）
+		MemToReg_in : in std_logic;		--写回时选择ReadMemData_in（'0'）还是ALUresult_in（'1'）
 		
 		data_to_WB : out std_logic_vector(15 downto 0);		--写回的数据
 		Rd_out : out std_logic_vector(3 downto 0);				--目的寄存器："0xxx"-R0~R7,"1000"-SP,"1001"-IH,"1010"-T,"1110"-没有目的寄存器
@@ -33,9 +33,9 @@ begin
 		if(flash_finished = '1') then
 			Rd_out <= Rd_in;
 			RegWrite_out <= RegWrite_in;
-			if (MemToReg_in = '0') then
+			if (MemToReg_in = '1') then
 				data_to_WB <= ALUresult_in;
-			elsif (MemToReg_in = '1') then
+			elsif (MemToReg_in = '0') then
 				data_to_WB <= ReadMemData_in;
 			end if;
 		end if;
