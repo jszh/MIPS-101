@@ -33,7 +33,7 @@ begin
 				PC_Keep <= '1';
 				IF_ID_Keep <= '1';
 				BJ_IF_ID_Flush <= '0';
-				ID_EX_Flush <= '1';
+				ID_EX_Flush <= '0';
 			else
 				PC_Keep <= '0';
 				IF_ID_Keep <= '0';

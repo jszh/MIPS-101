@@ -30,15 +30,15 @@ begin
 			Rd_out <= "1110";
 			RegWrite_out <= '0';
 		elsif (clk'event and clk = '1') then
-		if(flash_finished = '1') then
-			Rd_out <= Rd_in;
-			RegWrite_out <= RegWrite_in;
-			if (MemToReg_in = '1') then
-				data_to_WB <= ALUresult_in;
-			elsif (MemToReg_in = '0') then
-				data_to_WB <= ReadMemData_in;
+			if (flash_finished = '1') then
+				Rd_out <= Rd_in;
+				RegWrite_out <= RegWrite_in;
+				if (MemToReg_in = '1') then
+					data_to_WB <= ALUresult_in;
+				elsif (MemToReg_in = '0') then
+					data_to_WB <= ReadMemData_in;
+				end if;
 			end if;
-		end if;
 		end if;
 	end process;
 end Behavioral;

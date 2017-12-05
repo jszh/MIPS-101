@@ -785,7 +785,7 @@ begin
 		flash_finished => flash_finished,
 		
 		LW_ID_EX_Flush => LW_ID_EX_Flush,
-		Branch_ID_EX_Flush => BranchJudge,
+		Branch_ID_EX_Flush => '0',
 		Jump_ID_EX_Flush => ID_EX_JR,
 		SW_ID_EX_Flush => SW_ID_EX_Flush,
 		
@@ -1075,15 +1075,12 @@ begin
 
 		-- registers
 		RegPC => IM_instruction_out,
-		RegR0 => r0_008B,
-		RegR1 => extended_imme,
-		RegR2 => MUX_B_out,
-		RegR3 => EX_MEM_result,
-		RegR4(15 downto 12) => ID_EX_Reg1,
-		RegR4(11 downto 4) => (others => '0'),
-		RegR4(3 downto 0) => Rd_to_write,
-		RegR5(15 downto 1) => (others => '0'),
-		RegR5(0) => BranchJudge,
+		RegR0 => r0,
+		RegR1 => MUX_B_out,
+		RegR2 => EX_MEM_result,
+		RegR3 => data_to_WB,
+		RegR4 => r4,
+		RegR5 => r5,
 		RegR6 => r6,
 		RegR7 => r7,
 		RegSP => data_SP,
