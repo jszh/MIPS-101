@@ -785,7 +785,7 @@ begin
 		flash_finished => flash_finished,
 		
 		LW_ID_EX_Flush => LW_ID_EX_Flush,
-		Branch_ID_EX_Flush => '0',
+		Branch_ID_EX_Flush => BranchJudge,
 		Jump_ID_EX_Flush => ID_EX_JR,
 		SW_ID_EX_Flush => SW_ID_EX_Flush,
 		
