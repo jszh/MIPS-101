@@ -655,6 +655,8 @@ architecture Behavioral of cpu is
 	signal clkIn_clock : std_logic;	--传给clock.vhd的输入时钟
 	signal always_zero : std_logic := '0';	--恒为零的信号
 	
+	signal r0_008B : std_logic_vector(15 downto 0) := "0000000000000000";
+	
 begin
 	rst <= touch_btn(5);
 	clk_manual <= touch_btn(4);
@@ -1073,7 +1075,7 @@ begin
 
 		-- registers
 		RegPC => IM_instruction_out,
-		RegR0 => r0,
+		RegR0 => r0_008B,
 		RegR1 => extended_imme,
 		RegR2 => MUX_B_out,
 		RegR3 => EX_MEM_result,
@@ -1097,6 +1099,12 @@ begin
 		video_de => video_de
 	);
 	
+	process (r0, PC_out)
+	begin
+	    if (PC_out = x"008B") then
+	       r0_008B <= r0;
+	    end if;
+	end process;
 	
 	
 	process(PC_out)--controller_out(14),BranchJudge, PC_Rollback)

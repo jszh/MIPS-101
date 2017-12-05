@@ -31,8 +31,8 @@ begin
 				reg1_select = ID_EX_Rd) or	-- reg match
 				(EX_MEM_Read = '1' and reg1_select = EX_MEM_Rd)) then	-- prev prev MemRead and reg match
 				PC_Keep <= '1';
-				IF_ID_Keep <= '0';
-				BJ_IF_ID_Flush <= '1';
+				IF_ID_Keep <= '1';
+				BJ_IF_ID_Flush <= '0';
 				ID_EX_Flush <= '1';
 			else
 				PC_Keep <= '0';
