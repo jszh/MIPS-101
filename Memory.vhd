@@ -127,8 +127,9 @@ begin
 						if (MemWrite = '1') then	--如果要写
 							rflag <= '0';
 							if (address = x"BF00") then 	--准备写串??
-								ram1_data(7 downto 0) <= WriteData(7 downto 0);
 								wrn <= '0';
+                                ram1_data(7 downto 0) <= WriteData(7 downto 0);
+                                
 							else							--准备写内??
 								ram2_addr(15 downto 0) <= address;
 								ram2_data <= (31 downto 16 => '0') & WriteData;
@@ -236,8 +237,6 @@ begin
 					
 					if (current_addr > x"042E") then
 						flash_finished_tmp <= '1';
-                        ram1_addr <= (others => '0'); 
-                        ram2_addr <= (others => '0'); 
 					end if;
 				else 
 					if (cnt < 1000) then
