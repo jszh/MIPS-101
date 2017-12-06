@@ -6,21 +6,21 @@ entity cpu is
 		touch_btn : in std_logic_vector(5 downto 0);	-- 4-manual clk, 5-rst
 		clk_in : in std_logic;	-- 50M clock
 		opt, dvi_en : in std_logic;	-- clock option; display out enable
-		
+
 		-- UART serial
-		uart_dataready : in std_logic;
-		uart_tbre : in std_logic;
-		uart_tsre : in std_logic;
-		uart_rdn : inout std_logic;
-		uart_wrn : inout std_logic;
-		
+		uart_dataready : in std_logic;	-- data ready
+		uart_tbre : in std_logic;	-- data-to-send buffered
+		uart_tsre : in std_logic;	-- data sent
+		uart_rdn : inout std_logic;	-- read enable
+		uart_wrn : inout std_logic;	-- write enable
+
 		-- RAM1: only used for serial port
-		base_ram_ce_n : out std_logic;
-		base_ram_we_n : out std_logic;
-		base_ram_oe_n : out std_logic;
-		base_ram_data : inout std_logic_vector(31 downto 0);
-		base_ram_addr : out std_logic_vector(19 downto 0);
-		
+		base_ram_ce_n : out std_logic;	-- chip enable
+		base_ram_we_n : out std_logic;	-- write enable
+		base_ram_oe_n : out std_logic;	-- output enable
+		base_ram_data : inout std_logic_vector(31 downto 0);	-- data bus
+		base_ram_addr : out std_logic_vector(19 downto 0);	-- address bus
+
 		-- RAM2
 		ext_ram_ce_n : out std_logic;
 		ext_ram_we_n : out std_logic;
@@ -28,15 +28,15 @@ entity cpu is
 		ext_ram_data : inout std_logic_vector(31 downto 0);
 		ext_ram_addr : out std_logic_vector(19 downto 0);
 		
-		-- leds 15-0: led; 31-16: 7-segs
+		-- leds 15-0: led; 31-16: 7-segment displays
 		leds : out std_logic_vector(31 downto 0);
 		
 		-- DVI video
-		video_hsync, video_vsync : out std_logic;
+		video_hsync, video_vsync : out std_logic;	-- sync signals
 		video_pixel : OUT std_logic_vector(7 DOWNTO 0);
 		video_clk : OUT std_logic;
-		video_de : out std_logic := '0';
-	
+		video_de : out std_logic := '0';	-- always '0'
+
 		-- flash
 		flash_a : out std_logic_vector(22 downto 0);	-- flash address bus
 		flash_data : inout std_logic_vector(15 downto 0);	-- flash data bus
@@ -48,7 +48,7 @@ entity cpu is
 		flash_oe_n : out std_logic;	-- flash output enable
 		flash_we_n : out std_logic	-- flash write enable
 	);
-			
+
 end cpu;
 
 architecture Behavioral of cpu is
@@ -142,8 +142,8 @@ architecture Behavioral of cpu is
 		clk2 : out STD_LOGIC
 	);
 	end component;
-	
-	
+
+
 	component ALU
 	port(
 		Asrc : in std_logic_vector(15 downto 0);
@@ -152,7 +152,7 @@ architecture Behavioral of cpu is
 		ALUresult : out std_logic_vector(15 downto 0) := "0000000000000000"
 	);
 	end component;
-	
+
 	-- ALU MUX A: 1st operator
 	component MUX_A
 	port(
@@ -164,7 +164,7 @@ architecture Behavioral of cpu is
 		Asrc_out : out std_logic_vector(15 downto 0)	-- output
 	);
 	end component;
-	
+
 	-- ALU MUX B: 2nd operator
 	component MUX_B
 	port(
@@ -213,7 +213,7 @@ architecture Behavioral of cpu is
 		MFPC_out : out std_logic
 	);
 	end component;
-	
+
 	-- Ñ¡ÔñÐÂPCµÄµ¥Ôª
 	component PC_MUX_add
 	port(
@@ -229,7 +229,7 @@ architecture Behavioral of cpu is
 		PC_out : out std_logic_vector(15 downto 0)
 	);
 	end component;
-	
+
 	-- PC+1 for MFPC
 	component MUX_MFPC
 	port(
@@ -240,9 +240,9 @@ architecture Behavioral of cpu is
 		MUX_MFPC_out : out std_logic_vector(15 downto 0)
 	);
 	end component;
-	
-	
-	-- EX/MEM½×¶Î¼Ä´æÆ÷
+
+
+	-- EX/MEM registers
 	component reg_EX_MEM
 	port(
 		clk : in std_logic;
@@ -317,7 +317,7 @@ architecture Behavioral of cpu is
 	);
 	end component;
 	
-	-- ID/EX½×¶Î¼Ä´æÆ÷
+	-- ID/EX registers
 	component reg_ID_EX
 	port(
 		clk : in std_logic;
@@ -367,7 +367,7 @@ architecture Behavioral of cpu is
 	);
 	end component;
 	
-	-- IF/ID½×¶Î¼Ä´æÆ÷
+	-- IF/ID registers
 	component reg_IF_ID
 	port(
 		rst : in std_logic;
@@ -390,7 +390,7 @@ architecture Behavioral of cpu is
 	);
 	end component;
 	
-	-- Á¢¼´ÊýÀ©Õ¹µ¥Ôª
+	-- immediate value extension
 	component imme_extension
 	port(
 		 imme_in : in std_logic_vector(10 downto 0);
@@ -399,7 +399,7 @@ architecture Behavioral of cpu is
 	);
 	end component;
 	
-	-- MEM/WB½×¶Î¼Ä´æÆ÷
+	-- MEM/WB registers
 	component reg_MEM_WB
 	port(
 		clk : in std_logic;
@@ -438,7 +438,7 @@ architecture Behavioral of cpu is
 	);
 	end component;
 	
-	-- Ô´¼Ä´æÆ÷1Ñ¡ÔñÆ÷
+	-- Reg1 source selector
 	component MUX_Reg1
 	port(
 		Rs : in std_logic_vector(2 downto 0);
@@ -450,7 +450,7 @@ architecture Behavioral of cpu is
 	);
 	end component;
 	
-	-- Ô´¼Ä´æÆ÷2Ñ¡ÔñÆ÷
+	-- Reg2 source selector
 	component MUX_Reg2
 	port(
 		Rs : in std_logic_vector(2 downto 0);
@@ -462,7 +462,7 @@ architecture Behavioral of cpu is
 	);
 	end component;
 	
-	-- Ä¿µÄ¼Ä´æÆ÷Ñ¡ÔñÆ÷
+	-- Destination reg source selector
 	component MUX_Rd
 	port(
 		Rs : in std_logic_vector(2 downto 0);
@@ -523,7 +523,7 @@ architecture Behavioral of cpu is
 	end component;
 	
 	
-	-- signals for connecting the components
+	-- signals for component connections
 
 	-- cpu
 	signal rst, clk_manual : std_logic;
