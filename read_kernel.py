@@ -1,4 +1,4 @@
-with open("C:\\Users\\Jason\\Desktop\\cpu-memory dump\\ext-0-900-3.bin", "rb") as f1, open("kernel.bin", "rb") as f2:
+with open("C:\\Users\\Jason\\Desktop\\cpu-memory dump\\ext-0000-900-4.bin", "rb") as f1, open("kernel.bin", "rb") as f2:
     counter = 0
     print()
     mem = f1.read(4)

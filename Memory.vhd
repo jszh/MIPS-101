@@ -64,6 +64,7 @@ architecture Behavioral of memory is
 	signal current_addr : std_logic_vector(15 downto 0) := (others => '0');	--flash当前要读的地??
 	signal ram2_load_addr : std_logic_vector(15 downto 0) := (others => '0');
 	shared variable cnt : integer := 0;	--用于削弱50M时钟频率??1M
+	shared variable write_wait_count : integer := 0;
 	
 begin
 	process(clk, rst)
@@ -90,20 +91,22 @@ begin
 			
 		elsif (clk'event and clk = '1') then 
 			if (flash_finished_tmp = '1') then			--从flash载入kernel指令到ram2已完??
+				flash_ce <= '1';	--禁止flash
 				flash_byte <= '1';
 				flash_vpen <= '1';
 				flash_rp <= '1';
-				flash_ce <= '1';	--禁止flash
-				ram1_en <= '1';
+				
+				ram1_en <= '1';		--RAM1: serial access only
 				ram1_oe <= '1';
 				ram1_we <= '1';
 				ram1_addr(19 downto 0) <= (others => '0');
+                wrn <= '1';
+                rdn <= '1';
+				
 				ram2_en <= '0';
 				ram2_addr(19 downto 16) <= "0000";
 				ram2_oe <= '1';
 				ram2_we <= '1';
-				wrn <= '1';
-				rdn <= '1';
 				
 				case state is 
 						
@@ -127,8 +130,9 @@ begin
 						if (MemWrite = '1') then	--如果要写
 							rflag <= '0';
 							if (address = x"BF00") then 	--准备写串??
-								ram1_data(7 downto 0) <= WriteData(7 downto 0);
+								ram1_data <= (31 downto 8 => '0') & WriteData(7 downto 0);
 								wrn <= '0';
+								rdn <= '1';
 							else							--准备写内??
 								ram2_addr(15 downto 0) <= address;
 								ram2_data <= (31 downto 16 => '0') & WriteData;
@@ -138,15 +142,29 @@ begin
 							if (address = x"BF01") then 	--准备读串口状??
 								ReadData(15 downto 2) <= (others => '0');
 								ReadData(1) <= data_ready;
-								ReadData(0) <= tsre and tbre;
+								
+								if (tsre and tbre) = '1' then
+									write_wait_count := write_wait_count + 1;
+									if write_wait_count >= 1000 then
+										ReadData(0) <= '1';
+										write_wait_count := 0;
+									else
+										ReadData(0) <= '0';
+									end if;
+								else
+									ReadData(0) <= '0';
+									write_wait_count := 0;
+								end if;
+								
 								if (rflag = '0') then	--读串口状态时意味??接下来可能要??/写串口数??
 									ram1_data <= (others => 'Z');	--故预先把ram1_data置为高阻
-									rflag <= '1';	--如果接下来要读，则可直接把rdn??'0'，省??个状态；要写，则rflag='0'，正常走写串口的流程
+									rflag <= '1';	--如果接下来要读，则可直接rdn='0'，省1个状态；要写，则rflag='0'，正常走写串口的流程
 								end if;	
-							elsif (address = x"BF00") then	--准备读串口数??
+							elsif (address = x"BF00") then	--准备读串口
 								rflag <= '0';
 								rdn <= '0';
-							else							--准备读内??
+								wrn <= '1';
+							else							--准备读内存
 								ram2_data <= (others => 'Z');
 								ram2_addr(15 downto 0) <= address;
 								ram2_oe <= '0';
@@ -154,21 +172,21 @@ begin
 						end if;	
 						state <= "10";
 						
-					when "10" =>		--??/?? 串口/内存
-						if(MemWrite = '1') then		--??
-							if (address = x"BF00") then		--写串??
+					when "10" =>		--read/write serial/mem
+						if (MemWrite = '1') then		--write
+							if (address = x"BF00") then		--写串口
 								wrn <= '1';
-							else							--写内??
+							else							--写内存
 								ram2_we <= '1';
 							end if;
-						elsif(MemRead = '1') then	--??
-							if (address = x"BF01") then		--读串口状态（已读出）
+						elsif (MemRead = '1') then	--read
+							if (address = x"BF01") then		--读串口状态（01中已读出）
 								null;
-							elsif (address = x"BF00") then 	--读串口数??
+							elsif (address = x"BF00") then 	--读串口
 								rdn <= '1';
 								ReadData(15 downto 8) <= (others => '0');
 								ReadData(7 downto 0) <= ram1_data(7 downto 0);
-							else							--读内??
+							else							--读内存
 								ram2_oe <= '1';
 								ReadData <= ram2_data(15 downto 0);
 							end if;
@@ -176,8 +194,7 @@ begin
 						state <= "00";
 						
 					when others =>
-						state <= "00";
-						
+						state <= "00";		
 				end case;
 				
 			else				--从flash载入kernel指令到ram2尚未完成，则继续载入
@@ -185,7 +202,7 @@ begin
 					cnt := 0;
 					
 					case flash_state is		
-						when "001" =>		--WE??0
+						when "001" =>		--WE set to 0
 							ram2_en <= '0';
 							ram2_we <= '0';
 							ram2_oe <= '1';
@@ -220,18 +237,17 @@ begin
 							ram2_addr <= "0000" & ram2_load_addr;
 							ram2addr_output <= "00" & ram2_load_addr;	--调试
 							ram2_data <= (31 downto 16 => '0') & flash_data;
+							flash_oe <= '1';
 							flash_state <= "110";
 						
 						when "110" =>
-                            flash_oe <= '1';
 							ram2_we <= '1';
 							current_addr <= current_addr + 2;
 							ram2_load_addr <= ram2_load_addr + 1;
 							flash_state <= "001";
 							
 						when others =>
-							flash_state <= "001";
-						
+							flash_state <= "001";				
 					end case;
 					
 					if (current_addr > x"042E") then
