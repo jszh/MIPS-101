@@ -5,7 +5,7 @@ entity cpu is
 	port(
 		touch_btn : in std_logic_vector(5 downto 0);	-- 4-manual clk, 5-rst
 		clk_in : in std_logic;	-- 50M clock
-		opt, dvi_en : in std_logic;	-- clock option; display out enable
+		opt, dvi_en : in std_logic;	-- clock option; display output enable
 
 		-- UART serial
 		uart_dataready : in std_logic;	-- data ready
