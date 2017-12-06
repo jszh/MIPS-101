@@ -55,37 +55,37 @@ architecture Behavioral of cpu is
 	
 	component DVI
 	port(
-        clk_in : in std_logic; -- requires 50M Clock
-        rst : in std_logic;
+		clk_in : in std_logic; -- requires 50M Clock
+		rst : in std_logic;
 
-        -- registers
-        RegPC : in std_logic_vector(15 downto 0);
-        RegR0 : in std_logic_vector(15 downto 0);
-        RegR1 : in std_logic_vector(15 downto 0);
-        RegR2 : in std_logic_vector(15 downto 0);
-        RegR3 : in std_logic_vector(15 downto 0);
-        RegR4 : in std_logic_vector(15 downto 0);
-        RegR5 : in std_logic_vector(15 downto 0);
-        RegR6 : in std_logic_vector(15 downto 0);
-        RegR7 : in std_logic_vector(15 downto 0);
-        RegSP : in std_logic_vector(15 downto 0);
-        RegIH : in std_logic_vector(15 downto 0);
-        RegT : in std_logic_vector(15 downto 0);
-        RegRA : in std_logic_vector(15 downto 0);
-        
-        -- common ports
-        video_vsync : out std_logic:= '0';
-        video_hsync : out std_logic:= '0';
-        video_pixel : out std_logic_vector(7 downto 0);
-        video_clk : out std_logic;
-        video_de : out std_logic := '0'
-    );
+		-- registers
+		RegPC : in std_logic_vector(15 downto 0);
+		RegR0 : in std_logic_vector(15 downto 0);
+		RegR1 : in std_logic_vector(15 downto 0);
+		RegR2 : in std_logic_vector(15 downto 0);
+		RegR3 : in std_logic_vector(15 downto 0);
+		RegR4 : in std_logic_vector(15 downto 0);
+		RegR5 : in std_logic_vector(15 downto 0);
+		RegR6 : in std_logic_vector(15 downto 0);
+		RegR7 : in std_logic_vector(15 downto 0);
+		RegSP : in std_logic_vector(15 downto 0);
+		RegIH : in std_logic_vector(15 downto 0);
+		RegT : in std_logic_vector(15 downto 0);
+		RegRA : in std_logic_vector(15 downto 0);
+		
+		-- common ports
+		video_vsync : out std_logic:= '0';
+		video_hsync : out std_logic:= '0';
+		video_pixel : out std_logic_vector(7 downto 0);
+		video_clk : out std_logic;
+		video_de : out std_logic := '0'
+	);
 	end component;
 	
 	-- IM and DM
 	component memory
 	port(
-		clk, rst : in std_logic;  -- 时钟
+		clk, rst : in std_logic;
 		
 		-- RAM1（串口）
 		data_ready : in std_logic;		-- 数据准备信号，='1'表示串口的数据已准备好（读串口成功，可显示读到的data）
@@ -106,8 +106,8 @@ architecture Behavioral of cpu is
 		ReadData : out std_logic_vector(15 downto 0);	-- 读DM时，读出来的数据/读出的串口状态
 		ReadIns : out std_logic_vector(15 downto 0);	-- 读IM时，出来的指令
 		
-		ram1_addr, ram2_addr : out std_logic_vector(19 downto 0); 	-- RAM1 RAM2地址总线
-		ram1_data, ram2_data : inout std_logic_vector(31 downto 0);-- RAM1 RAM2数据总线
+		ram1_addr, ram2_addr : out std_logic_vector(19 downto 0);	-- RAM1 RAM2地址总线
+		ram1_data, ram2_data : inout std_logic_vector(31 downto 0);	-- RAM1 RAM2数据总线
 		
 		ram1_en, ram1_oe, ram1_we : out std_logic;		-- RAM1使能 读使能 写使能  ='1'禁止，永远等于'1'
 		
@@ -271,8 +271,8 @@ architecture Behavioral of cpu is
 	end component;
 	
 	-- forwarding unit
-	-- 	IF - EX/MEM
-	-- 	ID - EX/MEM
+	--	IF - EX/MEM
+	--	ID - EX/MEM
 	component forwarding_unit
 	port(
 		IF_ID_Rs: in std_logic_vector(2 downto 0);
@@ -295,8 +295,8 @@ architecture Behavioral of cpu is
 	end component;
 	
 	-- Hazard detection unit
-	-- 	ID/MEM hazard
-	-- 	branch related hazard
+	--	ID/MEM hazard
+	--	branch related hazard
 	component hazard_detection
 	port(
 		ID_EX_Rd : in std_logic_vector(3 downto 0);
@@ -481,11 +481,11 @@ architecture Behavioral of cpu is
 		clk : in std_logic;
 		rst : in std_logic;
 		
-		read_reg1 : in std_logic_vector(3 downto 0);  -- "0XXX"代表R0~R7 "1000"=SP,"1001"=IH, "1010"=T "1011"=RA "1100"=PC
-		read_reg2 : in std_logic_vector(3 downto 0);  -- "0XXX"代表R0~R7  "1000"=RA
+		read_reg1 : in std_logic_vector(3 downto 0);	-- "0XXX"代表R0~R7 "1000"=SP,"1001"=IH, "1010"=T "1011"=RA "1100"=PC
+		read_reg2 : in std_logic_vector(3 downto 0);	-- "0XXX"代表R0~R7  "1000"=RA
 		
-		dst_reg : in std_logic_vector(3 downto 0);	  -- 由WB阶段传回：目的寄存器
-		WriteData : in std_logic_vector(15 downto 0);  -- 由WB阶段传回：写目的寄存器的数据
+		dst_reg : in std_logic_vector(3 downto 0);	-- 由WB阶段传回：目的寄存器
+		WriteData : in std_logic_vector(15 downto 0);	-- 由WB阶段传回：写目的寄存器的数据
 		RegWrite : in std_logic;					-- 由WB阶段传回：RegWrite（写目的寄存器）控制信号
 		
 		flash_finished : in std_logic;
@@ -630,7 +630,7 @@ architecture Behavioral of cpu is
 
 
 begin
-	-- cpu
+	-- cpu wiring
 	rst <= touch_btn(5);
 	clk_manual <= touch_btn(4);
 	dvi_clk <= clk_in and dvi_en;
@@ -666,6 +666,7 @@ begin
 		clk2 => clk_registers
 	);
 
+
 	u10 : PC_reg
 	port map(
 		rst => rst,
@@ -675,13 +676,13 @@ begin
 		PC_in => PC_MUX_out,
 		PC_out => PC_out
 	);
-		
+
 	u11 : PC_adder
 	port map( 
 		adder_in => PC_out,
 		adder_out => PC_addOne
 	);
-	
+
 	u12 : PC_MUX_add
 	port map( 
 		PC_addOne => PC_addOne,
@@ -695,7 +696,8 @@ begin
 		
 		PC_out => PC_MUX_out
 	);
-		
+
+
 	u20 : reg_IF_ID
 	port map(
 		rst => rst,
@@ -716,7 +718,7 @@ begin
 		command_out => IF_ID_cmd,
 		PC_out => IF_ID_PC
 	);
-		
+
 	u21 : controller
 	port map(	
 		command_in => IF_ID_cmd,
@@ -727,7 +729,7 @@ begin
 		-- memwrite(4) branch(3-1) memtoreg(0)						-- 5
 		MFPC_out => MFPC_control
 	);
-	
+
 	u22 : MUX_Reg1
 	port map(
 		Rs => Rs,
@@ -736,7 +738,7 @@ begin
 		
 		reg1_out => MUX_Reg1_out
 	);
-	
+
 	u23 : MUX_Reg2
 	port map(
 		Rs => Rs,
@@ -745,7 +747,7 @@ begin
 		
 		reg2_out => MUX_Reg2_out
 	);
-		
+
 	u24 : registers
 	port map(
 		clk => clk,
@@ -809,7 +811,8 @@ begin
 		imme_select => controller_out(23 downto 21),
 		imme_out => extended_imme
 	);
-		
+
+
 	u30 : reg_ID_EX
 	port map(
 		clk => clk_3,
@@ -909,7 +912,8 @@ begin
 		
 		WriteData_out => WriteData_out
 	);
-	
+
+
 	u40 : reg_EX_MEM
 	port map(
 		clk => clk_3,
@@ -986,6 +990,7 @@ begin
 		flash_we => flash_we_n
 	);
 
+
 	u50 : reg_MEM_WB
 	port map(
 		clk => clk_3,
@@ -1003,7 +1008,8 @@ begin
 		Rd_out => Rd_to_write,
 		RegWrite_out => MEM_WB_RegWrite
 	);
-		
+
+
 	u60 : forwarding_unit
 	port map(
 		IF_ID_Rs => Rs,
@@ -1053,6 +1059,7 @@ begin
 		PC_Rollback => PC_Rollback
 	);
 
+
 	u70 : DVI
 	port map(
 		clk_in => dvi_clk,
@@ -1092,45 +1099,45 @@ begin
 	-- 7-segment displays
 	process(PC_out)
 	begin
-	 	case PC_out(3 downto 0) is
-	 		when "0000" => digit1 <= "01111110";-- 0
-	 		when "0001" => digit1 <= "00010010";-- 1
-	 		when "0010" => digit1 <= "10111100";-- 2
-	 		when "0011" => digit1 <= "10110110";-- 3
-	 		when "0100" => digit1 <= "11010010";-- 4
-	 		when "0101" => digit1 <= "11100110";-- 5
-	 		when "0110" => digit1 <= "11101110";-- 6
-	 		when "0111" => digit1 <= "00110010";-- 7
-	 		when "1000" => digit1 <= "11111110";-- 8
-	 		when "1001" => digit1 <= "11110110";-- 9
-	 		when "1010" => digit1 <= "11111010";-- A
-	 		when "1011" => digit1 <= "11001110";-- B
-	 		when "1100" => digit1 <= "01101100";-- C
-	 		when "1101" => digit1 <= "10011110";-- D
-	 		when "1110" => digit1 <= "11101100";-- E
-	 		when "1111" => digit1 <= "11101000";-- F
-	 		when others => digit1 <= "00000000";
-	 	end case;
+		case PC_out(3 downto 0) is
+			when "0000" => digit1 <= "01111110";	-- 0
+			when "0001" => digit1 <= "00010010";	-- 1
+			when "0010" => digit1 <= "10111100";	-- 2
+			when "0011" => digit1 <= "10110110";	-- 3
+			when "0100" => digit1 <= "11010010";	-- 4
+			when "0101" => digit1 <= "11100110";	-- 5
+			when "0110" => digit1 <= "11101110";	-- 6
+			when "0111" => digit1 <= "00110010";	-- 7
+			when "1000" => digit1 <= "11111110";	-- 8
+			when "1001" => digit1 <= "11110110";	-- 9
+			when "1010" => digit1 <= "11111010";	-- A
+			when "1011" => digit1 <= "11001110";	-- B
+			when "1100" => digit1 <= "01101100";	-- C
+			when "1101" => digit1 <= "10011110";	-- D
+			when "1110" => digit1 <= "11101100";	-- E
+			when "1111" => digit1 <= "11101000";	-- F
+			when others => digit1 <= "00000000";
+		end case;
 		
-	 	case PC_out(7 downto 4) is
-	 		when "0000" => digit2 <= "01111110";-- 0
-            when "0001" => digit2 <= "00010010";-- 1
-            when "0010" => digit2 <= "10111100";-- 2
-            when "0011" => digit2 <= "10110110";-- 3
-            when "0100" => digit2 <= "11010010";-- 4
-            when "0101" => digit2 <= "11100110";-- 5
-            when "0110" => digit2 <= "11101110";-- 6
-            when "0111" => digit2 <= "00110010";-- 7
-            when "1000" => digit2 <= "11111110";-- 8
-            when "1001" => digit2 <= "11110110";-- 9
-            when "1010" => digit2 <= "11111010";-- A
-            when "1011" => digit2 <= "11001110";-- B
-            when "1100" => digit2 <= "01101100";-- C
-            when "1101" => digit2 <= "10011110";-- D
-            when "1110" => digit2 <= "11101100";-- E
-            when "1111" => digit2 <= "11101000";-- F
-            when others => digit2 <= "00000000";
-	 	end case;
+		case PC_out(7 downto 4) is
+			when "0000" => digit2 <= "01111110";	-- 0
+			when "0001" => digit2 <= "00010010";	-- 1
+			when "0010" => digit2 <= "10111100";	-- 2
+			when "0011" => digit2 <= "10110110";	-- 3
+			when "0100" => digit2 <= "11010010";	-- 4
+			when "0101" => digit2 <= "11100110";	-- 5
+			when "0110" => digit2 <= "11101110";	-- 6
+			when "0111" => digit2 <= "00110010";	-- 7
+			when "1000" => digit2 <= "11111110";	-- 8
+			when "1001" => digit2 <= "11110110";	-- 9
+			when "1010" => digit2 <= "11111010";	-- A
+			when "1011" => digit2 <= "11001110";	-- B
+			when "1100" => digit2 <= "01101100";	-- C
+			when "1101" => digit2 <= "10011110";	-- D
+			when "1110" => digit2 <= "11101100";	-- E
+			when "1111" => digit2 <= "11101000";	-- F
+			when others => digit2 <= "00000000";
+		end case;
 	 end process;
 
 end Behavioral;
