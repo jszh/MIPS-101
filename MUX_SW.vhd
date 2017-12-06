@@ -1,7 +1,7 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
-entity MUX_WriteData is
+entity MUX_SW is
 	port(
 		ForwardSW : in std_logic_vector(1 downto 0);
 		ReadData2 : in std_logic_vector(15 downto 0);
@@ -9,9 +9,9 @@ entity MUX_WriteData is
 		MEM_WB_result : in std_logic_vector(15 downto 0);	
 		WriteData_out : out std_logic_vector(15 downto 0)
 	);
-end MUX_WriteData;
+end MUX_SW;
 
-architecture Behavioral of MUX_WriteData is
+architecture Behavioral of MUX_SW is
 begin
 	process(ForwardSW, ReadData2, EX_MEM_result, MEM_WB_result)
 	begin

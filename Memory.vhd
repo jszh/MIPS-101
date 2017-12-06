@@ -8,14 +8,14 @@ entity memory is
 	port(
 		clk, rst : in std_logic;  --时钟
 		
-		--RAM1（串口）
+		--RAM1 (serial port access)
 		data_ready : in std_logic;		--数据准备信号??='1'表示串口的数据已准备好（读串口成功，可显示读到的data??
 		tbre : in std_logic;				--发???数据标??
 		tsre : in std_logic;				--数据发???完毕标志，tsre and tbre = '1'时写串口完毕
 		wrn : out std_logic;				--写串口，初始化为'1'，先置为'0'并把RAM1data赋好，再置为'1'写串??
 		rdn : out std_logic;				--读串口，初始化为'1'并将RAM1data赋为"ZZ..Z"??--若data_ready='1'，则把rdn置为'0'即可读串口（读出数据在RAM1data上）
 		
-		--RAM2（IM+DM??
+		--RAM2 (IM+DM)
 		MemRead, MemWrite : in std_logic;			--控制读，写DM的信号，='1'代表??要读，写
 		
 		WriteData : in std_logic_vector(15 downto 0);		--写内存时，要写入DM或IM的数??		
@@ -29,8 +29,6 @@ entity memory is
 		
 		ram1_addr, ram2_addr : out std_logic_vector(19 downto 0);	--RAM1 RAM2地址总线
 		ram1_data, ram2_data : inout std_logic_vector(31 downto 0);	--RAM1 RAM2数据总线
-		
-		ram2addr_output : out std_logic_vector(17 downto 0);
 		
 		ram1_en, ram1_oe, ram1_we : out std_logic;		--RAM1使能 读使?? 写使??  ='1'禁止，永远等??'1'
 		
@@ -65,8 +63,15 @@ architecture Behavioral of memory is
 	signal ram2_load_addr : std_logic_vector(15 downto 0) := (others => '0');
 	shared variable cnt : integer := 0;	--用于削弱50M时钟频率??1M
 	shared variable write_wait_count : integer := 0;
+
+	signal FLASH_DATA_LEN : std_logic_vector(15 downto 0) := x"042E";	--data length to load into RAM2
 	
 begin
+
+	memory_state <= state;
+	flash_finished <= flash_finished_tmp;
+	flash_state_out <= flash_state;
+
 	process(clk, rst)
 	begin
 	
@@ -113,10 +118,8 @@ begin
 					when "00" =>		--准备读指??
 						if PC_Keep = '0' then
 							ram2_addr(15 downto 0) <= PC_MUX_out;
-							ram2addr_output <= "00" & PC_MUX_out;
 						elsif PC_Keep = '1' then
 							ram2_addr(15 downto 0) <= PC_out;
-							ram2addr_output <= "00" & PC_out;
 						end if;
 						ram2_data <= (others => 'Z');
 						wrn <= '1';
@@ -235,7 +238,6 @@ begin
 						when "101" =>
 							ram2_we <= '0';
 							ram2_addr <= "0000" & ram2_load_addr;
-							ram2addr_output <= "00" & ram2_load_addr;	--调试
 							ram2_data <= (31 downto 16 => '0') & flash_data;
 							flash_oe <= '1';
 							flash_state <= "110";
@@ -247,29 +249,23 @@ begin
 							flash_state <= "001";
 							
 						when others =>
-							flash_state <= "001";				
+							flash_state <= "001";
 					end case;
 					
-					if (current_addr > x"042E") then
+					if (current_addr > FLASH_DATA_LEN) then
 						flash_finished_tmp <= '1';
 					end if;
 				else 
 					if (cnt < 1000) then
 						cnt := cnt + 1;
 					end if;
-				end if;	--cnt 
+				end if;	--cnt=1000
 				
-			end if;	--flash finished or not
+			end if;	--flash
 			
-		end if;	--rst/clk_raise
+		end if;	--rst/clk
 		
 	end process;
-	
-	
-	memory_state <= state;
-	flash_finished <= flash_finished_tmp;
-	flash_state_out <= flash_state;
-	
 	
 end Behavioral;
 
