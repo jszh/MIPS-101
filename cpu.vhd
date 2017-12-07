@@ -72,6 +72,7 @@ architecture Behavioral of cpu is
 		RegIH : in std_logic_vector(15 downto 0);
 		RegT : in std_logic_vector(15 downto 0);
 		RegRA : in std_logic_vector(15 downto 0);
+		IR : in std_logic_vector(15 downto 0);
 		
 		-- common ports
 		video_vsync : out std_logic:= '0';
@@ -1066,7 +1067,7 @@ begin
 		rst => '0',
 
 		-- registers
-		RegPC => IM_instruction_out,
+		RegPC => PC_out,
 		RegR0 => r0,
 		RegR1 => MUX_B_out,
 		RegR2 => EX_MEM_result,
@@ -1079,6 +1080,7 @@ begin
 		RegIH => data_IH,
 		RegT => data_T,
 		RegRA => data_RA,
+		IR => IM_instruction_out,
 		
 		-- common ports
 		video_vsync => video_vsync,

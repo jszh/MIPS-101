@@ -148,7 +148,7 @@ begin
 								
 								if (tsre and tbre) = '1' then
 									write_wait_count := write_wait_count + 1;
-									if write_wait_count >= 1000 then
+									if write_wait_count >= 1 then
 										ReadData(0) <= '1';
 										write_wait_count := 0;
 									else
